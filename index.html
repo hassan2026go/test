@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>شجرة العشيرة التقنية</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f172a">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<style>
+:root {
+  --bg: #090d16;
+  --card: #131c2e;
+  --card-hover: #1b263f;
+  --tx: #f8fafc;
+  --mut: #94a3b8;
+  --ac: #38bdf8;
+  --acx: #0369a1;
+  --bd: #1e293b;
+  --warn: #f59e0b;
+  --hl: #0284c715;
+  --glow: rgba(56, 189, 248, 0.15);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;overflow-x:hidden}
+
+.app-container{max-width:1100px;margin:0 auto;padding:16px}
+header{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--bd);padding:14px 20px;border-radius:16px;margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{font-size:2rem;background:var(--hl);padding:6px 10px;border-radius:12px;border:1px solid var(--bd)}
+h1{margin:0;font-size:1.2rem;font-weight:700;letter-spacing:-0.5px}
+.sub{color:var(--mut);font-size:0.75rem}
+
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;padding:8px 14px;transition:all 0.2s ease;display:inline-flex;align-items:center;gap:6px;font-size:0.85rem}
+button:hover{border-color:var(--ac);background:var(--card-hover)}
+button.p{background:var(--ac);color:#0f172a;border-color:var(--ac);font-weight:600}
+button.p:hover{background:#0ea5e9}
+button.d{color:#ef4444;border-color:#7f1d1d}
+
+.action-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+input,select,textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 14px;width:100%;outline:none;transition:border-color 0.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--glow)}
+
+.tabs{display:flex;gap:8px;margin-bottom:16px;border-bottom:1px solid var(--bd);padding-bottom:10px}
+.tabs button{background:transparent;border:none;color:var(--mut);border-radius:8px;padding:8px 16px}
+.tabs button.on{background:var(--hl);color:var(--ac);border:1px solid var(--bd)}
+.bd{background:var(--warn);color:#000;border-radius:99px;padding:0 6px;font-size:0.7rem;font-weight:700;margin-inline-start:6px}
+
+.grid-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+@media(max-width:768px){.grid-layout{grid-template-columns:1fr}}
+
+.glass-card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)}
+.tree-container{max-height:72vh;overflow-y:auto;padding-right:4px}
+.tree-container::-webkit-scrollbar{width:6px}
+.tree-container::-webkit-scrollbar-thumb{background:var(--bd);border-radius:99px}
+
+.tree-row{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:8px;transition:background 0.15s}
+.tree-row.selected{background:var(--hl);border-right:3px solid var(--ac)}
+.toggler{border:none;background:none;padding:0;color:var(--ac);cursor:pointer;width:20px;text-align:center}
+.node-name{cursor:pointer;font-weight:500}
+.node-name:hover{color:var(--ac)}
+.counter-badge{font-size:0.65rem;color:var(--mut);border:1px solid var(--bd);border-radius:99px;padding:0 6px;background:var(--bg)}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{border:1px solid var(--bd);border-radius:8px;padding:4px 10px;cursor:pointer;background:var(--bg);font-size:0.8rem;transition:all 0.1s}
+.chip:hover{border-color:var(--ac);color:var(--ac)}
+
+.banner{background:var(--hl);border:1px solid var(--ac);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:0.9rem;white-space:pre-wrap}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:16px;z-index:99}
+.modal{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:24px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 25px -5px rgba(0,0,0,0.5)}
+.modal label{display:block;margin-top:12px;font-size:0.8rem;color:var(--mut);font-weight:600}
+
+#toast{position:fixed;bottom:24px;left:0;right:0;text-align:center;z-index:100;pointer-events:none}
+#toast span{background:var(--tx);color:var(--bg);padding:10px 20px;border-radius:99px;font-weight:600;box-shadow:0 10px 15px -3px rgba(0,0,0,0.3)}
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <header>
+    <div class="brand">
+      <span class="brand-logo" id="lg">🌳</span>
+      <div>
+        <h1 id="sn">شجرة العشيرة التقنية</h1>
+        <div class="sub" id="who">جارِ التحميل...</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button id="edsite" style="display:none">⚙️ إعدادات المنصة</button>
+      <button id="login" class="p">دخول المشرفين</button>
+      <button id="out" class="d" style="display:none">خروج</button>
+    </div>
+  </header>
+
+  <div class="banner" id="bn" style="display:none"></div>
+
+  <div class="action-bar">
+    <input id="q" placeholder="🔍 بحث دقيق: اكتب الاسم (معالجة ذكية للأخطاء والتشكيل)..." style="flex:1">
+    <button class="p" id="add" style="display:none">+ إضافة فرد</button>
+  </div>
+
+  <div id="res"></div>
+
+  <div class="tabs">
+    <button data-tab="tree" class="on">🌳 هيكل الشجرة</button>
+    <button data-tab="qa">💬 الأسئلة والاقتراحات<span class="bd" id="qc" style="display:none">0</span></button>
+    <button data-tab="rev" id="revb" style="display:none">🛡️ مراجعة الطلبات<span class="bd" id="pc">0</span></button>
+  </div>
+
+  <div id="app"></div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ضع بيانات مشروعك في Supabase هنا
+const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co', SUPABASE_KEY = 'YOUR-ANON-PUBLIC-KEY';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let role='viewer', uid='', session=null, isAdmin=false, isStaff=false, people=[], pend=[], msgs=[], byId={}, kids={}, open=new Set(), sel=null, tab='tree', memo={}, site={}, sub=false;
+const $ = s => document.querySelector(s);
+const esc = s => String(s??'').replace(/[&<>"']/g, c =>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s||'').replace(/[\u064B-\u065F\u0640]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim().toLowerCase();
+const toast = m => { $('#toast').innerHTML = '<span>'+esc(m)+'</span>'; setTimeout(()=>$('#toast').innerHTML='', 3000) };
+
+function index(){
+  byId={}; kids={}; memo={};
+  people.forEach(p => byId[p.id] = p);
+  people.forEach(p => { const k = p.parentId||''; (kids[k] = kids[k]||[]).push(p) });
+  Object.values(kids).forEach(a => a.sort((x,y)=>(x.birth||9999)-(y.birth||9999)||x.name.localeCompare(y.name,'ar')));
+}
+function chain(id){ const a=[]; let c=byId[id], g=0; while(c && g++<500){ a.push(c); c=byId[c.parentId]; } return a; }
+function full(id, n=5){ const c=chain(id).slice(0,n); return c.map((p,i)=>i?(c[i-1].gender==='f'?' بنت ':' بن ')+p.name:p.name).join(''); }
+function cnt(id){ if(memo[id]!=null) return memo[id]; let n=0; (kids[id]||[]).forEach(c=>n+=1+cnt(c.id)); return memo[id]=n; }
+function pick(id){ sel=id; chain(id).slice(1).forEach(p=>open.add(p.id)); tab='tree'; $('#res').innerHTML=''; render(); }
+
+function node(p, d){
+  const k=kids[p.id]||[], o=open.has(p.id);
+  let h=`<div style="margin-inline-start:${d?18:0}px"><div class="tree-row ${sel===p.id?'selected':''}"><button class="toggler" data-t="${p.id}">${k.length?(o?'▼':'▶'):'•'}</button><span class="node-name" data-s="${p.id}">${esc(p.name)}</span>${k.length?`<span class="counter-badge">${cnt(p.id)}</span>`:''}</div>`;
+  if(o) h+=k.map(c=>node(c, d+1)).join('');
+  return h+'</div>';
+}
+
+function detail(){
+  const p=byId[sel];
+  if(!p) return `<div class="glass-card" style="color:var(--mut);text-align:center;padding:40px">اختر اسماً من الشجرة أو ابحث عنه لعرض بياناته الكاملة ونسبه.</div>`;
+  const path=chain(sel).reverse(), k=kids[sel]||[];
+  return `<div class="glass-card">
+    <h3 style="margin:0 0 8px 0;color:var(--ac)">${esc(p.name)}</h3>
+    <div class="sub" style="margin-bottom:12px"><b>سلسلة النسب:</b> ${esc(full(sel,8))}</div>
+    <div style="font-size:0.85rem;margin-bottom:8px"><b>التصنيف:</b> ${p.gender==='f'?'أنثى':'ذكر'}${p.birth?' · مواليد '+esc(p.birth):''} · الأبناء والأحفاد: ${cnt(sel)}</div>
+    <div class="chips">${path.map((x,i)=>`<span class="chip" data-s="${x.id}">${esc(x.name)}</span>${i<path.length-1?'←':''}`).join('')}</div>
+    ${p.phone?`<div style="font-size:0.85rem;margin-top:8px">📞 <a href="tel:${esc(p.phone)}" style="color:var(--ac)">${esc(p.phone)}</a></div>`:''}
+    ${p.email?`<div style="font-size:0.85rem">✉️ <a href="mailto:${esc(p.email)}" style="color:var(--ac)">${esc(p.email)}</a></div>`:''}
+    ${p.notes?`<div class="sub" style="margin-top:8px;background:var(--bg);padding:8px;border-radius:8px">${esc(p.notes)}</div>`:''}
+    ${k.length?`<div style="margin-top:10px;font-size:0.85rem"><b>الأبناء المباشرون:</b><div class="chips">${k.map(c=>`<span class="chip" data-s="${c.id}">${esc(c.name)}</span>`).join('')}</div></div>`:''}
+    <div class="action-bar" style="margin-top:16px;margin-bottom:0">
+      ${isStaff?`<button class="p" data-add="${p.id}">+ إضافة فرع/ابن</button>`:''}
+      ${isAdmin?`<button data-edit="${p.id}">تعديل</button><button class="d" data-del="${p.id}">حذف</button>`:''}
+    </div>
+  </div>`;
+}
+
+function qaView(){
+  return `<div class="action-bar"><button class="p" id="msg">💬 طرح استفسار أو إرسال مقترح</button></div>
+  <div class="sub" style="margin-bottom:12px">صندوق رسائل تفاعلي لإرسال الملاحظات والاقتراحات ومراجعتها مع الإدارة.</div>` +
+  (msgs.length ? msgs.map(m=>`<div class="glass-card" style="margin-bottom:10px;${m.status==='pending'?'border-style:dashed':''}"><div class="sub">${esc(m.name||'مشارك')} · ${new Date(m.created_at).toLocaleDateString('ar')}${m.status==='pending'?' · <span style="color:var(--warn)">قيد المراجعة</span>':''}</div><div style="margin:8px 0;white-space:pre-wrap">${esc(m.body)}</div>${m.reply?`<div style="background:var(--hl);border-radius:8px;padding:8px;margin-top:6px;font-size:0.85rem"><b>رد الإدارة:</b> ${esc(m.reply)}</div>`:''}${isStaff?`<div class="action-bar" style="margin-top:10px;margin-bottom:0">${m.status==='pending'?`<button class="p" data-mok="${m.id}">اعتماد النشر</button>`:''}<button data-rep="${m.id}">رد</button>${isAdmin?`<button class="d" data-mdel="${m.id}">حذف</button>`:''}</div>`:''}</div>`).join('') : '<div class="glass-card" style="color:var(--mut);text-align:center">لا توجد رسائل أو مقترحات حالياً.</div>');
+}
+
+function applySite(){
+  const n = site.name || 'شجرة العشيرة التقنية';
+  $('#sn').textContent = n; document.title = n;
+  $('#lg').innerHTML = site.logo ? `<img src="${esc(site.logo)}" style="height:32px;width:32px;object-fit:cover;border-radius:6px">` : (site.emoji || '🌳');
+  const b = $('#bn');
+  if(site.banner){ b.style.display = ''; b.textContent = site.banner; } else { b.style.display = 'none'; }
+  $('#edsite').style.display = isAdmin ? '' : 'none';
+}
+
+function render(){
+  applySite();
+  $('#who').textContent = `${people.length} فرد مسجل ${isAdmin?'· [المدير]':isStaff?'· [مشرف]':''}`;
+  $('#revb').style.display = isAdmin ? '' : 'none';
+  $('#pc').textContent = pend.length;
+  $('#add').style.display = isStaff ? '' : 'none';
+  const pm = isStaff ? msgs.filter(m=>m.status==='pending').length : 0;
+  $('#qc').textContent = pm; $('#qc').style.display = pm ? '' : 'none';
+  $('#login').style.display = session ? 'none' : '';
+  $('#out').style.display = session ? '' : '';
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  
+  if(tab === 'qa') { $('#app').innerHTML = qaView(); return; }
+  if(tab === 'rev' && isAdmin) {
+    $('#app').innerHTML = pend.length ? pend.map(r=>`<div class="glass-card" style="margin-bottom:10px;border-style:dashed"><b>${esc(r.name)}</b> <span class="sub">تابع لـ: ${esc(r.parentId&&byId[r.parentId]?full(r.parentId,3):'—')}</span><div class="action-bar" style="margin-top:10px;margin-bottom:0"><button class="p" data-ok="${r.id}">قبول واعتماد</button><button class="d" data-no="${r.id}">رفض</button></div></div>`).join('') : '<div class="glass-card" style="color:var(--mut);text-align:center">لا توجد طلبات معلقة للمراجعة.</div>';
+    return;
+  }
+  const roots = kids[''] || [];
+  $('#app').innerHTML = `<div class="grid-layout"><div class="glass-card tree-container">${roots.length?roots.map(r=>node(r,0)).join(''):'<div style="color:var(--mut)">الشجرة فارغة. ابدأ بإضافة الجد الأكبر.</div>'}</div><div>${detail()}</div></div>`;
+}
+
+function overlay(html){
+  const ov = document.createElement('div'); ov.className = 'overlay';
+  ov.innerHTML = `<div class="modal">${html}</div>`;
+  document.body.appendChild(ov);
+  ov.querySelectorAll('[data-x]').forEach(b => b.onclick = () => ov.remove());
+  return ov;
+}
+
+// نافذة إعدادات المنصة للمسؤول (تعديل الاسم، الشعار، رسالة الترحيب)
+function siteForm(){
+  const ov = overlay(`<h3 style="margin-top:0">⚙️ إعدادات المنصة والهوية</h3>
+  <label>اسم الشجرة / العشيرة</label><input id="s_n" value="${esc(site.name||'')}">
+  <label>الشعار (إيموجي)</label><input id="s_e" value="${esc(site.emoji||'🌳')}">
+  <label>أو رابط صورة الشعار (اختياري)</label><input id="s_l" dir="ltr" placeholder="https://..." value="${esc(site.logo||'')}">
+  <label>رسالة الترحيب أو الشريط الإعلاني (فارغ للإخفاء)</label><textarea id="s_b" rows="3">${esc(site.banner||'')}</textarea>
+  <div class="action-bar" style="margin-top:16px;margin-bottom:0"><button class="p" id="s_ok">حفظ التغييرات</button><button data-x>إلغاء</button></div>`);
+  ov.querySelector('#s_ok').onclick = async () => {
+    const v = s => ov.querySelector(s).value.trim();
+    const r = await sb.from('site').upsert({ id: 1, name: v('#s_n'), emoji: v('#s_e')||'🌳', logo: v('#s_l'), banner: v('#s_b') });
+    if(r.error) return toast('تعذر حفظ الإعدادات');
+    ov.remove(); load(); toast('تم تحديث الإعدادات بنجاح ✅');
+  };
+}
+
+function form(o){
+  o = o || {}; const par = o.parentId || '';
+  const ov = overlay(`<h3 style="margin-top:0">${o.id?'تعديل بيانات فرد':'إضافة فرد جديد'}</h3>
+  <label>الاسم الكامل</label><input id="f_n" value="${esc(o.name)}">
+  <label>الأب / الأم (بحث دقيق)</label><input id="f_ps" placeholder="اكتب للبحث..." value="${esc(par&&byId[par]?full(par,3):'')}"><div id="f_pr"></div>
+  <label>الجنس</label><select id="f_g"><option value="m">ذكر</option><option value="f" ${o.gender==='f'?'selected':''}>أنثى</option></select>
+  <label>سنة الميلاد</label><input id="f_b" type="number" value="${esc(o.birth||'')}">
+  <label>رقم الهاتف</label><input id="f_p" type="tel" value="${esc(o.phone)}">
+  <label>البريد الإلكتروني</label><input id="f_e" type="email" value="${esc(o.email)}">
+  <label>ملاحظات إضافية</label><textarea id="f_t" rows="2">${esc(o.notes)}</textarea>
+  <div class="action-bar" style="margin-top:16px;margin-bottom:0"><button class="p" id="f_ok">حفظ وتحديث</button><button data-x>إلغاء</button></div>`);
+  let np = par;
+  ov.querySelector('#f_ps').oninput = e => {
+    np = ''; const v = norm(e.target.value);
+    ov.querySelector('#f_pr').innerHTML = v.length < 2 ? '' : people.filter(p=>norm(full(p.id,4)).includes(v)).slice(0,5).map(p=>`<div class="chip" style="margin:4px 0;display:block" data-p="${p.id}">${esc(full(p.id,4))}</div>`).join('');
+  };
+  ov.querySelector('#f_pr').onclick = e => {
+    const t = e.target.closest('[data-p]'); if(!t) return;
+    np = t.dataset.p; ov.querySelector('#f_ps').value = full(np,3); ov.querySelector('#f_pr').innerHTML = '';
+  };
+  ov.querySelector('#f_ok').onclick = async () => {
+    const v = s => ov.querySelector(s).value.trim(), name = v('#f_n');
+    if(!name) return toast('الاسم مطلوب');
+    const d = { name, parent_id: np||null, gender: v('#f_g'), birth: +v('#f_b')||null, phone: v('#f_p')||null, email: v('#f_e')||null, notes: v('#f_t')||null };
+    const res = o.id ? await sb.from('people').update(d).eq('id', o.id) : await sb.from('people').insert({...d, status: isAdmin?'approved':'pending'});
+    if(res.error) return toast('خطأ في الحفظ: '+res.error.message);
+    ov.remove(); load(); toast('تم الحفظ بنجاح ✅');
+  };
+}
+
+function msgForm(){
+  const ov = overlay(`<h3 style="margin-top:0">💬 إرسال سؤال أو مقترح</h3>
+  <label>اسمك (اختياري)</label><input id="m_n">
+  <label>الرسالة أو الاقتراح أو الاستفسار</label><textarea id="m_b" rows="4" placeholder="اكتب استفسارك أو مقترحك هنا..."></textarea>
+  <div class="action-bar" style="margin-top:16px;margin-bottom:0"><button class="p" id="m_ok">إرسال للمراجعة</button><button data-x>إلغاء</button></div>`);
+  ov.querySelector('#m_ok').onclick = async () => {
+    const body = ov.querySelector('#m_b').value.trim(), name = ov.querySelector('#m_n').value.trim();
+    if(body.length < 3) return toast('الرجاء كتابة رسالة أو مقترح واضح');
+    const r = await sb.from('messages').insert({ name: name||null, body, status: 'pending' });
+    if(r.error) return toast('تعذر إرسال الرسالة');
+    ov.remove(); toast('تم إرسال رسالتك بنجاح وستظهر بعد الاعتماد ✅'); load();
+  };
+}
+
+function repForm(m){
+  const ov = overlay(`<h3 style="margin-top:0">الرد على المشاركة</h3>
+  <div class="sub" style="margin-bottom
