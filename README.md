@@ -27,5 +27,4 @@
 *   **[ملف Google Drive](https://drive.google.com/file/d/1SyVgpAOgei15NsAdZPkDCSj6G6YY7ccO/view?usp=drivesdk)**
 
 ---
-[![Developer](https://img.shields.io/badge/Developer-kalimay%20-%20ياسر%20الحسين%20درعا%20سوريا-2f6b4f?style=for-the-badge&logo=github)](https://github.com/)
----
+[![Developer](https://img.shields.io/badge/Developer-kalimay%20-%20ياسر%20الحسين%20درعا%20سوريا-2f6b4f?style=for-the-badge&logo=github)]
