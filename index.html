@@ -152,7 +152,12 @@ input[type="color"] { width: 50px; height: 50px; padding: 0; border: none; borde
 #tWheel { width: 60px; height: 44px; border: none; background: none; cursor: pointer; }
 .theme-preview { flex: 1; min-width: 120px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--ac3), var(--ac)); border: 1px solid var(--bd); }
 
+.zoom-ctrl { position: sticky; left: 0; bottom: 0; margin: 12px; width: 36px; display: flex; flex-direction: column; gap: 6px; z-index: 5; }
+.zoom-ctrl button { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--bd); background: var(--card); cursor: pointer; font-size: 1.1rem; color: var(--tx); box-shadow: var(--shadow); }
 footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--mut); }
+footer a { color: var(--mut); text-decoration: none; }
+footer a:hover { color: var(--ac); }
+.admin-mark { color: #c0392b !important; font-weight: 700; font-size: 0.95rem; opacity: 0.85; }
 
 @media print {
   header, .tabs, footer, .search-box, .modal-foot, .install-card, #toast { display: none !important; }
@@ -255,7 +260,12 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--mut)
         <button class="btn small" id="btnExportPNG">📷 صورة</button>
         <button class="btn small" id="btnPrint">🖨️ طباعة</button>
       </div>
-      <div class="tree-container"><svg class="tree-svg" id="treeSvg" width="800" height="600" role="img" aria-label="الشجرة الكاملة"></svg></div>
+      <div class="tree-container"><svg class="tree-svg" id="treeSvg" width="800" height="600" role="img" aria-label="الشجرة الكاملة"></svg>
+        <div class="zoom-ctrl">
+          <button id="btnZoomIn2" aria-label="تكبير">＋</button>
+          <button id="btnZoomOut2" aria-label="تصغير">－</button>
+          <button id="btnZoomReset2" aria-label="إعادة تعيين">⌂</button>
+        </div></div>
     </div>
     <div id="detailPanel"></div>
   </section>
@@ -369,7 +379,10 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--mut)
   </section>
 </div>
 
-<footer><span>جميع الحقوق محفوظة © 2026 - أحمد عمر الرجب</span></footer>
+<footer>
+  <span>جميع الحقوق محفوظة © 2026 - أحمد عمر الرجب</span><br><br>
+  <a href="https://hassan2026go.github.io/Rimail/" title="مساحة الإدارة" aria-label="مساحة الإدارة" class="admin-mark">R</a>
+</footer>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -609,6 +622,9 @@ $('#importFile').onchange = (e) => importJSON(e);
 $('#btnZoomIn').onclick = () => treeZoom(1.2);
 $('#btnZoomOut').onclick = () => treeZoom(0.8);
 $('#btnZoomReset').onclick = () => treeReset();
+$('#btnZoomIn2').onclick = () => treeZoom(1.2);
+$('#btnZoomOut2').onclick = () => treeZoom(0.8);
+$('#btnZoomReset2').onclick = () => treeReset();
 $('#btnExportPNG').onclick = () => exportTreePNG();
 $('#btnPrint').onclick = () => window.print();
 $('#btnSendChat').onclick = () => sendChat();
