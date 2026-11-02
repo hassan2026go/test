@@ -23,8 +23,4 @@
 *   **[منصة ريميل (Rimail)](https://hassan2026go.github.io/Rimail/)**
 *   **[منصة lmlm2005](https://almsharbash.github.io/lmlm2005/)**
 *   **[منصة Hassan H](https://hassan2026go.github.io/hassan-h/)**
-*   **[كلمات (Kalimat)](https://tinyurl.com/Kalimat2011)**
-*   **[ملف Google Drive](https://drive.google.com/file/d/1SyVgpAOgei15NsAdZPkDCSj6G6YY7ccO/view?usp=drivesdk)**
-
----
-[![Developer](https://img.shields.io/badge/Developer-kalimay%20-%20ياسر%20الحسين%20درعا%20سوريا-2f6b4f?style=for-the-badge&logo=github)]
+*   **[كلمات (Kalimat)](https://tinyurl.com/Kalimat2011)*
