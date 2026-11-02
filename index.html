@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="賲賳氐丞 鬲賵孬賷賯 卮噩乇丞 丕賱毓卮賷乇丞 賵鬲毓丿丕丿賴丕">
+<meta name="description" content="منصة توثيق شجرة العشيرة وتعدادها">
 <meta name="theme-color" content="#2f6b4f">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="卮噩乇丞 丕賱毓卮賷乇丞">
+<meta name="apple-mobile-web-app-title" content="شجرة العشيرة">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<title>卮噩乇丞 丕賱毓卮賷乇丞</title>
+<title>شجرة العشيرة</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -179,79 +179,79 @@ footer a:hover { color: var(--ac); }
 
 <header>
   <div class="h-top">
-    <div class="logo" id="siteLogo">馃尦</div>
+    <div class="logo" id="siteLogo">🌳</div>
     <div class="brand">
-      <h1 id="siteName">卮噩乇丞 丕賱毓卮賷乇丞</h1>
-      <div class="sub">賲賳氐丞 丕賱鬲賵孬賷賯 賵丕賱鬲毓丿丕丿</div>
+      <h1 id="siteName">شجرة العشيرة</h1>
+      <div class="sub">منصة التوثيق والتعداد</div>
     </div>
     <div class="actions">
-      <button class="icon-btn" id="btnInstall" title="鬲孬亘賷鬲 丕賱鬲胤亘賷賯" hidden>馃摬</button>
-      <button class="icon-btn" id="btnSettings" title="丕賱廿毓丿丕丿丕鬲" hidden>鈿欙笍</button>
-      <button class="icon-btn" id="btnAdminPanel" title="賱賵丨丞 丕賱廿丿丕乇丞" hidden>馃搵<span class="badge-count" id="pendBadge" hidden>0</span></button>
-      <button class="icon-btn" id="btnLogin" title="鬲爻噩賷賱 丕賱丿禺賵賱">馃懁</button>
+      <button class="icon-btn" id="btnInstall" title="تثبيت التطبيق" hidden>📲</button>
+      <button class="icon-btn" id="btnSettings" title="الإعدادات" hidden>⚙️</button>
+      <button class="icon-btn" id="btnAdminPanel" title="لوحة الإدارة" hidden>📋<span class="badge-count" id="pendBadge" hidden>0</span></button>
+      <button class="icon-btn" id="btnLogin" title="تسجيل الدخول">👤</button>
     </div>
   </div>
   <div class="search-box">
-    <span class="icon">馃攳</span>
-    <input id="searchInput" type="search" placeholder="丕亘丨孬 亘丕賱丕爻賲貙 丕賱賲丿賷賳丞貙 兀賵 丕賱賴丕鬲賮..." autocomplete="off">
+    <span class="icon">🔍</span>
+    <input id="searchInput" type="search" placeholder="ابحث بالاسم، المدينة، أو الهاتف..." autocomplete="off">
     <div class="search-results" id="searchResults" hidden></div>
   </div>
 </header>
 
 <div class="layout">
   <nav class="tabs" role="tablist">
-    <button class="on" data-tab="home">馃彔 丕賱乇卅賷爻賷丞</button>
-    <button data-tab="tree">馃尦 丕賱卮噩乇丞</button>
-    <button data-tab="list">馃懃 丕賱兀爻賲丕亍</button>
-    <button data-tab="map">馃椇锔� 丕賱禺乇賷胤丞</button>
-    <button data-tab="stats">馃搳 丕賱廿丨氐丕卅賷丕鬲</button>
-    <button data-tab="msgs">馃摑 丕賱乇爻丕卅賱</button>
-    <button data-tab="chat">馃挰 丕賱丿乇丿卮丞</button>
+    <button class="on" data-tab="home">🏠 الرئيسية</button>
+    <button data-tab="tree">🌳 الشجرة</button>
+    <button data-tab="list">👥 الأسماء</button>
+    <button data-tab="map">🗺️ الخريطة</button>
+    <button data-tab="stats">📊 الإحصائيات</button>
+    <button data-tab="msgs">📝 الرسائل</button>
+    <button data-tab="chat">💬 الدردشة</button>
   </nav>
 
   <!-- HOME -->
   <section id="tab-home">
     <div class="card install-card" id="installCard" hidden>
-      <div class="txt"><b>孬亘賾鬲 丕賱鬲胤亘賷賯 毓賱賶 噩賴丕夭賰</b><span class="muted">賵氐賵賱 爻乇賷毓 賲賳 丕賱卮丕卮丞 丕賱乇卅賷爻賷丞貙 賵賷毓賲賱 丨鬲賶 賲毓 囟毓賮 丕賱廿賳鬲乇賳鬲.</span></div>
-      <button class="btn primary" id="btnInstallCard">馃摬 鬲孬亘賷鬲</button>
+      <div class="txt"><b>ثبّت التطبيق على جهازك</b><span class="muted">وصول سريع من الشاشة الرئيسية، ويعمل حتى مع ضعف الإنترنت.</span></div>
+      <button class="btn primary" id="btnInstallCard">📲 تثبيت</button>
     </div>
 
     <div class="card" id="adminMessageCard" hidden style="border-color: var(--warn); background: var(--hl);">
-      <h3>馃摐 賰賱賲丞 丕賱廿丿丕乇丞</h3>
+      <h3>📜 كلمة الإدارة</h3>
       <p id="siteLongMessage" style="white-space: pre-wrap; font-size: 0.9rem;"></p>
     </div>
     <div class="card">
-      <h3>馃摙 廿毓賱丕賳 賴丕賲</h3>
-      <p id="siteBanner" style="white-space: pre-wrap; font-size: 0.9rem;">賲乇丨亘丕賸 亘賰賲.</p>
+      <h3>📢 إعلان هام</h3>
+      <p id="siteBanner" style="white-space: pre-wrap; font-size: 0.9rem;">مرحباً بكم.</p>
     </div>
 
     <div class="card" id="themeCard" hidden>
-      <h3>馃帹 賱賵賳 賵丕噩賴丞 丕賱賲賳氐丞 <span class="muted">(賱賱賲丿賷乇 賮賯胤)</span></h3>
-      <p class="muted" style="margin-bottom:12px;">丕禺鬲乇 丕賱賱賵賳 亘丕賱卮乇賷胤 兀賵 亘賯乇氐 丕賱兀賱賵丕賳貙 賵賷馗賴乇 丕賱鬲睾賷賷乇 毓賱賷賰 賲亘丕卮乇丞. 丕囟睾胤 "丨賮馗" 賱賷乇丕賴 噩賲賷毓 丕賱夭賵丕乇.</p>
+      <h3>🎨 لون واجهة المنصة <span class="muted">(للمدير فقط)</span></h3>
+      <p class="muted" style="margin-bottom:12px;">اختر اللون بالشريط أو بقرص الألوان، ويظهر التغيير عليك مباشرة. اضغط "حفظ" ليراه جميع الزوار.</p>
       <div class="theme-tools">
-        <label><span>丕賱丿乇噩丞 (丕賱賱賵賳)</span><span id="tHueVal">140</span>掳</label>
+        <label><span>الدرجة (اللون)</span><span id="tHueVal">140</span>°</label>
         <input type="range" id="tHue" min="0" max="360" value="140">
-        <label><span>丕賱鬲卮亘毓</span><span id="tSatVal">40</span>%</label>
+        <label><span>التشبع</span><span id="tSatVal">40</span>%</label>
         <input type="range" id="tSat" min="0" max="100" value="40">
-        <label><span>丕賱爻胤賵毓</span><span id="tLitVal">35</span>%</label>
+        <label><span>السطوع</span><span id="tLitVal">35</span>%</label>
         <input type="range" id="tLit" min="0" max="100" value="35">
         <div class="theme-row">
-          <input type="color" id="tWheel" value="#2f6b4f" title="賯乇氐 丕賱兀賱賵丕賳">
+          <input type="color" id="tWheel" value="#2f6b4f" title="قرص الألوان">
           <div class="theme-preview" id="tPreview"></div>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="btn primary" id="saveTheme" style="flex:1;">馃捑 丨賮馗 賱賱噩賲賷毓</button>
-          <button class="btn" id="resetTheme">鈫� 丕賱丕賮鬲乇丕囟賷</button>
+          <button class="btn primary" id="saveTheme" style="flex:1;">💾 حفظ للجميع</button>
+          <button class="btn" id="resetTheme">↺ الافتراضي</button>
         </div>
       </div>
     </div>
 
     <div class="card" id="exportCard" hidden>
-      <h3>馃摜 鬲氐丿賷乇 賵丕爻鬲賷乇丕丿 <span class="muted">(賱賱廿丿丕乇丞)</span></h3>
+      <h3>📥 تصدير واستيراد <span class="muted">(للإدارة)</span></h3>
       <div style="display:flex; flex-wrap:wrap; gap:8px;">
-        <button class="btn primary small" id="btnExportCSV">馃搳 Excel (CSV)</button>
-        <button class="btn small" id="btnExportJSON">馃捑 賳爻禺丞 丕丨鬲賷丕胤賷丞</button>
-        <button class="btn small" id="btnImport">馃搨 丕爻鬲賷乇丕丿</button>
+        <button class="btn primary small" id="btnExportCSV">📊 Excel (CSV)</button>
+        <button class="btn small" id="btnExportJSON">💾 نسخة احتياطية</button>
+        <button class="btn small" id="btnImport">📂 استيراد</button>
         <input type="file" id="importFile" accept=".json,application/json" hidden>
       </div>
     </div>
@@ -260,16 +260,16 @@ footer a:hover { color: var(--ac); }
   <!-- TREE -->
   <section id="tab-tree" hidden>
     <div class="card">
-      <h3>馃尦 丕賱卮噩乇丞 丕賱鬲賮丕毓賱賷丞</h3>
+      <h3>🌳 الشجرة التفاعلية</h3>
       <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
-        <button class="btn small" id="btnZoomIn">鉃� 鬲賰亘賷乇</button>
-        <button class="btn small" id="btnZoomOut">鉃� 鬲氐睾賷乇</button>
-        <button class="btn small" id="btnZoomReset">馃彔 廿毓丕丿丞 鬲毓賷賷賳</button>
-        <button class="btn small" id="btnExportPNG">馃摲 氐賵乇丞</button>
-        <button class="btn small" id="btnPrint">馃枿锔� 胤亘丕毓丞</button>
+        <button class="btn small" id="btnZoomIn">➕ تكبير</button>
+        <button class="btn small" id="btnZoomOut">➖ تصغير</button>
+        <button class="btn small" id="btnZoomReset">🏠 إعادة تعيين</button>
+        <button class="btn small" id="btnExportPNG">📷 صورة</button>
+        <button class="btn small" id="btnPrint">🖨️ طباعة</button>
       </div>
       <div class="tree-container" id="treeContainer">
-        <svg class="tree-svg" id="treeSvg" width="800" height="600" role="img" aria-label="丕賱卮噩乇丞 丕賱賰丕賲賱丞"></svg>
+        <svg class="tree-svg" id="treeSvg" width="800" height="600" role="img" aria-label="الشجرة الكاملة"></svg>
       </div>
     </div>
     <div id="detailPanel"></div>
@@ -278,42 +278,42 @@ footer a:hover { color: var(--ac); }
   <!-- LIST -->
   <section id="tab-list" hidden>
     <div class="card">
-      <h3>馃懃 爻噩賱 丕賱兀爻賲丕亍</h3>
+      <h3>👥 سجل الأسماء</h3>
       <div id="peopleList" style="max-height: 600px; overflow-y: auto;"></div>
-      <button class="btn primary block" id="btnAddPerson" hidden style="margin-top:10px;">+ 廿囟丕賮丞 丕爻賲 噩丿賷丿</button>
+      <button class="btn primary block" id="btnAddPerson" hidden style="margin-top:10px;">+ إضافة اسم جديد</button>
     </div>
   </section>
 
   <!-- MAP -->
   <section id="tab-map" hidden>
     <div class="card">
-      <h3>馃椇锔� 丕賱禺乇賷胤丞 丕賱毓丕卅賱賷丞</h3>
-      <p class="muted" style="margin-bottom:10px;">賷鬲賲 鬲賵夭賷毓 丕賱兀賮乇丕丿 鬲賱賯丕卅賷丕賸 丨爻亘 丕賱賲丿賷賳丞 兀賵 丕賱賲丨丕賮馗丞. 丕囟睾胤 毓賱賶 兀賷 賲丿賷賳丞 賱乇丐賷丞 兀賮乇丕丿賴丕.</p>
+      <h3>🗺️ الخريطة العائلية</h3>
+      <p class="muted" style="margin-bottom:10px;">يتم توزيع الأفراد تلقائياً حسب المدينة أو المحافظة. اضغط على أي مدينة لرؤية أفرادها.</p>
       <div id="familyMap"></div>
     </div>
     <div class="card">
-      <h3>馃彊锔� 丕賱賲丿賳 賵丕賱賲丨丕賮馗丕鬲</h3>
+      <h3>🏙️ المدن والمحافظات</h3>
       <div id="cityList"></div>
     </div>
   </section>
 
   <!-- STATS -->
   <section id="tab-stats" hidden>
-    <div class="card"><h3>馃搱 鬲毓丿丕丿 丕賱毓卮賷乇丞</h3><div id="advancedStats"></div></div>
-    <div class="card"><h3>馃彊锔� 丕賱鬲賵夭賷毓 丨爻亘 丕賱賲丿賳</h3><div id="cityStats"></div></div>
-    <div class="card"><h3>馃弳 丕賱兀賰亘乇 爻賳丕賸</h3><div id="oldestList"></div></div>
+    <div class="card"><h3>📈 تعداد العشيرة</h3><div id="advancedStats"></div></div>
+    <div class="card"><h3>🏙️ التوزيع حسب المدن</h3><div id="cityStats"></div></div>
+    <div class="card"><h3>🏆 الأكبر سناً</h3><div id="oldestList"></div></div>
   </section>
 
   <!-- MESSAGES -->
   <section id="tab-msgs" hidden>
     <div class="card">
-      <h3>馃摑 兀乇爻賱 爻丐丕賱丕賸 兀賵 丕賯鬲乇丕丨丕賸</h3>
-      <div class="form-group"><label for="msgName">丕爻賲賰 (丕禺鬲賷丕乇賷)</label><input id="msgName" maxlength="60"></div>
-      <div class="form-group"><label for="msgBody">乇爻丕賱鬲賰</label><textarea id="msgBody" rows="3" maxlength="2000"></textarea></div>
-      <button class="btn primary block" id="btnSendMsg">廿乇爻丕賱</button>
+      <h3>📝 أرسل سؤالاً أو اقتراحاً</h3>
+      <div class="form-group"><label for="msgName">اسمك (اختياري)</label><input id="msgName" maxlength="60"></div>
+      <div class="form-group"><label for="msgBody">رسالتك</label><textarea id="msgBody" rows="3" maxlength="2000"></textarea></div>
+      <button class="btn primary block" id="btnSendMsg">إرسال</button>
     </div>
     <div class="card">
-      <h3>馃摙 丕賱乇爻丕卅賱 丕賱賲毓鬲賲丿丞</h3>
+      <h3>📢 الرسائل المعتمدة</h3>
       <div id="publicMsgsList"></div>
     </div>
   </section>
@@ -321,18 +321,18 @@ footer a:hover { color: var(--ac); }
   <!-- CHAT -->
   <section id="tab-chat" hidden>
     <div class="card">
-      <h3>馃挰 睾乇賮丞 丕賱丿乇丿卮丞</h3>
+      <h3>💬 غرفة الدردشة</h3>
       <div class="chat-box" id="chatBox"></div>
       <div style="display:flex; gap:8px;">
-        <input id="chatInput" maxlength="500" placeholder="丕賰鬲亘 乇爻丕賱丞..." style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--bd); background:var(--bg); color:var(--tx);">
-        <button class="btn primary" id="btnSendChat">廿乇爻丕賱</button>
+        <input id="chatInput" maxlength="500" placeholder="اكتب رسالة..." style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--bd); background:var(--bg); color:var(--tx);">
+        <button class="btn primary" id="btnSendChat">إرسال</button>
       </div>
     </div>
   </section>
 </div>
 
 <footer>
-  <span>噩賲賷毓 丕賱丨賯賵賯 賲丨賮賵馗丞 漏 2026 - 兀丨賲丿 毓賲乇 丕賱乇噩亘</span>
+  <span>جميع الحقوق محفوظة © 2026 - أحمد عمر الرجب</span>
 </footer>
 
 <div id="toast" role="status" aria-live="polite"></div>
@@ -340,28 +340,28 @@ footer a:hover { color: var(--ac); }
 <!-- INSTALL HELP (iOS) -->
 <div class="overlay" id="installModal">
   <div class="modal">
-    <div class="modal-head"><h3>馃摬 鬲孬亘賷鬲 丕賱鬲胤亘賷賯</h3><button class="btn" data-close="installModal">鉁�</button></div>
+    <div class="modal-head"><h3>📲 تثبيت التطبيق</h3><button class="btn" data-close="installModal">✕</button></div>
     <div class="modal-body">
-      <p style="margin-bottom:10px;">毓賱賶 丕賱丌賷賮賵賳: 丕囟睾胤 夭乇 丕賱賲卮丕乇賰丞 <b>猬嗭笍</b> 賮賷 丕賱賲鬲氐賮丨貙 孬賲 丕禺鬲乇 <b>"廿囟丕賮丞 廿賱賶 丕賱卮丕卮丞 丕賱乇卅賷爻賷丞"</b>.</p>
-      <p>毓賱賶 兀賳丿乇賵賷丿 兀賵 丕賱賰賲亘賷賵鬲乇: 賲賳 賯丕卅賲丞 丕賱賲鬲氐賮丨 丕禺鬲乇 <b>"鬲孬亘賷鬲 丕賱鬲胤亘賷賯"</b> 兀賵 <b>"廿囟丕賮丞 廿賱賶 丕賱卮丕卮丞 丕賱乇卅賷爻賷丞"</b>.</p>
+      <p style="margin-bottom:10px;">على الآيفون: اضغط زر المشاركة <b>⬆️</b> في المتصفح، ثم اختر <b>"إضافة إلى الشاشة الرئيسية"</b>.</p>
+      <p>على أندرويد أو الكمبيوتر: من قائمة المتصفح اختر <b>"تثبيت التطبيق"</b> أو <b>"إضافة إلى الشاشة الرئيسية"</b>.</p>
     </div>
-    <div class="modal-foot"><button class="btn primary" data-close="installModal">賮賴賲鬲</button></div>
+    <div class="modal-foot"><button class="btn primary" data-close="installModal">فهمت</button></div>
   </div>
 </div>
 
 <!-- SETTINGS MODAL -->
 <div class="overlay" id="settingsModal">
   <div class="modal">
-    <div class="modal-head"><h3>鈿欙笍 廿毓丿丕丿丕鬲 丕賱賲賳氐丞</h3><button class="btn" data-close="settingsModal">鉁�</button></div>
+    <div class="modal-head"><h3>⚙️ إعدادات المنصة</h3><button class="btn" data-close="settingsModal">✕</button></div>
     <div class="modal-body">
-      <div class="form-group"><label for="cfgName">丕爻賲 丕賱賲賳氐丞</label><input id="cfgName" maxlength="80"></div>
-      <div class="form-group"><label for="cfgBanner">乇爻丕賱丞 丕賱鬲乇丨賷亘 (丕賱亘丕賳乇)</label><textarea id="cfgBanner" rows="2" maxlength="500"></textarea></div>
-      <div class="form-group"><label for="cfgLongMessage">賰賱賲丞 丕賱廿丿丕乇丞</label><textarea id="cfgLongMessage" rows="5" maxlength="3000"></textarea></div>
-      <div class="form-group"><label for="cfgLogo">卮毓丕乇 丕賱賲賳氐丞 (廿賷賲賵噩賷 兀賵 乇丕亘胤)</label><input id="cfgLogo" maxlength="300"></div>
+      <div class="form-group"><label for="cfgName">اسم المنصة</label><input id="cfgName" maxlength="80"></div>
+      <div class="form-group"><label for="cfgBanner">رسالة الترحيب (البانر)</label><textarea id="cfgBanner" rows="2" maxlength="500"></textarea></div>
+      <div class="form-group"><label for="cfgLongMessage">كلمة الإدارة</label><textarea id="cfgLongMessage" rows="5" maxlength="3000"></textarea></div>
+      <div class="form-group"><label for="cfgLogo">شعار المنصة (إيموجي أو رابط)</label><input id="cfgLogo" maxlength="300"></div>
     </div>
     <div class="modal-foot">
-      <button class="btn" data-close="settingsModal">廿賱睾丕亍</button>
-      <button class="btn primary" id="saveSettings">丨賮馗</button>
+      <button class="btn" data-close="settingsModal">إلغاء</button>
+      <button class="btn primary" id="saveSettings">حفظ</button>
     </div>
   </div>
 </div>
@@ -369,12 +369,12 @@ footer a:hover { color: var(--ac); }
 <!-- ADMIN MODAL -->
 <div class="overlay" id="adminModal">
   <div class="modal">
-    <div class="modal-head"><h3>馃搵 賱賵丨丞 丕賱廿丿丕乇丞</h3><button class="btn" data-close="adminModal">鉁�</button></div>
+    <div class="modal-head"><h3>📋 لوحة الإدارة</h3><button class="btn" data-close="adminModal">✕</button></div>
     <div class="modal-body">
-      <h4 style="margin-bottom:10px; color:var(--warn);">丕賱兀爻賲丕亍 丕賱賲毓賱賯丞:</h4>
+      <h4 style="margin-bottom:10px; color:var(--warn);">الأسماء المعلقة:</h4>
       <div id="pendingPeople"></div>
       <hr style="margin:15px 0; border-color:var(--bd);">
-      <h4 style="margin-bottom:10px; color:var(--warn);">丕賱乇爻丕卅賱 丕賱賲毓賱賯丞:</h4>
+      <h4 style="margin-bottom:10px; color:var(--warn);">الرسائل المعلقة:</h4>
       <div id="pendingMsgs"></div>
     </div>
   </div>
@@ -383,21 +383,21 @@ footer a:hover { color: var(--ac); }
 <!-- PERSON MODAL -->
 <div class="overlay" id="personModal">
   <div class="modal">
-    <div class="modal-head"><h3 id="personModalTitle">廿囟丕賮丞 丕爻賲</h3><button class="btn" data-close="personModal">鉁�</button></div>
+    <div class="modal-head"><h3 id="personModalTitle">إضافة اسم</h3><button class="btn" data-close="personModal">✕</button></div>
     <div class="modal-body">
-      <div class="form-group"><label for="pName">丕賱丕爻賲 丕賱賰丕賲賱</label><input id="pName" maxlength="120"><div class="field-err" id="pNameErr"></div></div>
-      <div class="form-group"><label for="pParent">丕賱兀亘 (丕禺鬲賷丕乇賷)</label><select id="pParent"><option value="">鈥� 亘丿賵賳 (噩匕乇) 鈥�</option></select></div>
-      <div class="form-group"><label for="pGender">丕賱噩賳爻</label><select id="pGender"><option value="m">匕賰乇</option><option value="f">兀賳孬賶</option></select></div>
-      <div class="form-group"><label for="pCity">丕賱賲丿賷賳丞 / 丕賱賲丨丕賮馗丞</label><input id="pCity" maxlength="100" placeholder="賲孬丕賱: 丨賱亘貙 兀賵 丕賱乇賷丕囟"></div>
-      <div class="form-group"><label for="pBirth">爻賳丞 丕賱賲賷賱丕丿</label><input id="pBirth" type="number" min="1800" max="2100"><div class="field-err" id="pBirthErr"></div></div>
-      <div class="form-group"><label for="pPhone">丕賱賴丕鬲賮</label><input id="pPhone" type="tel" maxlength="30"></div>
-      <div class="form-group"><label for="pEmail">丕賱亘乇賷丿</label><input id="pEmail" type="email" maxlength="120"></div>
-      <div class="form-group"><label for="pNotes">賲賱丕丨馗丕鬲</label><textarea id="pNotes" rows="2" maxlength="1000"></textarea></div>
-      <div class="form-group"><label for="pPhoto">氐賵乇丞 卮禺氐賷丞 (丕禺鬲賷丕乇賷貙 丨鬲賶 2 賲賷睾丕亘丕賷鬲)</label><input id="pPhoto" type="file" accept="image/*"></div>
+      <div class="form-group"><label for="pName">الاسم الكامل</label><input id="pName" maxlength="120"><div class="field-err" id="pNameErr"></div></div>
+      <div class="form-group"><label for="pParent">الأب (اختياري)</label><select id="pParent"><option value="">— بدون (جذر) —</option></select></div>
+      <div class="form-group"><label for="pGender">الجنس</label><select id="pGender"><option value="m">ذكر</option><option value="f">أنثى</option></select></div>
+      <div class="form-group"><label for="pCity">المدينة / المحافظة</label><input id="pCity" maxlength="100" placeholder="مثال: حلب، أو الرياض"></div>
+      <div class="form-group"><label for="pBirth">سنة الميلاد</label><input id="pBirth" type="number" min="1800" max="2100"><div class="field-err" id="pBirthErr"></div></div>
+      <div class="form-group"><label for="pPhone">الهاتف</label><input id="pPhone" type="tel" maxlength="30"></div>
+      <div class="form-group"><label for="pEmail">البريد</label><input id="pEmail" type="email" maxlength="120"></div>
+      <div class="form-group"><label for="pNotes">ملاحظات</label><textarea id="pNotes" rows="2" maxlength="1000"></textarea></div>
+      <div class="form-group"><label for="pPhoto">صورة شخصية (اختياري، حتى 2 ميغابايت)</label><input id="pPhoto" type="file" accept="image/*"></div>
     </div>
     <div class="modal-foot">
-      <button class="btn" data-close="personModal">廿賱睾丕亍</button>
-      <button class="btn primary" id="savePerson">丨賮馗</button>
+      <button class="btn" data-close="personModal">إلغاء</button>
+      <button class="btn primary" id="savePerson">حفظ</button>
     </div>
   </div>
 </div>
@@ -405,27 +405,27 @@ footer a:hover { color: var(--ac); }
 <!-- LOGIN MODAL -->
 <div class="overlay" id="loginModal">
   <div class="modal">
-    <div class="modal-head"><h3 id="loginTitle">馃攼 鬲爻噩賷賱 丕賱丿禺賵賱</h3><button class="btn" data-close="loginModal">鉁�</button></div>
+    <div class="modal-head"><h3 id="loginTitle">🔐 تسجيل الدخول</h3><button class="btn" data-close="loginModal">✕</button></div>
     <div class="modal-body">
-      <div class="form-group"><label for="loginEmail">丕賱亘乇賷丿</label><input type="email" id="loginEmail" dir="ltr" autocomplete="email"></div>
-      <div class="form-group"><label for="loginPass">賰賱賲丞 丕賱賲乇賵乇</label><input type="password" id="loginPass" dir="ltr" autocomplete="current-password" minlength="6"></div>
+      <div class="form-group"><label for="loginEmail">البريد</label><input type="email" id="loginEmail" dir="ltr" autocomplete="email"></div>
+      <div class="form-group"><label for="loginPass">كلمة المرور</label><input type="password" id="loginPass" dir="ltr" autocomplete="current-password" minlength="6"></div>
       <div id="authUser" hidden>
         <p class="muted" id="authUserText"></p>
       </div>
     </div>
     <div class="modal-foot" id="loginFoot">
-      <button class="btn" id="btnSignUp">鬲爻噩賷賱 噩丿賷丿</button>
-      <button class="btn primary" id="btnSignIn">丿禺賵賱</button>
+      <button class="btn" id="btnSignUp">تسجيل جديد</button>
+      <button class="btn primary" id="btnSignIn">دخول</button>
     </div>
     <div class="modal-foot" id="logoutFoot" hidden>
-      <button class="btn danger" id="btnSignOut">馃毆 鬲爻噩賷賱 丕賱禺乇賵噩</button>
+      <button class="btn danger" id="btnSignOut">🚪 تسجيل الخروج</button>
     </div>
   </div>
 </div>
 
 <script>
 // ============================================================
-// 1. 丕賱廿毓丿丕丿丕鬲
+// 1. الإعدادات
 // ============================================================
 const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
 const SUPABASE_KEY = 'YOUR-ANON-PUBLIC-KEY';
@@ -438,7 +438,7 @@ const BRANCH_COLORS = ['#7a5c00', '#2e7d32', '#1565c0', '#8e24aa', '#c62828', '#
 const MAX_PHOTO_BYTES = 2 * 1024 * 1024;
 
 // ============================================================
-// 2. 丕賱丨丕賱丞
+// 2. الحالة
 // ============================================================
 const state = {
   role: 'viewer', isStaff: false, isAdmin: false, user: null,
@@ -449,7 +449,7 @@ const state = {
 };
 
 // ============================================================
-// 3. 賲爻丕毓丿丕鬲 毓丕賲丞
+// 3. مساعدات عامة
 // ============================================================
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -488,11 +488,11 @@ function downloadFile(content, fileName, mimeType) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-function requireStaff() { if (!state.isStaff) { toast('賴匕丕 丕賱廿噩乇丕亍 賱賱廿丿丕乇丞 賮賯胤'); return false; } return true; }
-function requireAdmin() { if (!state.isAdmin) { toast('賴匕丕 丕賱廿噩乇丕亍 賱賱賲丿賷乇 賮賯胤'); return false; } return true; }
+function requireStaff() { if (!state.isStaff) { toast('هذا الإجراء للإدارة فقط'); return false; } return true; }
+function requireAdmin() { if (!state.isAdmin) { toast('هذا الإجراء للمدير فقط'); return false; } return true; }
 
 // ============================================================
-// 4. 鬲孬亘賷鬲 丕賱鬲胤亘賷賯 (PWA)
+// 4. تثبيت التطبيق (PWA)
 // ============================================================
 let deferredPrompt = null;
 const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -512,7 +512,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 window.addEventListener('appinstalled', () => {
   deferredPrompt = null;
-  toast('鉁� 鬲賲 鬲孬亘賷鬲 丕賱鬲胤亘賷賯 亘賳噩丕丨');
+  toast('✅ تم تثبيت التطبيق بنجاح');
   refreshInstallUI();
 });
 
@@ -520,7 +520,7 @@ async function installApp() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') toast('噩丕乇賺 丕賱鬲孬亘賷鬲...');
+    if (outcome === 'accepted') toast('جارٍ التثبيت...');
     deferredPrompt = null;
     refreshInstallUI();
   } else {
@@ -537,7 +537,7 @@ if ('serviceWorker' in navigator) {
 }
 
 // ============================================================
-// 5. 丕賱鬲賳賯賱
+// 5. التنقل
 // ============================================================
 document.querySelectorAll('.tabs button').forEach(btn => {
   btn.onclick = () => showTab(btn.dataset.tab);
@@ -552,7 +552,7 @@ function showTab(name) {
 }
 
 // ============================================================
-// 6. 丕賱賲氐丕丿賯丞 賵丕賱氐賱丕丨賷丕鬲
+// 6. المصادقة والصلاحيات
 // ============================================================
 $('#btnLogin').onclick = () => openLogin();
 $('#btnSettings').onclick = () => openSettings();
@@ -580,46 +580,46 @@ function openLogin() {
   show('#loginFoot', !loggedIn);
   show('#logoutFoot', loggedIn);
   show('#authUser', loggedIn);
-  $('#loginTitle').textContent = loggedIn ? '馃懁 丨爻丕亘賷' : '馃攼 鬲爻噩賷賱 丕賱丿禺賵賱';
+  $('#loginTitle').textContent = loggedIn ? '👤 حسابي' : '🔐 تسجيل الدخول';
   if (loggedIn) {
-    $('#authUserText').textContent = `賲爻噩賾賱 丕賱丿禺賵賱: ${state.user.email} 鈥� 丕賱氐賱丕丨賷丞: ${roleLabel(state.role)}`;
+    $('#authUserText').textContent = `مسجّل الدخول: ${state.user.email} — الصلاحية: ${roleLabel(state.role)}`;
   }
   openModal('loginModal');
 }
 
 function roleLabel(r) {
-  return { admin: '賲丿賷乇', moderator: '賲卮乇賮', viewer: '夭丕卅乇' }[r] || '夭丕卅乇';
+  return { admin: 'مدير', moderator: 'مشرف', viewer: 'زائر' }[r] || 'زائر';
 }
 
 $('#btnSignIn').onclick = async () => {
   const email = $('#loginEmail').value.trim();
   const password = $('#loginPass').value;
-  if (!isValidEmail(email)) return toast('兀丿禺賱 亘乇賷丿丕賸 氐丨賷丨丕賸');
-  if (!password) return toast('兀丿禺賱 賰賱賲丞 丕賱賲乇賵乇');
+  if (!isValidEmail(email)) return toast('أدخل بريداً صحيحاً');
+  if (!password) return toast('أدخل كلمة المرور');
   const btn = $('#btnSignIn');
   btn.disabled = true;
   const { error } = await sb.auth.signInWithPassword({ email, password });
   btn.disabled = false;
-  if (error) return toast('禺胤兀 賮賷 丕賱丿禺賵賱: ' + error.message);
+  if (error) return toast('خطأ في الدخول: ' + error.message);
   $('#loginPass').value = '';
   closeModal('loginModal');
-  toast('鉁� 鬲賲 鬲爻噩賷賱 丕賱丿禺賵賱');
+  toast('✅ تم تسجيل الدخول');
 };
 
 $('#btnSignUp').onclick = async () => {
   const email = $('#loginEmail').value.trim();
   const password = $('#loginPass').value;
-  if (!isValidEmail(email)) return toast('兀丿禺賱 亘乇賷丿丕賸 氐丨賷丨丕賸');
-  if (password.length < 6) return toast('賰賱賲丞 丕賱賲乇賵乇 6 兀丨乇賮 毓賱賶 丕賱兀賯賱');
+  if (!isValidEmail(email)) return toast('أدخل بريداً صحيحاً');
+  if (password.length < 6) return toast('كلمة المرور 6 أحرف على الأقل');
   const { error } = await sb.auth.signUp({ email, password });
-  if (error) return toast('禺胤兀: ' + error.message);
-  toast('鬲賲 廿賳卮丕亍 丕賱丨爻丕亘. 鬲賵丕氐賱 賲毓 丕賱賲丿賷乇 賱鬲賮毓賷賱 氐賱丕丨賷丕鬲賰.', 5000);
+  if (error) return toast('خطأ: ' + error.message);
+  toast('تم إنشاء الحساب. تواصل مع المدير لتفعيل صلاحياتك.', 5000);
 };
 
 $('#btnSignOut').onclick = async () => {
   await sb.auth.signOut();
   closeModal('loginModal');
-  toast('鬲賲 鬲爻噩賷賱 丕賱禺乇賵噩');
+  toast('تم تسجيل الخروج');
 };
 
 async function applySession(session) {
@@ -638,13 +638,13 @@ async function applySession(session) {
   show('#adminMessageCard', state.isAdmin);
   show('#themeCard', state.isAdmin);
   show('#exportCard', state.isStaff);
-  $('#btnLogin').textContent = state.isStaff ? '馃憫' : (state.user ? '馃檪' : '馃懁');
+  $('#btnLogin').textContent = state.isStaff ? '👑' : (state.user ? '🙂' : '👤');
   if (!state.isStaff) show('#btnAdminPanel', false);
   if (!state.isAdmin) state.themeSynced = false;
 }
 
 // ============================================================
-// 7. 鬲丨賲賷賱 丕賱亘賷丕賳丕鬲 (賲毓 鬲兀禺賷乇 賲鬲噩賲賾毓 賱賱鬲丨丿賷孬丕鬲 丕賱賮賵乇賷丞)
+// 7. تحميل البيانات (مع تأخير متجمّع للتحديثات الفورية)
 // ============================================================
 function scheduleReload() {
   clearTimeout(state.reloadTimer);
@@ -665,13 +665,13 @@ async function loadData() {
 
     if (siteRes.data) {
       state.siteData = siteRes.data;
-      setText('siteName', siteRes.data.name || '卮噩乇丞 丕賱毓卮賷乇丞');
-      setText('siteBanner', siteRes.data.banner || '賲乇丨亘丕賸 亘賰賲.');
+      setText('siteName', siteRes.data.name || 'شجرة العشيرة');
+      setText('siteBanner', siteRes.data.banner || 'مرحباً بكم.');
       setText('siteLongMessage', siteRes.data.long_message || '');
-      const logo = siteRes.data.logo || '馃尦';
+      const logo = siteRes.data.logo || '🌳';
       if (/^https?:\/\//.test(logo)) $('#siteLogo').innerHTML = `<img src="${esc(logo)}" alt="">`;
       else $('#siteLogo').textContent = logo;
-      document.title = siteRes.data.name || '卮噩乇丞 丕賱毓卮賷乇丞';
+      document.title = siteRes.data.name || 'شجرة العشيرة';
       applyTheme(siteRes.data.primary_color || DEFAULT_COLOR);
       if (state.isAdmin && !state.themeSynced) {
         syncThemeSliders(siteRes.data.primary_color || DEFAULT_COLOR);
@@ -679,23 +679,23 @@ async function loadData() {
       }
     }
 
-    // 丕賱賲毓鬲賲丿賵賳 賮賯胤 賱賱夭賵丕乇. 丕賱廿丿丕乇丞 鬲乇賶 丕賱賲毓賱賾賯 毓亘乇 賱賵丨丞 丕賱廿丿丕乇丞.
+    // المعتمدون فقط للزوار. الإدارة ترى المعلّق عبر لوحة الإدارة.
     state.allPeople = peopleRes.data || [];
     buildIndex();
     renderAll();
 
     $('#publicMsgsList').innerHTML = msgsRes.data?.length ? msgsRes.data.map(m => `
       <div style="border-bottom:1px solid var(--bd); padding:10px 0;">
-        <b>${esc(m.name || '夭丕卅乇')}</b> <span class="muted">${new Date(m.created_at).toLocaleDateString('ar')}</span>
+        <b>${esc(m.name || 'زائر')}</b> <span class="muted">${new Date(m.created_at).toLocaleDateString('ar')}</span>
         <p style="margin-top:5px; font-size:0.9rem;">${esc(m.body)}</p>
-        ${m.reply ? `<div style="background:var(--hl); padding:8px; border-radius:8px; margin-top:5px; font-size:0.85rem;"><b>丕賱廿丿丕乇丞:</b> ${esc(m.reply)}</div>` : ''}
-      </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 乇爻丕卅賱 賲毓鬲賲丿丞.</p>';
+        ${m.reply ? `<div style="background:var(--hl); padding:8px; border-radius:8px; margin-top:5px; font-size:0.85rem;"><b>الإدارة:</b> ${esc(m.reply)}</div>` : ''}
+      </div>`).join('') : '<p class="empty">لا توجد رسائل معتمدة.</p>';
 
     if (state.isStaff) await refreshPendingBadge();
     if (state.selectedId) renderDetail();
   } catch (err) {
     console.error(err);
-    toast('鬲毓匕賾乇 鬲丨賲賷賱 丕賱亘賷丕賳丕鬲. 鬲丨賯賯 賲賳 丕賱丕鬲氐丕賱.');
+    toast('تعذّر تحميل البيانات. تحقق من الاتصال.');
   } finally {
     state.loadingData = false;
   }
@@ -722,7 +722,7 @@ function renderAll() {
 }
 
 // ============================================================
-// 8. 丕賱賮賴乇爻丞 賵丕賱丨爻丕亘丕鬲 (賲丨賲賷丞 賲賳 丕賱丨賱賯丕鬲 丕賱丿丕卅乇賷丞)
+// 8. الفهرسة والحسابات (محمية من الحلقات الدائرية)
 // ============================================================
 function buildIndex() {
   state.byId = {}; state.kids = {};
@@ -756,7 +756,7 @@ function countDescendants(id, seen = new Set()) {
 
 function fullName(id, maxLevels = 5) {
   const c = getChain(id).slice(0, maxLevels);
-  return c.map((p, i) => i === 0 ? p.name : (c[i-1].gender === 'f' ? ' 亘賳鬲 ' : ' 亘賳 ') + p.name).join('');
+  return c.map((p, i) => i === 0 ? p.name : (c[i-1].gender === 'f' ? ' بنت ' : ' بن ') + p.name).join('');
 }
 
 function calcGenerations() {
@@ -773,7 +773,7 @@ function calcGenerations() {
 }
 
 // ============================================================
-// 9. 丕賱賯賵丕卅賲 賵丕賱廿丨氐丕卅賷丕鬲
+// 9. القوائم والإحصائيات
 // ============================================================
 function renderPeopleList() {
   const list = state.allPeople.slice().sort((a, b) => a.name.localeCompare(b.name, 'ar'));
@@ -782,10 +782,10 @@ function renderPeopleList() {
       <div class="avatar">${p.photo_url ? `<img src="${esc(p.photo_url)}" alt="">` : esc(p.name.charAt(0))}</div>
       <div class="info">
         <b>${esc(p.name)}</b>
-        <span>馃搷 ${esc(p.city || '睾賷乇 賲丨丿丿')} ${p.birth ? '路 ' + p.birth : ''}</span>
+        <span>📍 ${esc(p.city || 'غير محدد')} ${p.birth ? '· ' + p.birth : ''}</span>
       </div>
-      <div style="font-size:0.75rem; color:${p.gender === 'f' ? '#a0506e' : 'var(--ac)'};">${p.gender === 'f' ? '鈾�' : '鈾�'}</div>
-    </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 兀爻賲丕亍 亘毓丿.</p>';
+      <div style="font-size:0.75rem; color:${p.gender === 'f' ? '#a0506e' : 'var(--ac)'};">${p.gender === 'f' ? '♀' : '♂'}</div>
+    </div>`).join('') : '<p class="empty">لا توجد أسماء بعد.</p>';
 }
 
 function renderCityStats() {
@@ -794,16 +794,16 @@ function renderCityStats() {
   const sorted = Object.entries(cities).sort((a, b) => b[1] - a[1]);
   $('#cityStats').innerHTML = sorted.length ? sorted.map(([city, count]) => `
     <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--bd);">
-      <span>馃彊锔� ${esc(city)}</span><b style="color:var(--ac)">${count} 賮乇丿</b>
-    </div>`).join('') : '<p class="empty">賱賲 賷鬲賲 廿丿禺丕賱 賲丿賳 亘毓丿.</p>';
+      <span>🏙️ ${esc(city)}</span><b style="color:var(--ac)">${count} فرد</b>
+    </div>`).join('') : '<p class="empty">لم يتم إدخال مدن بعد.</p>';
 }
 
 function renderOldestList() {
   const withBirth = state.allPeople.filter(p => p.birth).sort((a, b) => a.birth - b.birth).slice(0, 5);
   $('#oldestList').innerHTML = withBirth.length ? withBirth.map(p => `
     <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--bd);">
-      <span>馃懁 ${esc(p.name)}</span><b style="color:var(--ac)">${p.birth}</b>
-    </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 爻賳賵丕鬲 賲賷賱丕丿 賲爻噩賱丞.</p>';
+      <span>👤 ${esc(p.name)}</span><b style="color:var(--ac)">${p.birth}</b>
+    </div>`).join('') : '<p class="empty">لا توجد سنوات ميلاد مسجلة.</p>';
 }
 
 function renderAdvancedStats() {
@@ -818,15 +818,15 @@ function renderAdvancedStats() {
 
   const box = (n, l) => `<div class="stat-box"><div class="n">${n}</div><div class="l">${l}</div></div>`;
   $('#advancedStats').innerHTML = `<div class="stat-grid">
-    ${box(total, '廿噩賲丕賱賷')}${box(calcGenerations(), '丕賱兀噩賷丕賱')}
-    ${box(males, '匕賰賵乇')}${box(females, '廿賳丕孬')}
-    ${box(citiesCount, '賲丿賳 賵賲丨丕賮馗丕鬲')}${box(withPhone, '賱丿賷賴賲 賴丕鬲賮')}
-    ${box(avgAge || '鈥�', '賲鬲賵爻胤 丕賱毓賲乇')}${box(withPhoto, '賱丿賷賴賲 氐賵乇丞')}
+    ${box(total, 'إجمالي')}${box(calcGenerations(), 'الأجيال')}
+    ${box(males, 'ذكور')}${box(females, 'إناث')}
+    ${box(citiesCount, 'مدن ومحافظات')}${box(withPhone, 'لديهم هاتف')}
+    ${box(avgAge || '—', 'متوسط العمر')}${box(withPhoto, 'لديهم صورة')}
   </div>`;
 }
 
 // ============================================================
-// 10. 丕賱亘丨孬
+// 10. البحث
 // ============================================================
 let searchTimer = null;
 $('#searchInput').oninput = (e) => {
@@ -845,8 +845,8 @@ function runSearch(raw) {
   ).slice(0, 15);
   box.innerHTML = results.length ? results.map(p => `
     <div class="search-item" data-id="${esc(p.id)}">
-      馃懁 <b>${esc(p.name)}</b> <span class="muted">(${esc(p.city || '睾賷乇 賲丨丿丿')})</span>
-    </div>`).join('') : '<div class="search-item muted">賱丕 鬲賵噩丿 賳鬲丕卅噩</div>';
+      👤 <b>${esc(p.name)}</b> <span class="muted">(${esc(p.city || 'غير محدد')})</span>
+    </div>`).join('') : '<div class="search-item muted">لا توجد نتائج</div>';
   box.hidden = false;
 }
 
@@ -862,7 +862,7 @@ document.addEventListener('click', (e) => {
 });
 
 // ============================================================
-// 11. 丕賱鬲賮丕氐賷賱 賵卮噩乇丞 丕賱賮乇毓
+// 11. التفاصيل وشجرة الفرع
 // ============================================================
 function selectPerson(id) {
   if (!state.byId[id]) return;
@@ -886,36 +886,36 @@ function renderDetail() {
       <div class="detail-head">
         <div class="detail-avatar">${p.photo_url ? `<img src="${esc(p.photo_url)}" alt="">` : esc(p.name.charAt(0))}</div>
         <div class="detail-name">${esc(p.name)}</div>
-        <div class="detail-sub">${p.birth ? '賲賵賱賵丿 ' + p.birth + ' 路 ' : ''}${p.gender === 'f' ? '兀賳孬賶' : '匕賰乇'}</div>
+        <div class="detail-sub">${p.birth ? 'مولود ' + p.birth + ' · ' : ''}${p.gender === 'f' ? 'أنثى' : 'ذكر'}</div>
       </div>
       <div class="detail-body">
         <div class="detail-field">
-          <b>馃搷 丕賱賲爻丕乇 賲賳 丕賱噩匕乇</b>
-          <div class="chips">${chain.map((x, i) => `<button class="chip" data-id="${esc(x.id)}">${esc(x.name)}</button>${i < chain.length - 1 ? '鈫�' : ''}`).join('')}</div>
+          <b>📍 المسار من الجذر</b>
+          <div class="chips">${chain.map((x, i) => `<button class="chip" data-id="${esc(x.id)}">${esc(x.name)}</button>${i < chain.length - 1 ? '←' : ''}`).join('')}</div>
         </div>
-        ${p.city ? `<div class="detail-field"><b>馃彊锔� 丕賱賲丿賷賳丞 / 丕賱賲丨丕賮馗丞</b>${esc(p.city)}</div>` : ''}
-        ${p.phone ? `<div class="detail-field"><b>馃摓 丕賱賴丕鬲賮</b><a href="tel:${esc(p.phone)}" style="color:var(--ac)">${esc(p.phone)}</a></div>` : ''}
-        ${p.email ? `<div class="detail-field"><b>鉁夛笍 丕賱亘乇賷丿</b><a href="mailto:${esc(p.email)}" style="color:var(--ac)">${esc(p.email)}</a></div>` : ''}
-        ${p.notes ? `<div class="detail-field"><b>馃摑 賲賱丕丨馗丕鬲</b>${esc(p.notes)}</div>` : ''}
-        <div class="detail-field"><b>馃懃 丕賱兀亘賳丕亍 賵丕賱兀丨賮丕丿</b>${descendants} 卮禺氐</div>
+        ${p.city ? `<div class="detail-field"><b>🏙️ المدينة / المحافظة</b>${esc(p.city)}</div>` : ''}
+        ${p.phone ? `<div class="detail-field"><b>📞 الهاتف</b><a href="tel:${esc(p.phone)}" style="color:var(--ac)">${esc(p.phone)}</a></div>` : ''}
+        ${p.email ? `<div class="detail-field"><b>✉️ البريد</b><a href="mailto:${esc(p.email)}" style="color:var(--ac)">${esc(p.email)}</a></div>` : ''}
+        ${p.notes ? `<div class="detail-field"><b>📝 ملاحظات</b>${esc(p.notes)}</div>` : ''}
+        <div class="detail-field"><b>👥 الأبناء والأحفاد</b>${descendants} شخص</div>
         ${children.length ? `
           <div class="detail-field">
-            <b>馃懚 丕賱兀亘賳丕亍 丕賱賲亘丕卮乇賵賳 (${children.length})</b>
+            <b>👶 الأبناء المباشرون (${children.length})</b>
             <div class="chips">${children.map(c => `<button class="chip" data-id="${esc(c.id)}">${esc(c.name)}</button>`).join('')}</div>
           </div>` : ''}
         <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
-          ${state.isStaff ? `<button class="btn primary small" data-act="addChild" data-id="${esc(id)}">+ 廿囟丕賮丞 丕亘賳</button>` : ''}
-          ${state.isStaff ? `<button class="btn small" data-act="edit" data-id="${esc(id)}">鉁忥笍 鬲毓丿賷賱</button>` : ''}
-          ${state.isAdmin ? `<button class="btn danger small" data-act="delete" data-id="${esc(id)}">馃棏锔� 丨匕賮</button>` : ''}
-          <button class="btn small" data-act="pdf" data-id="${esc(id)}">馃搫 PDF</button>
-          <button class="btn small" data-act="branch" data-id="${esc(id)}">馃摛 鬲氐丿賷乇 賮乇毓</button>
+          ${state.isStaff ? `<button class="btn primary small" data-act="addChild" data-id="${esc(id)}">+ إضافة ابن</button>` : ''}
+          ${state.isStaff ? `<button class="btn small" data-act="edit" data-id="${esc(id)}">✏️ تعديل</button>` : ''}
+          ${state.isAdmin ? `<button class="btn danger small" data-act="delete" data-id="${esc(id)}">🗑️ حذف</button>` : ''}
+          <button class="btn small" data-act="pdf" data-id="${esc(id)}">📄 PDF</button>
+          <button class="btn small" data-act="branch" data-id="${esc(id)}">📤 تصدير فرع</button>
         </div>
       </div>
     </div>
     <div class="card">
-      <h3>馃尶 卮噩乇丞 賮乇毓 ${esc(p.name.split(' ')[0])}</h3>
-      <p class="muted" style="margin-bottom:10px;">丕賱廿胤丕乇 丕賱兀爻賲賰 賱賱卮禺氐 丕賱賲亘丨賵孬 毓賳賴. 丕囟睾胤 毓賱賶 兀賷 丕爻賲 賱毓乇囟 賮乇毓賴.</p>
-      <div class="tree-container" style="max-height:460px;"><svg id="lineageSvg" role="img" aria-label="卮噩乇丞 丕賱賮乇毓"></svg></div>
+      <h3>🌿 شجرة فرع ${esc(p.name.split(' ')[0])}</h3>
+      <p class="muted" style="margin-bottom:10px;">الإطار الأسمك للشخص المبحوث عنه. اضغط على أي اسم لعرض فرعه.</p>
+      <div class="tree-container" style="max-height:460px;"><svg id="lineageSvg" role="img" aria-label="شجرة الفرع"></svg></div>
     </div>`;
   renderLineageTree(id);
 }
@@ -941,7 +941,7 @@ function renderLineageTree(personId) {
   const svg = document.getElementById('lineageSvg');
   if (!svg || !state.byId[personId]) return;
 
-  // 賳氐毓丿 廿賱賶 兀毓賱賶 噩丿 賲鬲丕丨
+  // نصعد إلى أعلى جد متاح
   let rootId = personId; const seen = new Set();
   while (state.byId[rootId]?.parent_id && !seen.has(rootId)) {
     seen.add(rootId); rootId = state.byId[rootId].parent_id;
@@ -999,7 +999,7 @@ function renderLineageTree(personId) {
 }
 
 // ============================================================
-// 12. 丕賱卮噩乇丞 丕賱賰丕賲賱丞
+// 12. الشجرة الكاملة
 // ============================================================
 function renderTree() {
   const svg = $('#treeSvg');
@@ -1007,7 +1007,7 @@ function renderTree() {
   if (!roots.length) {
     svg.setAttribute('width', 800); svg.setAttribute('height', 200);
     svg.setAttribute('viewBox', '0 0 800 200');
-    svg.innerHTML = '<text x="400" y="100" text-anchor="middle" style="fill:var(--mut)">賱丕 鬲賵噩丿 亘賷丕賳丕鬲 亘毓丿</text>';
+    svg.innerHTML = '<text x="400" y="100" text-anchor="middle" style="fill:var(--mut)">لا توجد بيانات بعد</text>';
     return;
   }
   const NODE_W = 80, NODE_H = 60, H_GAP = 20, V_GAP = 100;
@@ -1072,14 +1072,14 @@ function treeReset() {
 }
 
 // ============================================================
-// 13. 廿囟丕賮丞 賵鬲毓丿賷賱 卮禺氐 (賲毓 丕賱鬲丨賯賯 賲賳 丕賱賲丿禺賱丕鬲)
+// 13. إضافة وتعديل شخص (مع التحقق من المدخلات)
 // ============================================================
 function openPersonForm(editId = null, parentId = null) {
   if (!requireStaff()) return;
   state.editingPersonId = editId;
   const p = editId ? state.byId[editId] : null;
 
-  $('#personModalTitle').textContent = p ? '鉁忥笍 鬲毓丿賷賱 亘賷丕賳丕鬲' : '+ 廿囟丕賮丞 丕爻賲';
+  $('#personModalTitle').textContent = p ? '✏️ تعديل بيانات' : '+ إضافة اسم';
   $('#pName').value = p?.name || '';
   $('#pCity').value = p?.city || '';
   $('#pBirth').value = p?.birth || '';
@@ -1091,7 +1091,7 @@ function openPersonForm(editId = null, parentId = null) {
   $('#pNameErr').textContent = ''; $('#pBirthErr').textContent = '';
 
   const selectedParent = p?.parent_id || parentId || '';
-  $('#pParent').innerHTML = '<option value="">鈥� 亘丿賵賳 (噩匕乇) 鈥�</option>' +
+  $('#pParent').innerHTML = '<option value="">— بدون (جذر) —</option>' +
     state.allPeople
       .filter(x => x.id !== editId && !getChain(x.id).some(c => c.id === editId))
       .sort((a, b) => fullName(a.id, 3).localeCompare(fullName(b.id, 3), 'ar'))
@@ -1109,18 +1109,18 @@ async function savePerson() {
   const birth = birthRaw ? parseInt(birthRaw, 10) : null;
   const email = $('#pEmail').value.trim();
 
-  $('#pNameErr').textContent = name ? '' : '丕賱丕爻賲 賲胤賱賵亘';
-  $('#pBirthErr').textContent = (birth && (birth < 1800 || birth > 2100)) ? '爻賳丞 睾賷乇 氐丨賷丨丞' : '';
+  $('#pNameErr').textContent = name ? '' : 'الاسم مطلوب';
+  $('#pBirthErr').textContent = (birth && (birth < 1800 || birth > 2100)) ? 'سنة غير صحيحة' : '';
   if (!name) return $('#pName').focus();
   if ($('#pBirthErr').textContent) return $('#pBirth').focus();
-  if (email && !isValidEmail(email)) return toast('丕賱亘乇賷丿 睾賷乇 氐丨賷丨');
+  if (email && !isValidEmail(email)) return toast('البريد غير صحيح');
 
   btn.disabled = true;
   try {
     let photoUrl = state.editingPersonId ? state.byId[state.editingPersonId]?.photo_url : null;
     const photoFile = $('#pPhoto').files[0];
     if (photoFile) {
-      if (photoFile.size > MAX_PHOTO_BYTES) throw new Error('丨噩賲 丕賱氐賵乇丞 賷鬲噩丕賵夭 2 賲賷睾丕亘丕賷鬲');
+      if (photoFile.size > MAX_PHOTO_BYTES) throw new Error('حجم الصورة يتجاوز 2 ميغابايت');
       const ext = (photoFile.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '');
       const fileName = `person_${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`;
       const { error: upErr } = await sb.storage.from('avatars').upload(fileName, photoFile, { contentType: photoFile.type });
@@ -1152,11 +1152,11 @@ async function savePerson() {
     }
     if (error) throw error;
 
-    toast(state.editingPersonId ? '鉁� 鬲賲 丕賱鬲毓丿賷賱' : (state.isAdmin ? '鉁� 鬲賲鬲 丕賱廿囟丕賮丞' : '鈴� 亘丕賳鬲馗丕乇 賲賵丕賮賯丞 丕賱賲丿賷乇'));
+    toast(state.editingPersonId ? '✅ تم التعديل' : (state.isAdmin ? '✅ تمت الإضافة' : '⏳ بانتظار موافقة المدير'));
     closeModal('personModal');
     loadData();
   } catch (err) {
-    toast('禺胤兀: ' + (err.message || err));
+    toast('خطأ: ' + (err.message || err));
   } finally {
     btn.disabled = false;
   }
@@ -1164,24 +1164,24 @@ async function savePerson() {
 
 async function deletePerson(id) {
   if (!requireAdmin()) return;
-  if (!confirm('丨匕賮 賴匕丕 丕賱卮禺氐 賳賴丕卅賷丕賸責')) return;
+  if (!confirm('حذف هذا الشخص نهائياً؟')) return;
   const { error } = await sb.from('people').delete().eq('id', id);
-  if (error) return toast('賱丕 賷賲賰賳 丕賱丨匕賮 (賱賴 兀亘賳丕亍 兀賵 賲乇鬲亘胤 亘爻噩賱 丌禺乇)');
+  if (error) return toast('لا يمكن الحذف (له أبناء أو مرتبط بسجل آخر)');
   state.selectedId = null;
   $('#detailPanel').innerHTML = '';
-  toast('鬲賲 丕賱丨匕賮');
+  toast('تم الحذف');
   loadData();
 }
 
 // ============================================================
-// 14. 丕賱廿毓丿丕丿丕鬲
+// 14. الإعدادات
 // ============================================================
 function openSettings() {
   if (!requireAdmin()) return;
   $('#cfgName').value = state.siteData.name || '';
   $('#cfgBanner').value = state.siteData.banner || '';
   $('#cfgLongMessage').value = state.siteData.long_message || '';
-  $('#cfgLogo').value = state.siteData.logo || '馃尦';
+  $('#cfgLogo').value = state.siteData.logo || '🌳';
   openModal('settingsModal');
 }
 
@@ -1193,32 +1193,32 @@ async function saveSettings() {
     long_message: $('#cfgLongMessage').value.trim(),
     logo: $('#cfgLogo').value.trim()
   }).eq('id', 1);
-  if (error) return toast('禺胤兀: ' + error.message);
+  if (error) return toast('خطأ: ' + error.message);
   closeModal('settingsModal');
-  toast('鉁� 鬲賲 丨賮馗 丕賱廿毓丿丕丿丕鬲');
+  toast('✅ تم حفظ الإعدادات');
   loadData();
 }
 
 // ============================================================
-// 15. 丕賱乇爻丕卅賱 賵丕賱丿乇丿卮丞
+// 15. الرسائل والدردشة
 // ============================================================
 async function sendMessage() {
   const name = $('#msgName').value.trim();
   const body = $('#msgBody').value.trim();
-  if (body.length < 3) return toast('丕賱乇爻丕賱丞 賯氐賷乇丞 噩丿丕賸');
+  if (body.length < 3) return toast('الرسالة قصيرة جداً');
   const last = parseInt(localStorage.getItem('last_msg') || '0', 10);
-  if (Date.now() - last < 60000) return toast('丕賳鬲馗乇 丿賯賷賯丞 賯亘賱 丕賱廿乇爻丕賱 賲噩丿丿丕賸');
+  if (Date.now() - last < 60000) return toast('انتظر دقيقة قبل الإرسال مجدداً');
   const { error } = await sb.from('messages').insert({ name: name || null, body });
-  if (error) return toast('禺胤兀: ' + error.message);
+  if (error) return toast('خطأ: ' + error.message);
   localStorage.setItem('last_msg', String(Date.now()));
-  toast('鉁� 賵氐賱鬲 乇爻丕賱鬲賰');
+  toast('✅ وصلت رسالتك');
   $('#msgName').value = ''; $('#msgBody').value = '';
 }
 
 async function sendChat() {
   const txt = $('#chatInput').value.trim();
   if (!txt) return;
-  const senderName = state.user?.email?.split('@')[0] || '夭丕卅乇';
+  const senderName = state.user?.email?.split('@')[0] || 'زائر';
   if (state.chatChannel) {
     state.chatChannel.send({ type: 'broadcast', event: 'chat', payload: { text: txt.slice(0, 500), sender: senderName } });
   }
@@ -1227,11 +1227,11 @@ async function sendChat() {
 }
 
 function initChat() {
-  $('#chatBox').innerHTML = '<div class="chat-msg other">馃憢 兀賴賱丕賸 亘賰 賮賷 睾乇賮丞 丕賱毓卮賷乇丞</div>';
+  $('#chatBox').innerHTML = '<div class="chat-msg other">👋 أهلاً بك في غرفة العشيرة</div>';
   state.chatChannel = sb.channel('chat-room', { config: { broadcast: { self: false } } });
   state.chatChannel.on('broadcast', { event: 'chat' }, (msg) => {
     const { text, sender } = msg.payload || {};
-    if (text) addChatMessage(text, 'other', sender || '夭丕卅乇');
+    if (text) addChatMessage(text, 'other', sender || 'زائر');
   }).subscribe();
 }
 
@@ -1245,7 +1245,7 @@ function addChatMessage(text, type, sender) {
 }
 
 // ============================================================
-// 16. 賱賵丨丞 丕賱廿丿丕乇丞
+// 16. لوحة الإدارة
 // ============================================================
 async function loadAdminPanel() {
   if (!requireStaff()) return;
@@ -1257,23 +1257,23 @@ async function loadAdminPanel() {
 
   $('#pendingPeople').innerHTML = pp?.length ? pp.map(p => `
     <div class="pending-item">
-      <b>${esc(p.name)}</b> - 馃搷 ${esc(p.city || '睾賷乇 賲丨丿丿')}
+      <b>${esc(p.name)}</b> - 📍 ${esc(p.city || 'غير محدد')}
       <div style="display:flex; gap:6px; margin-top:8px;">
-        <button class="btn primary small" data-admin="approvePerson" data-id="${esc(p.id)}" style="flex:1;">鉁� 賲賵丕賮賯丞</button>
-        <button class="btn danger small" data-admin="rejectPerson" data-id="${esc(p.id)}" style="flex:1;">鉁� 乇賮囟</button>
+        <button class="btn primary small" data-admin="approvePerson" data-id="${esc(p.id)}" style="flex:1;">✓ موافقة</button>
+        <button class="btn danger small" data-admin="rejectPerson" data-id="${esc(p.id)}" style="flex:1;">✗ رفض</button>
       </div>
-    </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 胤賱亘丕鬲.</p>';
+    </div>`).join('') : '<p class="empty">لا توجد طلبات.</p>';
 
   $('#pendingMsgs').innerHTML = pm?.length ? pm.map(m => `
     <div class="pending-item">
-      <b>${esc(m.name || '夭丕卅乇')}</b>
+      <b>${esc(m.name || 'زائر')}</b>
       <p style="font-size:0.85rem; margin:5px 0;">${esc(m.body)}</p>
-      <textarea id="reply_${esc(m.id)}" placeholder="乇丿 丕賱廿丿丕乇丞 (丕禺鬲賷丕乇賷)..." rows="2"></textarea>
+      <textarea id="reply_${esc(m.id)}" placeholder="رد الإدارة (اختياري)..." rows="2"></textarea>
       <div style="display:flex; gap:6px;">
-        <button class="btn primary small" data-admin="approveMsg" data-id="${esc(m.id)}" style="flex:1;">鉁� 賳卮乇</button>
-        <button class="btn danger small" data-admin="rejectMsg" data-id="${esc(m.id)}" style="flex:1;">馃棏锔� 丨匕賮</button>
+        <button class="btn primary small" data-admin="approveMsg" data-id="${esc(m.id)}" style="flex:1;">✓ نشر</button>
+        <button class="btn danger small" data-admin="rejectMsg" data-id="${esc(m.id)}" style="flex:1;">🗑️ حذف</button>
       </div>
-    </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 乇爻丕卅賱.</p>';
+    </div>`).join('') : '<p class="empty">لا توجد رسائل.</p>';
 }
 
 $('#adminModal').addEventListener('click', async (e) => {
@@ -1282,7 +1282,7 @@ $('#adminModal').addEventListener('click', async (e) => {
   const id = btn.dataset.id;
   const actions = {
     approvePerson: () => sb.from('people').update({ status: 'approved' }).eq('id', id),
-    rejectPerson: () => confirm('丨匕賮 賳賴丕卅賷責') ? sb.from('people').delete().eq('id', id) : null,
+    rejectPerson: () => confirm('حذف نهائي؟') ? sb.from('people').delete().eq('id', id) : null,
     approveMsg: async () => {
       const reply = document.getElementById('reply_' + id)?.value.trim() || null;
       return sb.from('messages').update({
@@ -1291,35 +1291,35 @@ $('#adminModal').addEventListener('click', async (e) => {
         replied_at: new Date().toISOString()
       }).eq('id', id);
     },
-    rejectMsg: () => confirm('丨匕賮 丕賱乇爻丕賱丞責') ? sb.from('messages').delete().eq('id', id) : null
+    rejectMsg: () => confirm('حذف الرسالة؟') ? sb.from('messages').delete().eq('id', id) : null
   };
   const run = actions[btn.dataset.admin];
   if (!run) return;
   const res = await run();
-  if (res?.error) return toast('禺胤兀: ' + res.error.message);
-  if (res) toast('鉁� 鬲賲');
+  if (res?.error) return toast('خطأ: ' + res.error.message);
+  if (res) toast('✅ تم');
   loadAdminPanel();
   loadData();
 });
 
 // ============================================================
-// 17. 丕賱鬲氐丿賷乇 賵丕賱丕爻鬲賷乇丕丿
+// 17. التصدير والاستيراد
 // ============================================================
 function exportCSV() {
-  if (!state.isStaff) return toast('丕賱鬲氐丿賷乇 賱賱廿丿丕乇丞 賮賯胤');
-  if (!state.allPeople.length) return toast('賱丕 鬲賵噩丿 亘賷丕賳丕鬲');
-  const headers = ['丕賱丕爻賲', '丕賱兀亘', '丕賱噩賳爻', '丕賱賲丿賷賳丞', '爻賳丞 丕賱賲賷賱丕丿', '丕賱賴丕鬲賮', '丕賱亘乇賷丿', '賲賱丕丨馗丕鬲'];
+  if (!state.isStaff) return toast('التصدير للإدارة فقط');
+  if (!state.allPeople.length) return toast('لا توجد بيانات');
+  const headers = ['الاسم', 'الأب', 'الجنس', 'المدينة', 'سنة الميلاد', 'الهاتف', 'البريد', 'ملاحظات'];
   const rows = state.allPeople.map(p => [
     p.name, p.parent_id ? state.byId[p.parent_id]?.name || '' : '',
-    p.gender === 'f' ? '兀賳孬賶' : '匕賰乇', p.city || '', p.birth || '',
+    p.gender === 'f' ? 'أنثى' : 'ذكر', p.city || '', p.birth || '',
     p.phone || '', p.email || '', (p.notes || '').replace(/\n/g, ' ')
   ]);
   const csv = '\uFEFF' + [headers, ...rows].map(r => r.map(csvEscape).join(',')).join('\n');
-  downloadFile(csv, `毓卮賷乇丞_${new Date().toISOString().slice(0,10)}.csv`, 'text/csv;charset=utf-8');
+  downloadFile(csv, `عشيرة_${new Date().toISOString().slice(0,10)}.csv`, 'text/csv;charset=utf-8');
 }
 
 function exportJSON() {
-  if (!state.isStaff) return toast('丕賱賳爻禺 丕賱丕丨鬲賷丕胤賷 賱賱廿丿丕乇丞 賮賯胤');
+  if (!state.isStaff) return toast('النسخ الاحتياطي للإدارة فقط');
   const backup = { exported_at: new Date().toISOString(), site: state.siteData, people: state.allPeople };
   downloadFile(JSON.stringify(backup, null, 2), `backup_${Date.now()}.json`, 'application/json');
 }
@@ -1328,10 +1328,10 @@ async function importJSON(event) {
   const file = event.target.files[0];
   event.target.value = '';
   if (!file || !requireAdmin()) return;
-  if (!confirm('爻賷鬲賲 廿囟丕賮丞 丕賱兀爻賲丕亍 賲賳 丕賱賲賱賮 賰噩匕賵乇 賲爻鬲賯賱丞. 賲鬲丕亘毓丞責')) return;
+  if (!confirm('سيتم إضافة الأسماء من الملف كجذور مستقلة. متابعة؟')) return;
   try {
     const data = JSON.parse(await file.text());
-    if (!Array.isArray(data.people)) throw new Error('賲賱賮 睾賷乇 氐丕賱丨');
+    if (!Array.isArray(data.people)) throw new Error('ملف غير صالح');
     const rows = data.people
       .filter(p => p && p.name)
       .map(p => ({
@@ -1341,13 +1341,13 @@ async function importJSON(event) {
       }));
     const { error } = await sb.from('people').insert(rows);
     if (error) throw error;
-    toast(`鉁� 鬲賲 丕爻鬲賷乇丕丿 ${rows.length} 丕爻賲`);
+    toast(`✅ تم استيراد ${rows.length} اسم`);
     loadData();
-  } catch (e) { toast('禺胤兀: ' + e.message); }
+  } catch (e) { toast('خطأ: ' + e.message); }
 }
 
 // ============================================================
-// 18. PDF 賵鬲氐丿賷乇 丕賱賮乇毓
+// 18. PDF وتصدير الفرع
 // ============================================================
 function exportPersonPDF(id) {
   const p = state.byId[id];
@@ -1358,25 +1358,25 @@ function exportPersonPDF(id) {
   const content = `
     <div style="font-family:Tahoma; direction:rtl; padding:40px; max-width:800px; margin:auto;">
       <div style="text-align:center; border-bottom:3px solid #2f6b4f; padding-bottom:20px; margin-bottom:20px;">
-        <h1 style="color:#2f6b4f; margin:0;">${esc(state.siteData.name || '卮噩乇丞 丕賱毓卮賷乇丞')}</h1>
-        <p style="color:#888; margin:5px 0;">亘胤丕賯丞 鬲毓乇賷賮</p>
+        <h1 style="color:#2f6b4f; margin:0;">${esc(state.siteData.name || 'شجرة العشيرة')}</h1>
+        <p style="color:#888; margin:5px 0;">بطاقة تعريف</p>
       </div>
       <h2 style="color:#2f6b4f;">${esc(p.name)}</h2>
       <table style="width:100%; border-collapse:collapse; margin-top:20px;">
-        ${p.birth ? row('爻賳丞 丕賱賲賷賱丕丿', p.birth) : ''}
-        ${row('丕賱噩賳爻', p.gender === 'f' ? '兀賳孬賶' : '匕賰乇')}
-        ${p.city ? row('丕賱賲丿賷賳丞', esc(p.city)) : ''}
-        ${p.phone ? row('丕賱賴丕鬲賮', esc(p.phone)) : ''}
-        ${p.email ? row('丕賱亘乇賷丿', esc(p.email)) : ''}
-        ${row('丕賱賲爻丕乇 賲賳 丕賱噩匕乇', chain.map(x => esc(x.name)).join(' 鈫� '))}
-        ${row('丕賱兀亘賳丕亍 賵丕賱兀丨賮丕丿', countDescendants(id) + ' 卮禺氐')}
+        ${p.birth ? row('سنة الميلاد', p.birth) : ''}
+        ${row('الجنس', p.gender === 'f' ? 'أنثى' : 'ذكر')}
+        ${p.city ? row('المدينة', esc(p.city)) : ''}
+        ${p.phone ? row('الهاتف', esc(p.phone)) : ''}
+        ${p.email ? row('البريد', esc(p.email)) : ''}
+        ${row('المسار من الجذر', chain.map(x => esc(x.name)).join(' ← '))}
+        ${row('الأبناء والأحفاد', countDescendants(id) + ' شخص')}
       </table>
-      ${children.length ? `<h3 style="margin-top:20px;">丕賱兀亘賳丕亍 丕賱賲亘丕卮乇賵賳:</h3><ul>${children.map(c => `<li>${esc(c.name)}</li>`).join('')}</ul>` : ''}
-      ${p.notes ? `<h3>賲賱丕丨馗丕鬲:</h3><p>${esc(p.notes)}</p>` : ''}
-      <p style="text-align:center; color:#888; margin-top:40px; font-size:12px;">鬲賲 丕賱廿賳卮丕亍 賮賷 ${new Date().toLocaleString('ar')}</p>
+      ${children.length ? `<h3 style="margin-top:20px;">الأبناء المباشرون:</h3><ul>${children.map(c => `<li>${esc(c.name)}</li>`).join('')}</ul>` : ''}
+      ${p.notes ? `<h3>ملاحظات:</h3><p>${esc(p.notes)}</p>` : ''}
+      <p style="text-align:center; color:#888; margin-top:40px; font-size:12px;">تم الإنشاء في ${new Date().toLocaleString('ar')}</p>
     </div>`;
   const win = window.open('', '_blank');
-  if (!win) return toast('丕爻賲丨 亘丕賱賳賵丕賮匕 丕賱賲賳亘孬賯丞 賱賱胤亘丕毓丞');
+  if (!win) return toast('اسمح بالنوافذ المنبثقة للطباعة');
   win.document.write(`<html dir="rtl"><head><meta charset="utf-8"><title>${esc(p.name)}</title></head><body>${content}</body></html>`);
   win.document.close();
   win.onload = () => win.print();
@@ -1390,21 +1390,21 @@ function exportPersonBranch(id) {
     seen.add(nodeId); branch.push(p);
     (state.kids[nodeId] || []).forEach(c => collect(c.id));
   })(id);
-  const headers = ['丕賱丕爻賲', '丕賱兀亘', '丕賱噩賳爻', '丕賱賲丿賷賳丞', '爻賳丞 丕賱賲賷賱丕丿', '丕賱賴丕鬲賮'];
+  const headers = ['الاسم', 'الأب', 'الجنس', 'المدينة', 'سنة الميلاد', 'الهاتف'];
   const rows = branch.map(p => [
     p.name, p.parent_id ? state.byId[p.parent_id]?.name || '' : '',
-    p.gender === 'f' ? '兀賳孬賶' : '匕賰乇', p.city || '', p.birth || '', p.phone || ''
+    p.gender === 'f' ? 'أنثى' : 'ذكر', p.city || '', p.birth || '', p.phone || ''
   ]);
   const csv = '\uFEFF' + [headers, ...rows].map(r => r.map(csvEscape).join(',')).join('\n');
-  downloadFile(csv, `賮乇毓_${state.byId[id].name.replace(/\s+/g, '_')}.csv`, 'text/csv;charset=utf-8');
+  downloadFile(csv, `فرع_${state.byId[id].name.replace(/\s+/g, '_')}.csv`, 'text/csv;charset=utf-8');
 }
 
 // ============================================================
-// 19. 鬲氐丿賷乇 丕賱卮噩乇丞 PNG
+// 19. تصدير الشجرة PNG
 // ============================================================
 function exportTreePNG() {
   const svg = document.getElementById('treeSvg');
-  if (!svg || !svg.childNodes.length) return toast('丕賱卮噩乇丞 睾賷乇 噩丕賴夭丞');
+  if (!svg || !svg.childNodes.length) return toast('الشجرة غير جاهزة');
   const bg = getComputedStyle(document.body).backgroundColor || '#ffffff';
   const clone = svg.cloneNode(true);
   clone.removeAttribute('style');
@@ -1422,68 +1422,68 @@ function exportTreePNG() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0);
     canvas.toBlob(blob => {
-      if (!blob) return toast('鬲毓匕賾乇 廿賳卮丕亍 丕賱氐賵乇丞');
+      if (!blob) return toast('تعذّر إنشاء الصورة');
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = `卮噩乇丞_${new Date().toISOString().slice(0,10)}.png`;
+      a.href = url; a.download = `شجرة_${new Date().toISOString().slice(0,10)}.png`;
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     });
   };
-  img.onerror = () => toast('鬲毓匕賾乇 廿賳卮丕亍 丕賱氐賵乇丞');
+  img.onerror = () => toast('تعذّر إنشاء الصورة');
   img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData);
 }
 
 // ============================================================
-// 20. 丕賱禺乇賷胤丞 (賲丨丕賮馗丕鬲 爻賵乇賷丕 賵丕賱毓乇丕賯 賵丕賱賷賲賳 賵丕賱爻毓賵丿賷丞)
+// 20. الخريطة (محافظات سوريا والعراق واليمن والسعودية)
 // ============================================================
 const CITY_COORDS = {
-  // 爻賵乇賷丕
-  '丿賲卮賯': [33.5138, 36.2765], '乇賷賮 丿賲卮賯': [33.5000, 36.4000],
-  '丨賱亘': [36.2021, 37.1343], '丨賲氐': [34.7324, 36.7137],
-  '丨賲丕丞': [35.1318, 36.7578], '丕賱賱丕匕賯賷丞': [35.5138, 35.7906],
-  '廿丿賱亘': [35.9306, 36.6339], '丿賷乇 丕賱夭賵乇': [35.3333, 40.1500],
-  '丕賱乇賯丞': [35.9500, 39.0000], '丕賱丨爻賰丞': [36.5000, 40.7500],
-  '丿乇毓丕': [32.6189, 36.1021], '丕賱爻賵賷丿丕亍': [32.7090, 36.5695],
-  '丕賱賯賳賷胤乇丞': [33.1258, 35.8242], '胤乇胤賵爻': [34.8890, 35.8866],
-  // 丕賱毓乇丕賯
-  '亘睾丿丕丿': [33.3152, 44.3661], '丕賱亘氐乇丞': [30.5081, 47.7835],
-  '賳賷賳賵賶': [36.3350, 43.1189], '丕賱賲賵氐賱': [36.3350, 43.1189],
-  '兀乇亘賷賱': [36.1901, 44.0091], '丕賱爻賱賷賲丕賳賷丞': [35.5613, 45.4305],
-  '丿賴賵賰': [36.8679, 42.9504], '賰乇賰賵賰': [35.4681, 44.3922],
-  '丕賱兀賳亘丕乇': [33.4258, 43.2999], '丿賷丕賱賶': [33.7500, 44.6333],
-  '氐賱丕丨 丕賱丿賷賳': [34.6100, 43.6780], '賵丕爻胤': [32.5000, 45.8333],
-  '賲賷爻丕賳': [31.8397, 47.1442], '匕賷 賯丕乇': [31.0433, 46.2572],
-  '丕賱賲孬賳賶': [31.3135, 45.2818], '丕賱賯丕丿爻賷丞': [31.9892, 44.9250],
-  '亘丕亘賱': [32.4722, 44.4208], '賰乇亘賱丕亍': [32.6167, 44.0333],
-  '丕賱賳噩賮': [32.0000, 44.3333], '丨賱亘噩丞': [35.1778, 45.9861],
-  // 丕賱賷賲賳
-  '氐賳毓丕亍': [15.3694, 44.1910], '兀賲丕賳丞 丕賱毓丕氐賲丞': [15.3694, 44.1910],
-  '毓丿賳': [12.7855, 45.0187], '鬲毓夭': [13.5795, 44.0209],
-  '丕賱丨丿賷丿丞': [14.7978, 42.9545], '廿亘': [13.9667, 44.1833],
-  '匕賲丕乇': [14.5428, 44.4050], '丨噩丞': [15.6917, 43.6033],
-  '氐毓丿丞': [16.9402, 43.7610], '毓賲乇丕賳': [15.6594, 43.9441],
-  '丕賱亘賷囟丕亍': [13.9850, 45.5730], '賲兀乇亘': [15.4589, 45.3220],
-  '丕賱噩賵賮': [16.1000, 45.0000], '丨囟乇賲賵鬲': [15.9000, 49.1000],
-  '丕賱賲賴乇丞': [16.4000, 52.0000], '卮亘賵丞': [14.5000, 47.0000],
-  '兀亘賷賳': [13.5000, 45.9000], '賱丨噩': [13.0587, 44.8817],
-  '丕賱囟丕賱毓': [13.6950, 44.7310], '乇賷賲丞': [14.2000, 43.6000],
-  '丕賱賲丨賵賷鬲': [15.4700, 43.5400], '爻賯胤乇賶': [12.5000, 54.0000],
-  // 丕賱爻毓賵丿賷丞
-  '丕賱乇賷丕囟': [24.7136, 46.6753], '賲賰丞 丕賱賲賰乇賲丞': [21.3891, 39.8579],
-  '丕賱賲丿賷賳丞 丕賱賲賳賵乇丞': [24.5247, 39.5692], '丕賱賯氐賷賲': [26.3260, 43.9750],
-  '丕賱卮乇賯賷丞': [26.4207, 50.0888], '毓爻賷乇': [18.2164, 42.5053],
-  '鬲亘賵賰': [28.3838, 36.5550], '丨丕卅賱': [27.5114, 41.7208],
-  '丕賱丨丿賵丿 丕賱卮賲丕賱賷丞': [30.9753, 41.0381], '噩丕夭丕賳': [16.8894, 42.5706],
-  '賳噩乇丕賳': [17.4917, 44.1322], '丕賱亘丕丨丞': [20.0129, 41.4677],
-  '噩丿丞': [21.4858, 39.1925], '丕賱胤丕卅賮': [21.2703, 40.4158],
-  '丕賱丿賲丕賲': [26.3927, 49.9777], '丕賱禺亘乇': [26.2794, 50.2081],
-  // 丿賵賱 兀禺乇賶
-  '丕賱賯丕賴乇丞': [30.0444, 31.2357], '丿亘賷': [25.2048, 55.2708],
-  '丕賱賰賵賷鬲': [29.3759, 47.9774], '丕賱丿賵丨丞': [25.2854, 51.5310],
-  '毓賲賾丕賳': [31.9454, 35.9284], '亘賷乇賵鬲': [33.8938, 35.5018]
+  // سوريا
+  'دمشق': [33.5138, 36.2765], 'ريف دمشق': [33.5000, 36.4000],
+  'حلب': [36.2021, 37.1343], 'حمص': [34.7324, 36.7137],
+  'حماة': [35.1318, 36.7578], 'اللاذقية': [35.5138, 35.7906],
+  'إدلب': [35.9306, 36.6339], 'دير الزور': [35.3333, 40.1500],
+  'الرقة': [35.9500, 39.0000], 'الحسكة': [36.5000, 40.7500],
+  'درعا': [32.6189, 36.1021], 'السويداء': [32.7090, 36.5695],
+  'القنيطرة': [33.1258, 35.8242], 'طرطوس': [34.8890, 35.8866],
+  // العراق
+  'بغداد': [33.3152, 44.3661], 'البصرة': [30.5081, 47.7835],
+  'نينوى': [36.3350, 43.1189], 'الموصل': [36.3350, 43.1189],
+  'أربيل': [36.1901, 44.0091], 'السليمانية': [35.5613, 45.4305],
+  'دهوك': [36.8679, 42.9504], 'كركوك': [35.4681, 44.3922],
+  'الأنبار': [33.4258, 43.2999], 'ديالى': [33.7500, 44.6333],
+  'صلاح الدين': [34.6100, 43.6780], 'واسط': [32.5000, 45.8333],
+  'ميسان': [31.8397, 47.1442], 'ذي قار': [31.0433, 46.2572],
+  'المثنى': [31.3135, 45.2818], 'القادسية': [31.9892, 44.9250],
+  'بابل': [32.4722, 44.4208], 'كربلاء': [32.6167, 44.0333],
+  'النجف': [32.0000, 44.3333], 'حلبجة': [35.1778, 45.9861],
+  // اليمن
+  'صنعاء': [15.3694, 44.1910], 'أمانة العاصمة': [15.3694, 44.1910],
+  'عدن': [12.7855, 45.0187], 'تعز': [13.5795, 44.0209],
+  'الحديدة': [14.7978, 42.9545], 'إب': [13.9667, 44.1833],
+  'ذمار': [14.5428, 44.4050], 'حجة': [15.6917, 43.6033],
+  'صعدة': [16.9402, 43.7610], 'عمران': [15.6594, 43.9441],
+  'البيضاء': [13.9850, 45.5730], 'مأرب': [15.4589, 45.3220],
+  'الجوف': [16.1000, 45.0000], 'حضرموت': [15.9000, 49.1000],
+  'المهرة': [16.4000, 52.0000], 'شبوة': [14.5000, 47.0000],
+  'أبين': [13.5000, 45.9000], 'لحج': [13.0587, 44.8817],
+  'الضالع': [13.6950, 44.7310], 'ريمة': [14.2000, 43.6000],
+  'المحويت': [15.4700, 43.5400], 'سقطرى': [12.5000, 54.0000],
+  // السعودية
+  'الرياض': [24.7136, 46.6753], 'مكة المكرمة': [21.3891, 39.8579],
+  'المدينة المنورة': [24.5247, 39.5692], 'القصيم': [26.3260, 43.9750],
+  'الشرقية': [26.4207, 50.0888], 'عسير': [18.2164, 42.5053],
+  'تبوك': [28.3838, 36.5550], 'حائل': [27.5114, 41.7208],
+  'الحدود الشمالية': [30.9753, 41.0381], 'جازان': [16.8894, 42.5706],
+  'نجران': [17.4917, 44.1322], 'الباحة': [20.0129, 41.4677],
+  'جدة': [21.4858, 39.1925], 'الطائف': [21.2703, 40.4158],
+  'الدمام': [26.3927, 49.9777], 'الخبر': [26.2794, 50.2081],
+  // دول أخرى
+  'القاهرة': [30.0444, 31.2357], 'دبي': [25.2048, 55.2708],
+  'الكويت': [29.3759, 47.9774], 'الدوحة': [25.2854, 51.5310],
+  'عمّان': [31.9454, 35.9284], 'بيروت': [33.8938, 35.5018]
 };
-// 丕賱兀胤賵賱 兀賵賱丕賸 丨鬲賶 鬲購胤丕亘賯 "乇賷賮 丿賲卮賯" 賯亘賱 "丿賲卮賯"
+// الأطول أولاً حتى تُطابق "ريف دمشق" قبل "دمشق"
 const CITY_KEYS = Object.keys(CITY_COORDS).sort((a, b) => b.length - a.length);
 
 function findCityCoords(city) {
@@ -1499,7 +1499,7 @@ function initMap() {
   if (!document.getElementById('familyMap') || typeof L === 'undefined') return;
   state.map = L.map('familyMap').setView([30, 40], 4);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '漏 OpenStreetMap', maxZoom: 18
+    attribution: '© OpenStreetMap', maxZoom: 18
   }).addTo(state.map);
   renderMapMarkers();
 }
@@ -1517,11 +1517,11 @@ function renderMapMarkers() {
   });
   Object.values(groups).forEach(g => {
     const marker = L.marker(g.coords).addTo(state.map);
-    const list = g.people.slice(0, 10).map(p => `鈥� ${esc(p.name)}`).join('<br>');
-    const more = g.people.length > 10 ? `<br><i>賵${g.people.length - 10} 丌禺乇賵賳...</i>` : '';
+    const list = g.people.slice(0, 10).map(p => `• ${esc(p.name)}`).join('<br>');
+    const more = g.people.length > 10 ? `<br><i>و${g.people.length - 10} آخرون...</i>` : '';
     marker.bindPopup(`<div style="direction:rtl; font-family:Tahoma; min-width:180px;">
-      <b style="color:#2f6b4f;">馃彊锔� ${esc(g.city)}</b><br>
-      <small>${g.people.length} 賮乇丿</small><hr style="margin:6px 0;">
+      <b style="color:#2f6b4f;">🏙️ ${esc(g.city)}</b><br>
+      <small>${g.people.length} فرد</small><hr style="margin:6px 0;">
       <div style="font-size:12px;">${list}${more}</div></div>`);
     state.mapMarkers.push(marker);
   });
@@ -1537,11 +1537,11 @@ function renderCityList() {
   const sorted = Object.entries(groups).sort((a, b) => b[1].length - a[1].length);
   $('#cityList').innerHTML = sorted.length ? sorted.map(([city, people]) => `
     <div class="city-row" data-city="${esc(city)}" tabindex="0">
-      <div><b>馃彊锔� ${esc(city)}</b>
-        <div class="muted" style="font-size:0.75rem;">${people.slice(0, 3).map(p => esc(p.name)).join('貙 ')}${people.length > 3 ? '...' : ''}</div>
+      <div><b>🏙️ ${esc(city)}</b>
+        <div class="muted" style="font-size:0.75rem;">${people.slice(0, 3).map(p => esc(p.name)).join('، ')}${people.length > 3 ? '...' : ''}</div>
       </div>
       <span class="count">${people.length}</span>
-    </div>`).join('') : '<p class="empty">賱賲 賷鬲賲 廿丿禺丕賱 賲丿賳 亘毓丿.</p>';
+    </div>`).join('') : '<p class="empty">لم يتم إدخال مدن بعد.</p>';
 }
 
 $('#cityList').addEventListener('click', (e) => {
@@ -1551,7 +1551,7 @@ $('#cityList').addEventListener('click', (e) => {
 
 function showCityOnMap(cityName) {
   const coords = findCityCoords(cityName);
-  if (!coords || !state.map) return toast('廿丨丿丕孬賷丕鬲 賴匕賴 丕賱賲丿賷賳丞 睾賷乇 賲鬲賵賮乇丞');
+  if (!coords || !state.map) return toast('إحداثيات هذه المدينة غير متوفرة');
   state.map.setView(coords, 8);
   const marker = state.mapMarkers.find(m => {
     const ll = m.getLatLng();
@@ -1562,7 +1562,7 @@ function showCityOnMap(cityName) {
 }
 
 // ============================================================
-// 21. 賱賵賳 賵丕噩賴丞 丕賱賲賳氐丞 (賱賱賲丿賷乇 賮賯胤)
+// 21. لون واجهة المنصة (للمدير فقط)
 // ============================================================
 const tHue = $('#tHue'), tSat = $('#tSat'), tLit = $('#tLit'), tWheel = $('#tWheel');
 
@@ -1629,24 +1629,24 @@ async function saveTheme() {
   if (!requireAdmin()) return;
   const hex = currentThemeHex();
   const { error } = await sb.from('site').update({ primary_color: hex }).eq('id', 1);
-  if (error) return toast('禺胤兀: ' + error.message);
+  if (error) return toast('خطأ: ' + error.message);
   state.siteData.primary_color = hex;
-  toast('鉁� 鬲賲 丨賮馗 賱賵賳 丕賱賵丕噩賴丞 賱賱噩賲賷毓');
+  toast('✅ تم حفظ لون الواجهة للجميع');
 }
 
 async function resetTheme() {
   if (!requireAdmin()) return;
-  if (!confirm('廿毓丕丿丞 丕賱賱賵賳 丕賱丕賮鬲乇丕囟賷 賱賱噩賲賷毓責')) return;
+  if (!confirm('إعادة اللون الافتراضي للجميع؟')) return;
   const { error } = await sb.from('site').update({ primary_color: DEFAULT_COLOR }).eq('id', 1);
-  if (error) return toast('禺胤兀: ' + error.message);
+  if (error) return toast('خطأ: ' + error.message);
   state.siteData.primary_color = DEFAULT_COLOR;
   syncThemeSliders(DEFAULT_COLOR);
   applyTheme(DEFAULT_COLOR);
-  toast('鉁� 鬲賲鬲 廿毓丕丿丞 丕賱賱賵賳 丕賱丕賮鬲乇丕囟賷');
+  toast('✅ تمت إعادة اللون الافتراضي');
 }
 
 // ============================================================
-// 22. 丕賱鬲賴賷卅丞
+// 22. التهيئة
 // ============================================================
 let realtimeReady = false;
 function setupRealtime() {
