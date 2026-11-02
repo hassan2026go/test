@@ -1,171 +1,1682 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>&#x634;&#x62C;&#x631;&#x629; &#x627;&#x644;&#x639;&#x634;&#x64A;&#x631;&#x629;</title>
-<link rel="manifest" href="manifest.webmanifest">
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="賲賳氐丞 鬲賵孬賷賯 卮噩乇丞 丕賱毓卮賷乇丞 賵鬲毓丿丕丿賴丕">
 <meta name="theme-color" content="#2f6b4f">
-<link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="卮噩乇丞 丕賱毓卮賷乇丞">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>卮噩乇丞 丕賱毓卮賷乇丞</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-:root{--bg:#faf7f2;--card:#fff;--tx:#2b2418;--mut:#7a6f5d;--ac:#2f6b4f;--acx:#fff;--bd:#e4dccb;--warn:#b5651d;--hl:#e8f2ec}
-@media(prefers-color-scheme:dark){:root{--bg:#1b1a16;--card:#262520;--tx:#efe9dc;--mut:#a39a86;--ac:#5fb58b;--acx:#10231a;--bd:#3a3830;--warn:#e0a060;--hl:#25352d}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:"Segoe UI",Tahoma,system-ui,sans-serif;line-height:1.6}
-.w{max-width:1000px;margin:0 auto;padding:14px}h1{margin:0;font-size:1.4rem}.sub,.mut{color:var(--mut);font-size:.85rem}
-.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
-input,select,textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:9px 12px;width:100%}
-button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;padding:8px 14px}
-button.p{background:var(--ac);color:var(--acx);border-color:var(--ac)}button.d{color:#c0392b}
-.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}.tabs button.on{background:var(--ac);color:var(--acx)}
-.bd{background:var(--warn);color:#fff;border-radius:99px;padding:0 7px;font-size:.75rem;margin-inline-start:4px}
-.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;min-width:0}.tree{max-height:70vh;overflow:auto}
-.row{display:flex;align-items:center;gap:6px;padding:3px 4px;border-radius:8px}.row.sel{background:var(--hl)}
-.tg{border:0;background:none;padding:0 4px;width:24px;color:var(--ac)}.nm{cursor:pointer}
-.ct{font-size:.72rem;color:var(--mut);border:1px solid var(--bd);border-radius:99px;padding:0 6px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.chip{border:1px solid var(--bd);border-radius:99px;padding:2px 10px;cursor:pointer;background:var(--hl)}
-.res{padding:8px;border-bottom:1px solid var(--bd);cursor:pointer}.res:hover{background:var(--hl)}
-.ov{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:14px;z-index:9}
-.md{background:var(--card);border-radius:14px;padding:16px;width:100%;max-width:460px;max-height:90vh;overflow:auto}
-.md label{display:block;margin-top:8px;font-size:.85rem;color:var(--mut)}.pend{border:1px dashed var(--warn)}
-.rep{background:var(--hl);border-radius:10px;padding:8px 10px;margin-top:8px}
-.banner{background:var(--hl);border:1px solid var(--ac);border-radius:12px;padding:10px 14px;margin:10px 0;white-space:pre-wrap}
-#toast{position:fixed;bottom:20px;left:0;right:0;text-align:center;z-index:10;pointer-events:none}
-#toast span{background:var(--tx);color:var(--bg);padding:8px 16px;border-radius:99px}
-</style></head><body><div class="w">
-<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span id="lg" style="font-size:2rem">&#x1F333;</span>
-<div style="flex:1;min-width:140px"><h1 id="sn">&#x627;&#x633;&#x645; &#x627;&#x644;&#x639;&#x634;&#x64A;&#x631;&#x629;</h1><div class="sub" id="who"></div></div>
-<button id="inst" style="display:none">&#x1F4F2; &#x62A;&#x62B;&#x628;&#x64A;&#x62A; &#x627;&#x644;&#x62A;&#x637;&#x628;&#x64A;&#x642;</button>
-<button id="edsite" style="display:none">&#x2699;&#xFE0F; &#x62A;&#x639;&#x62F;&#x64A;&#x644;</button><button id="login">&#x62F;&#x62E;&#x648;&#x644; &#x627;&#x644;&#x645;&#x634;&#x631;&#x641;&#x64A;&#x646;</button><button id="out" style="display:none">&#x62E;&#x631;&#x648;&#x62C;</button></div>
-<div class="mut" id="iosh" style="display:none">&#x644;&#x644;&#x62A;&#x62B;&#x628;&#x64A;&#x62A; &#x639;&#x644;&#x649; &#x622;&#x64A;&#x641;&#x648;&#x646;: &#x627;&#x636;&#x63A;&#x637; &#x632;&#x631; &#x627;&#x644;&#x645;&#x634;&#x627;&#x631;&#x643;&#x629; &#x62B;&#x645; &#xAB;&#x625;&#x636;&#x627;&#x641;&#x629; &#x625;&#x644;&#x649; &#x627;&#x644;&#x634;&#x627;&#x634;&#x629; &#x627;&#x644;&#x631;&#x626;&#x64A;&#x633;&#x64A;&#x629;&#xBB;.</div>
-<div class="banner" id="bn" style="display:none"></div>
-<div class="bar"><input id="q" placeholder="&#x627;&#x628;&#x62D;&#x62B; &#x639;&#x646; &#x627;&#x633;&#x645; (&#x645;&#x62B;&#x627;&#x644;: &#x645;&#x62D;&#x645;&#x62F; &#x628;&#x646; &#x623;&#x62D;&#x645;&#x62F;)&#x2026;" style="flex:1;min-width:200px"><button class="p" id="add" style="display:none">+ &#x625;&#x636;&#x627;&#x641;&#x629; &#x627;&#x633;&#x645;</button></div>
-<div id="res"></div>
-<div class="tabs"><button data-tab="tree" class="on">&#x627;&#x644;&#x634;&#x62C;&#x631;&#x629;</button><button data-tab="qa">&#x623;&#x633;&#x626;&#x644;&#x629; &#x648;&#x631;&#x62F;&#x648;&#x62F;<span class="bd" id="qc" style="display:none">0</span></button><button data-tab="rev" id="revb" style="display:none">&#x627;&#x644;&#x645;&#x631;&#x627;&#x62C;&#x639;&#x629;<span class="bd" id="pc">0</span></button></div>
-<div id="app"></div></div><div id="toast"></div>
+:root {
+  --bg: #f8f6f0; --card: #ffffff; --tx: #1f1a12; --mut: #7a6f5d;
+  --ac: #2f6b4f; --ac3: #1a3f2e; --bd: #e8e0d0; --hl: #e8f2ec;
+  --warn: #b8860b; --danger: #c0392b; --shadow: 0 4px 15px rgba(0,0,0,0.05);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #141310; --card: #22201c; --tx: #efe9dc; --mut: #a39a86; --ac: #5fb58b; --ac3: #2a5a40; --bd: #33302a; --hl: #25352d; color-scheme: dark; }
+}
+[hidden] { display: none !important; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, "Noto Sans Arabic", sans-serif; }
+body { background: var(--bg); color: var(--tx); line-height: 1.6; padding-bottom: 70px; min-height: 100vh; }
+button { font-family: inherit; }
+
+/* Header */
+header { background: linear-gradient(135deg, var(--ac3), var(--ac)); color: #fff; padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 12px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.h-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.logo { width: 40px; height: 40px; background: #fff2; border-radius: 10px; display: grid; place-items: center; font-size: 1.5rem; overflow: hidden; flex-shrink: 0; }
+.logo img { width: 100%; height: 100%; object-fit: cover; }
+.brand h1 { font-size: 1.1rem; font-weight: bold; }
+.brand .sub { font-size: 0.75rem; opacity: 0.8; }
+.actions { margin-inline-start: auto; display: flex; gap: 6px; }
+.icon-btn { background: #fff2; border: 1px solid #fff3; color: #fff; padding: 8px; border-radius: 10px; cursor: pointer; font-size: 0.95rem; position: relative; min-width: 38px; }
+.icon-btn:focus-visible, .btn:focus-visible, .tabs button:focus-visible, .chip:focus-visible { outline: 3px solid #ffd54f; outline-offset: 2px; }
+.badge-count { position: absolute; top: -5px; left: -5px; background: var(--danger); color: #fff; border-radius: 99px; font-size: 0.65rem; padding: 2px 5px; font-weight: bold; }
+
+/* Search */
+.search-box { position: relative; width: 100%; }
+.search-box input { width: 100%; background: #ffffff20; border: 1px solid #ffffff40; color: #fff; border-radius: 12px; padding: 10px 40px 10px 14px; font-size: 0.9rem; outline: none; }
+.search-box input::placeholder { color: #ffffffb0; }
+.search-box .icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); opacity: 0.7; }
+.search-results { position: absolute; top: 110%; left: 0; right: 0; background: var(--card); border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--bd); max-height: 300px; overflow-y: auto; z-index: 101; color: var(--tx); }
+.search-item { padding: 10px 14px; border-bottom: 1px solid var(--bd); cursor: pointer; }
+.search-item:hover { background: var(--hl); }
+
+/* Layout */
+.layout { padding: 16px; max-width: 900px; margin: 0 auto; }
+.card { background: var(--card); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); border: 1px solid var(--bd); margin-bottom: 16px; }
+.card h3 { font-size: 1rem; margin-bottom: 12px; color: var(--ac); display: flex; align-items: center; gap: 8px; }
+.muted { color: var(--mut); font-size: 0.85rem; }
+.empty { text-align: center; padding: 20px; color: var(--mut); }
+
+/* Install banner */
+.install-card { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; border-color: var(--ac); background: var(--hl); }
+.install-card .txt { flex: 1; min-width: 180px; }
+.install-card .txt b { display: block; color: var(--ac3); }
+
+/* Stats */
+.stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.stat-box { background: var(--bg); border: 1px solid var(--bd); border-radius: 12px; padding: 12px; text-align: center; }
+.stat-box .n { font-size: 1.4rem; font-weight: bold; color: var(--ac); }
+.stat-box .l { font-size: 0.75rem; color: var(--mut); }
+
+/* Tabs */
+.tabs { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.tabs button { width: 100%; text-align: right; background: var(--card); border: 1px solid var(--bd); padding: 10px 16px; border-radius: 12px; cursor: pointer; color: var(--tx); font-weight: 600; font-size: 0.9rem; }
+.tabs button.on { background: var(--ac); color: #fff; border-color: var(--ac); }
+
+/* Forms */
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 0.85rem; color: var(--mut); margin-bottom: 6px; font-weight: 600; }
+.form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--bd); border-radius: 10px; background: var(--bg); color: var(--tx); font-size: 0.9rem; outline: none; transition: 0.2s; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--ac); box-shadow: 0 0 0 3px var(--hl); }
+.field-err { color: var(--danger); font-size: 0.8rem; min-height: 1em; margin-top: 4px; }
+input[type="color"] { width: 50px; height: 50px; padding: 0; border: none; border-radius: 10px; cursor: pointer; background: none; }
+
+/* Buttons */
+.btn { padding: 10px 16px; border-radius: 10px; border: 1px solid var(--bd); background: var(--card); color: var(--tx); cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+.btn:disabled { opacity: 0.55; cursor: wait; }
+.btn.primary { background: var(--ac); color: #fff; border-color: var(--ac); }
+.btn.danger { background: var(--danger); color: #fff; border-color: var(--danger); }
+.btn.small { padding: 6px 10px; font-size: 0.8rem; }
+.btn.block { width: 100%; }
+
+/* Chat */
+.chat-box { height: 300px; overflow-y: auto; background: var(--bg); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; border: 1px solid var(--bd); }
+.chat-msg { max-width: 80%; padding: 8px 12px; border-radius: 12px; font-size: 0.9rem; word-wrap: break-word; }
+.chat-msg.me { align-self: flex-start; background: var(--ac); color: #fff; border-bottom-right-radius: 2px; }
+.chat-msg.other { align-self: flex-end; background: var(--card); border: 1px solid var(--bd); border-bottom-left-radius: 2px; }
+
+/* Modals */
+.overlay { position: fixed; inset: 0; background: #0008; backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 16px; z-index: 1000; }
+.overlay.show { display: flex; }
+.modal { background: var(--card); color: var(--tx); border-radius: 20px; width: 100%; max-width: 600px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
+.modal-head { padding: 16px; border-bottom: 1px solid var(--bd); display: flex; justify-content: space-between; align-items: center; background: var(--bg); }
+.modal-body { padding: 16px; overflow-y: auto; }
+.modal-foot { padding: 16px; border-top: 1px solid var(--bd); display: flex; gap: 10px; justify-content: flex-end; background: var(--bg); flex-wrap: wrap; }
+.pending-item { background: var(--bg); padding: 10px; border-radius: 8px; margin-bottom: 8px; border: 1px dashed var(--warn); }
+.pending-item textarea { width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--bd); background: var(--card); color: var(--tx); margin: 6px 0; }
+
+/* Toast */
+#toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--ac3); color: #fff; padding: 12px 18px; border-radius: 12px; box-shadow: var(--shadow); z-index: 2000; max-width: 90%; font-size: 0.9rem; opacity: 0; transition: opacity 0.25s; pointer-events: none; text-align: center; }
+#toast.show { opacity: 1; }
+
+/* People list */
+.person-row { display: flex; align-items: center; gap: 10px; padding: 10px; border-bottom: 1px solid var(--bd); cursor: pointer; }
+.person-row:hover { background: var(--hl); }
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--ac); color: #fff; display: grid; place-items: center; font-weight: bold; flex-shrink: 0; overflow: hidden; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.person-row .info { flex: 1; min-width: 0; }
+.person-row .info b { font-size: 0.95rem; display: block; }
+.person-row .info span { font-size: 0.75rem; color: var(--mut); }
+
+/* Trees */
+.tree-container { background: var(--bg); border-radius: 12px; overflow: auto; max-height: 600px; position: relative; border: 1px solid var(--bd); }
+.tree-svg { display: block; transform-origin: top right; }
+.tree-node { cursor: pointer; }
+.tree-node circle { stroke-width: 2; transition: 0.2s; }
+.tree-node.male circle { fill: var(--hl); stroke: var(--ac); }
+.tree-node.female circle { fill: #fce8f0; stroke: #a0506e; }
+.tree-node.sel circle { stroke: var(--warn); stroke-width: 4; }
+.tree-node text, .lin-node text { font-size: 11px; fill: #1f1a12; text-anchor: middle; font-weight: 600; pointer-events: none; }
+.tree-edge { stroke: #c8bda8; stroke-width: 1.5; fill: none; }
+.lin-node { cursor: pointer; }
+.zoom-ctrl { position: sticky; float: left; margin: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 5; }
+.zoom-ctrl button { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--bd); background: var(--card); cursor: pointer; font-size: 1.1rem; color: var(--tx); box-shadow: var(--shadow); }
+
+/* Detail */
+.detail-panel { background: var(--card); border-radius: 16px; overflow: hidden; border: 1px solid var(--bd); margin-bottom: 16px; }
+.detail-head { background: linear-gradient(135deg, var(--ac3), var(--ac)); color: #fff; padding: 20px; text-align: center; }
+.detail-avatar { width: 80px; height: 80px; border-radius: 50%; background: #fff3; border: 3px solid #fff5; margin: 0 auto 10px; display: grid; place-items: center; font-size: 2rem; font-weight: bold; overflow: hidden; }
+.detail-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.detail-name { font-size: 1.2rem; font-weight: bold; }
+.detail-sub { font-size: 0.8rem; opacity: 0.85; margin-top: 4px; }
+.detail-body { padding: 16px; }
+.detail-field { padding: 8px 0; border-bottom: 1px solid var(--bd); font-size: 0.9rem; }
+.detail-field:last-child { border: 0; }
+.detail-field b { color: var(--mut); font-weight: 500; font-size: 0.75rem; display: block; margin-bottom: 3px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; align-items: center; }
+.chip { border: 1px solid var(--bd); border-radius: 99px; padding: 3px 10px; cursor: pointer; background: var(--hl); font-size: 0.8rem; color: var(--tx); }
+.chip:hover { background: var(--ac); color: #fff; }
+
+/* Map */
+#familyMap { height: 450px; border-radius: 12px; border: 1px solid var(--bd); }
+.city-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid var(--bd); cursor: pointer; }
+.city-row:hover { background: var(--hl); }
+.city-row .count { background: var(--ac); color: #fff; padding: 2px 10px; border-radius: 99px; font-size: 0.75rem; }
+
+/* Theme tools */
+.theme-tools { display: flex; flex-direction: column; gap: 12px; }
+.theme-tools label { font-size: 0.8rem; color: var(--mut); display: flex; justify-content: space-between; }
+.theme-tools input[type=range] { width: 100%; cursor: pointer; accent-color: var(--ac); }
+#tHue { height: 14px; border-radius: 99px; background: linear-gradient(to left, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00); }
+.theme-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+#tWheel { width: 60px; height: 44px; border: none; background: none; cursor: pointer; }
+.theme-preview { flex: 1; min-width: 120px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--ac3), var(--ac)); border: 1px solid var(--bd); }
+
+/* Footer */
+footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--mut); }
+footer a { color: var(--mut); text-decoration: none; }
+footer a:hover { color: var(--ac); }
+
+@media print {
+  header, .tabs, footer, .zoom-ctrl, .actions, .search-box, .modal-foot, .install-card, #toast { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card { box-shadow: none; border: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-top">
+    <div class="logo" id="siteLogo">馃尦</div>
+    <div class="brand">
+      <h1 id="siteName">卮噩乇丞 丕賱毓卮賷乇丞</h1>
+      <div class="sub">賲賳氐丞 丕賱鬲賵孬賷賯 賵丕賱鬲毓丿丕丿</div>
+    </div>
+    <div class="actions">
+      <button class="icon-btn" id="btnInstall" title="鬲孬亘賷鬲 丕賱鬲胤亘賷賯" hidden>馃摬</button>
+      <button class="icon-btn" id="btnSettings" title="丕賱廿毓丿丕丿丕鬲" hidden>鈿欙笍</button>
+      <button class="icon-btn" id="btnAdminPanel" title="賱賵丨丞 丕賱廿丿丕乇丞" hidden>馃搵<span class="badge-count" id="pendBadge" hidden>0</span></button>
+      <button class="icon-btn" id="btnLogin" title="鬲爻噩賷賱 丕賱丿禺賵賱">馃懁</button>
+    </div>
+  </div>
+  <div class="search-box">
+    <span class="icon">馃攳</span>
+    <input id="searchInput" type="search" placeholder="丕亘丨孬 亘丕賱丕爻賲貙 丕賱賲丿賷賳丞貙 兀賵 丕賱賴丕鬲賮..." autocomplete="off">
+    <div class="search-results" id="searchResults" hidden></div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="tabs" role="tablist">
+    <button class="on" data-tab="home">馃彔 丕賱乇卅賷爻賷丞</button>
+    <button data-tab="tree">馃尦 丕賱卮噩乇丞</button>
+    <button data-tab="list">馃懃 丕賱兀爻賲丕亍</button>
+    <button data-tab="map">馃椇锔� 丕賱禺乇賷胤丞</button>
+    <button data-tab="stats">馃搳 丕賱廿丨氐丕卅賷丕鬲</button>
+    <button data-tab="msgs">馃摑 丕賱乇爻丕卅賱</button>
+    <button data-tab="chat">馃挰 丕賱丿乇丿卮丞</button>
+  </nav>
+
+  <!-- HOME -->
+  <section id="tab-home">
+    <div class="card install-card" id="installCard" hidden>
+      <div class="txt"><b>孬亘賾鬲 丕賱鬲胤亘賷賯 毓賱賶 噩賴丕夭賰</b><span class="muted">賵氐賵賱 爻乇賷毓 賲賳 丕賱卮丕卮丞 丕賱乇卅賷爻賷丞貙 賵賷毓賲賱 丨鬲賶 賲毓 囟毓賮 丕賱廿賳鬲乇賳鬲.</span></div>
+      <button class="btn primary" id="btnInstallCard">馃摬 鬲孬亘賷鬲</button>
+    </div>
+
+    <div class="card" id="adminMessageCard" hidden style="border-color: var(--warn); background: var(--hl);">
+      <h3>馃摐 賰賱賲丞 丕賱廿丿丕乇丞</h3>
+      <p id="siteLongMessage" style="white-space: pre-wrap; font-size: 0.9rem;"></p>
+    </div>
+    <div class="card">
+      <h3>馃摙 廿毓賱丕賳 賴丕賲</h3>
+      <p id="siteBanner" style="white-space: pre-wrap; font-size: 0.9rem;">賲乇丨亘丕賸 亘賰賲.</p>
+    </div>
+
+    <div class="card" id="themeCard" hidden>
+      <h3>馃帹 賱賵賳 賵丕噩賴丞 丕賱賲賳氐丞 <span class="muted">(賱賱賲丿賷乇 賮賯胤)</span></h3>
+      <p class="muted" style="margin-bottom:12px;">丕禺鬲乇 丕賱賱賵賳 亘丕賱卮乇賷胤 兀賵 亘賯乇氐 丕賱兀賱賵丕賳貙 賵賷馗賴乇 丕賱鬲睾賷賷乇 毓賱賷賰 賲亘丕卮乇丞. 丕囟睾胤 "丨賮馗" 賱賷乇丕賴 噩賲賷毓 丕賱夭賵丕乇.</p>
+      <div class="theme-tools">
+        <label><span>丕賱丿乇噩丞 (丕賱賱賵賳)</span><span id="tHueVal">140</span>掳</label>
+        <input type="range" id="tHue" min="0" max="360" value="140">
+        <label><span>丕賱鬲卮亘毓</span><span id="tSatVal">40</span>%</label>
+        <input type="range" id="tSat" min="0" max="100" value="40">
+        <label><span>丕賱爻胤賵毓</span><span id="tLitVal">35</span>%</label>
+        <input type="range" id="tLit" min="0" max="100" value="35">
+        <div class="theme-row">
+          <input type="color" id="tWheel" value="#2f6b4f" title="賯乇氐 丕賱兀賱賵丕賳">
+          <div class="theme-preview" id="tPreview"></div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn primary" id="saveTheme" style="flex:1;">馃捑 丨賮馗 賱賱噩賲賷毓</button>
+          <button class="btn" id="resetTheme">鈫� 丕賱丕賮鬲乇丕囟賷</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="exportCard" hidden>
+      <h3>馃摜 鬲氐丿賷乇 賵丕爻鬲賷乇丕丿 <span class="muted">(賱賱廿丿丕乇丞)</span></h3>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        <button class="btn primary small" id="btnExportCSV">馃搳 Excel (CSV)</button>
+        <button class="btn small" id="btnExportJSON">馃捑 賳爻禺丞 丕丨鬲賷丕胤賷丞</button>
+        <button class="btn small" id="btnImport">馃搨 丕爻鬲賷乇丕丿</button>
+        <input type="file" id="importFile" accept=".json,application/json" hidden>
+      </div>
+    </div>
+  </section>
+
+  <!-- TREE -->
+  <section id="tab-tree" hidden>
+    <div class="card">
+      <h3>馃尦 丕賱卮噩乇丞 丕賱鬲賮丕毓賱賷丞</h3>
+      <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
+        <button class="btn small" id="btnZoomIn">鉃� 鬲賰亘賷乇</button>
+        <button class="btn small" id="btnZoomOut">鉃� 鬲氐睾賷乇</button>
+        <button class="btn small" id="btnZoomReset">馃彔 廿毓丕丿丞 鬲毓賷賷賳</button>
+        <button class="btn small" id="btnExportPNG">馃摲 氐賵乇丞</button>
+        <button class="btn small" id="btnPrint">馃枿锔� 胤亘丕毓丞</button>
+      </div>
+      <div class="tree-container" id="treeContainer">
+        <svg class="tree-svg" id="treeSvg" width="800" height="600" role="img" aria-label="丕賱卮噩乇丞 丕賱賰丕賲賱丞"></svg>
+      </div>
+    </div>
+    <div id="detailPanel"></div>
+  </section>
+
+  <!-- LIST -->
+  <section id="tab-list" hidden>
+    <div class="card">
+      <h3>馃懃 爻噩賱 丕賱兀爻賲丕亍</h3>
+      <div id="peopleList" style="max-height: 600px; overflow-y: auto;"></div>
+      <button class="btn primary block" id="btnAddPerson" hidden style="margin-top:10px;">+ 廿囟丕賮丞 丕爻賲 噩丿賷丿</button>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="tab-map" hidden>
+    <div class="card">
+      <h3>馃椇锔� 丕賱禺乇賷胤丞 丕賱毓丕卅賱賷丞</h3>
+      <p class="muted" style="margin-bottom:10px;">賷鬲賲 鬲賵夭賷毓 丕賱兀賮乇丕丿 鬲賱賯丕卅賷丕賸 丨爻亘 丕賱賲丿賷賳丞 兀賵 丕賱賲丨丕賮馗丞. 丕囟睾胤 毓賱賶 兀賷 賲丿賷賳丞 賱乇丐賷丞 兀賮乇丕丿賴丕.</p>
+      <div id="familyMap"></div>
+    </div>
+    <div class="card">
+      <h3>馃彊锔� 丕賱賲丿賳 賵丕賱賲丨丕賮馗丕鬲</h3>
+      <div id="cityList"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="tab-stats" hidden>
+    <div class="card"><h3>馃搱 鬲毓丿丕丿 丕賱毓卮賷乇丞</h3><div id="advancedStats"></div></div>
+    <div class="card"><h3>馃彊锔� 丕賱鬲賵夭賷毓 丨爻亘 丕賱賲丿賳</h3><div id="cityStats"></div></div>
+    <div class="card"><h3>馃弳 丕賱兀賰亘乇 爻賳丕賸</h3><div id="oldestList"></div></div>
+  </section>
+
+  <!-- MESSAGES -->
+  <section id="tab-msgs" hidden>
+    <div class="card">
+      <h3>馃摑 兀乇爻賱 爻丐丕賱丕賸 兀賵 丕賯鬲乇丕丨丕賸</h3>
+      <div class="form-group"><label for="msgName">丕爻賲賰 (丕禺鬲賷丕乇賷)</label><input id="msgName" maxlength="60"></div>
+      <div class="form-group"><label for="msgBody">乇爻丕賱鬲賰</label><textarea id="msgBody" rows="3" maxlength="2000"></textarea></div>
+      <button class="btn primary block" id="btnSendMsg">廿乇爻丕賱</button>
+    </div>
+    <div class="card">
+      <h3>馃摙 丕賱乇爻丕卅賱 丕賱賲毓鬲賲丿丞</h3>
+      <div id="publicMsgsList"></div>
+    </div>
+  </section>
+
+  <!-- CHAT -->
+  <section id="tab-chat" hidden>
+    <div class="card">
+      <h3>馃挰 睾乇賮丞 丕賱丿乇丿卮丞</h3>
+      <div class="chat-box" id="chatBox"></div>
+      <div style="display:flex; gap:8px;">
+        <input id="chatInput" maxlength="500" placeholder="丕賰鬲亘 乇爻丕賱丞..." style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--bd); background:var(--bg); color:var(--tx);">
+        <button class="btn primary" id="btnSendChat">廿乇爻丕賱</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <span>噩賲賷毓 丕賱丨賯賵賯 賲丨賮賵馗丞 漏 2026 - 兀丨賲丿 毓賲乇 丕賱乇噩亘</span>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- INSTALL HELP (iOS) -->
+<div class="overlay" id="installModal">
+  <div class="modal">
+    <div class="modal-head"><h3>馃摬 鬲孬亘賷鬲 丕賱鬲胤亘賷賯</h3><button class="btn" data-close="installModal">鉁�</button></div>
+    <div class="modal-body">
+      <p style="margin-bottom:10px;">毓賱賶 丕賱丌賷賮賵賳: 丕囟睾胤 夭乇 丕賱賲卮丕乇賰丞 <b>猬嗭笍</b> 賮賷 丕賱賲鬲氐賮丨貙 孬賲 丕禺鬲乇 <b>"廿囟丕賮丞 廿賱賶 丕賱卮丕卮丞 丕賱乇卅賷爻賷丞"</b>.</p>
+      <p>毓賱賶 兀賳丿乇賵賷丿 兀賵 丕賱賰賲亘賷賵鬲乇: 賲賳 賯丕卅賲丞 丕賱賲鬲氐賮丨 丕禺鬲乇 <b>"鬲孬亘賷鬲 丕賱鬲胤亘賷賯"</b> 兀賵 <b>"廿囟丕賮丞 廿賱賶 丕賱卮丕卮丞 丕賱乇卅賷爻賷丞"</b>.</p>
+    </div>
+    <div class="modal-foot"><button class="btn primary" data-close="installModal">賮賴賲鬲</button></div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="overlay" id="settingsModal">
+  <div class="modal">
+    <div class="modal-head"><h3>鈿欙笍 廿毓丿丕丿丕鬲 丕賱賲賳氐丞</h3><button class="btn" data-close="settingsModal">鉁�</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label for="cfgName">丕爻賲 丕賱賲賳氐丞</label><input id="cfgName" maxlength="80"></div>
+      <div class="form-group"><label for="cfgBanner">乇爻丕賱丞 丕賱鬲乇丨賷亘 (丕賱亘丕賳乇)</label><textarea id="cfgBanner" rows="2" maxlength="500"></textarea></div>
+      <div class="form-group"><label for="cfgLongMessage">賰賱賲丞 丕賱廿丿丕乇丞</label><textarea id="cfgLongMessage" rows="5" maxlength="3000"></textarea></div>
+      <div class="form-group"><label for="cfgLogo">卮毓丕乇 丕賱賲賳氐丞 (廿賷賲賵噩賷 兀賵 乇丕亘胤)</label><input id="cfgLogo" maxlength="300"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" data-close="settingsModal">廿賱睾丕亍</button>
+      <button class="btn primary" id="saveSettings">丨賮馗</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="overlay" id="adminModal">
+  <div class="modal">
+    <div class="modal-head"><h3>馃搵 賱賵丨丞 丕賱廿丿丕乇丞</h3><button class="btn" data-close="adminModal">鉁�</button></div>
+    <div class="modal-body">
+      <h4 style="margin-bottom:10px; color:var(--warn);">丕賱兀爻賲丕亍 丕賱賲毓賱賯丞:</h4>
+      <div id="pendingPeople"></div>
+      <hr style="margin:15px 0; border-color:var(--bd);">
+      <h4 style="margin-bottom:10px; color:var(--warn);">丕賱乇爻丕卅賱 丕賱賲毓賱賯丞:</h4>
+      <div id="pendingMsgs"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSON MODAL -->
+<div class="overlay" id="personModal">
+  <div class="modal">
+    <div class="modal-head"><h3 id="personModalTitle">廿囟丕賮丞 丕爻賲</h3><button class="btn" data-close="personModal">鉁�</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label for="pName">丕賱丕爻賲 丕賱賰丕賲賱</label><input id="pName" maxlength="120"><div class="field-err" id="pNameErr"></div></div>
+      <div class="form-group"><label for="pParent">丕賱兀亘 (丕禺鬲賷丕乇賷)</label><select id="pParent"><option value="">鈥� 亘丿賵賳 (噩匕乇) 鈥�</option></select></div>
+      <div class="form-group"><label for="pGender">丕賱噩賳爻</label><select id="pGender"><option value="m">匕賰乇</option><option value="f">兀賳孬賶</option></select></div>
+      <div class="form-group"><label for="pCity">丕賱賲丿賷賳丞 / 丕賱賲丨丕賮馗丞</label><input id="pCity" maxlength="100" placeholder="賲孬丕賱: 丨賱亘貙 兀賵 丕賱乇賷丕囟"></div>
+      <div class="form-group"><label for="pBirth">爻賳丞 丕賱賲賷賱丕丿</label><input id="pBirth" type="number" min="1800" max="2100"><div class="field-err" id="pBirthErr"></div></div>
+      <div class="form-group"><label for="pPhone">丕賱賴丕鬲賮</label><input id="pPhone" type="tel" maxlength="30"></div>
+      <div class="form-group"><label for="pEmail">丕賱亘乇賷丿</label><input id="pEmail" type="email" maxlength="120"></div>
+      <div class="form-group"><label for="pNotes">賲賱丕丨馗丕鬲</label><textarea id="pNotes" rows="2" maxlength="1000"></textarea></div>
+      <div class="form-group"><label for="pPhoto">氐賵乇丞 卮禺氐賷丞 (丕禺鬲賷丕乇賷貙 丨鬲賶 2 賲賷睾丕亘丕賷鬲)</label><input id="pPhoto" type="file" accept="image/*"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" data-close="personModal">廿賱睾丕亍</button>
+      <button class="btn primary" id="savePerson">丨賮馗</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="overlay" id="loginModal">
+  <div class="modal">
+    <div class="modal-head"><h3 id="loginTitle">馃攼 鬲爻噩賷賱 丕賱丿禺賵賱</h3><button class="btn" data-close="loginModal">鉁�</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label for="loginEmail">丕賱亘乇賷丿</label><input type="email" id="loginEmail" dir="ltr" autocomplete="email"></div>
+      <div class="form-group"><label for="loginPass">賰賱賲丞 丕賱賲乇賵乇</label><input type="password" id="loginPass" dir="ltr" autocomplete="current-password" minlength="6"></div>
+      <div id="authUser" hidden>
+        <p class="muted" id="authUserText"></p>
+      </div>
+    </div>
+    <div class="modal-foot" id="loginFoot">
+      <button class="btn" id="btnSignUp">鬲爻噩賷賱 噩丿賷丿</button>
+      <button class="btn primary" id="btnSignIn">丿禺賵賱</button>
+    </div>
+    <div class="modal-foot" id="logoutFoot" hidden>
+      <button class="btn danger" id="btnSignOut">馃毆 鬲爻噩賷賱 丕賱禺乇賵噩</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// ===== \u0636\u0639 \u0628\u064a\u0627\u0646\u0627\u062a \u0645\u0634\u0631\u0648\u0639\u0643 \u0645\u0646 Supabase > Project Settings > API =====
-const SUPABASE_URL='https://YOUR-PROJECT.supabase.co', SUPABASE_KEY='YOUR-ANON-PUBLIC-KEY';
-// ===================================================================
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-let role='viewer',uid='',session=null,isAdmin=false,isStaff=false,people=[],pend=[],msgs=[],byId={},kids={},open=new Set(),sel=null,tab='tree',memo={},site={},sub=false,notified=false,dip=null;
-const $=s=>document.querySelector(s);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const norm=s=>String(s||'').replace(/[\u064B-\u065F\u0640]/g,'').replace(/[\u0623\u0625\u0622]/g,'\u0627').replace(/\u0649/g,'\u064a').replace(/\u0629/g,'\u0647').replace(/\s+/g,' ').trim().toLowerCase();
-const toast=m=>{$('#toast').innerHTML='<span>'+esc(m)+'</span>';setTimeout(()=>$('#toast').innerHTML='',3000)};
-function index(){byId={};kids={};memo={};people.forEach(p=>byId[p.id]=p);people.forEach(p=>{const k=p.parentId||'';(kids[k]=kids[k]||[]).push(p)});Object.values(kids).forEach(a=>a.sort((x,y)=>(x.birth||9999)-(y.birth||9999)||x.name.localeCompare(y.name,'ar')))}
-function chain(id){const a=[];let c=byId[id],g=0;while(c&&g++<500){a.push(c);c=byId[c.parentId]}return a}
-function full(id,n=5){const c=chain(id).slice(0,n);return c.map((p,i)=>i?(c[i-1].gender==='f'?' \u0628\u0646\u062a ':' \u0628\u0646 ')+p.name:p.name).join('')}
-function cnt(id){if(memo[id]!=null)return memo[id];let n=0;(kids[id]||[]).forEach(c=>n+=1+cnt(c.id));return memo[id]=n}
-function pick(id){sel=id;chain(id).slice(1).forEach(p=>open.add(p.id));tab='tree';$('#res').innerHTML='';render()}
-function node(p,d){const k=kids[p.id]||[],o=open.has(p.id);
-let h=`<div style="margin-inline-start:${d?16:0}px"><div class="row ${sel===p.id?'sel':''}"><button class="tg" data-t="${p.id}">${k.length?(o?'\u25be':'\u25c2'):'\u2022'}</button><span class="nm" data-s="${p.id}">${esc(p.name)}</span>${k.length?`<span class="ct">${cnt(p.id)}</span>`:''}</div>`;
-if(o)h+=k.map(c=>node(c,d+1)).join('');return h+'</div>'}
-function detail(){const p=byId[sel];if(!p)return `<div class="card mut">\u0627\u062e\u062a\u0631 \u0627\u0633\u0645\u0627\u064b \u0645\u0646 \u0627\u0644\u0634\u062c\u0631\u0629 \u0623\u0648 \u0627\u0644\u0628\u062d\u062b \u0644\u0639\u0631\u0636 \u0646\u0633\u0628\u0647 \u0648\u0628\u064a\u0627\u0646\u0627\u062a\u0647.</div>`;
-const path=chain(sel).reverse(),k=kids[sel]||[];
-return `<div class="card"><h3 style="margin:0">${esc(p.name)}</h3><div class="mut">${esc(full(sel,8))}</div>
-<b>\u0627\u0644\u0646\u0633\u0628 (\u0645\u0646 \u0627\u0644\u062c\u0630\u0631):</b><div class="chips">${path.map((x,i)=>`<span class="chip" data-s="${x.id}">${esc(x.name)}</span>${i<path.length-1?'\u2190':''}`).join('')}</div>
-<div>${p.gender==='f'?'\u0623\u0646\u062b\u0649':'\u0630\u0643\u0631'}${p.birth?' \u00b7 \u0645\u0648\u0627\u0644\u064a\u062f '+esc(p.birth):''} \u00b7 \u0639\u062f\u062f \u0627\u0644\u0623\u0628\u0646\u0627\u0621 \u0648\u0627\u0644\u0623\u062d\u0641\u0627\u062f: ${cnt(sel)}</div>
-${p.phone?`<div>\ud83d\udcde <a href="tel:${esc(p.phone)}">${esc(p.phone)}</a></div>`:''}${p.email?`<div>\u2709\ufe0f <a href="mailto:${esc(p.email)}">${esc(p.email)}</a></div>`:''}${p.notes?`<div class="mut">${esc(p.notes)}</div>`:''}
-${k.length?`<b>\u0627\u0644\u0623\u0628\u0646\u0627\u0621:</b><div class="chips">${k.map(c=>`<span class="chip" data-s="${c.id}">${esc(c.name)}</span>`).join('')}</div>`:''}
-<div class="bar">${isStaff?`<button class="p" data-add="${p.id}">+ \u0625\u0636\u0627\u0641\u0629 \u0627\u0628\u0646/\u0627\u0628\u0646\u0629</button>`:''}${isAdmin?`<button data-edit="${p.id}">\u062a\u0639\u062f\u064a\u0644</button><button class="d" data-del="${p.id}">\u062d\u0630\u0641</button>`:''}</div></div>`}
-function qaView(){return `<div class="bar"><button class="p" id="msg">\u2709\ufe0f \u0623\u0631\u0633\u0644 \u0633\u0624\u0627\u0644\u0627\u064b \u0623\u0648 \u0645\u0639\u0644\u0648\u0645\u0629</button></div><div class="mut" style="margin-bottom:8px">\u062a\u0638\u0647\u0631 \u0627\u0644\u0631\u0633\u0627\u0626\u0644 \u0628\u0639\u062f \u0645\u0631\u0627\u062c\u0639\u062a\u0647\u0627. \u0644\u0644\u062a\u0648\u0627\u0635\u0644 \u0627\u0644\u0634\u062e\u0635\u064a \u0627\u0633\u062a\u062e\u062f\u0645 \u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0641\u064a \u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u0634\u062e\u0635.</div>`+
-(msgs.length?msgs.map(m=>`<div class="card ${m.status==='pending'?'pend':''}" style="margin-bottom:8px"><div class="mut">${esc(m.name||'\u0632\u0627\u0626\u0631')} \u00b7 ${new Date(m.created_at).toLocaleDateString('ar')}${m.status==='pending'?' \u00b7 <b style="color:var(--warn)">\u0628\u0627\u0646\u062a\u0638\u0627\u0631 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629</b>':''}</div><div style="white-space:pre-wrap">${esc(m.body)}</div>
-${m.reply?`<div class="rep"><b>${m.replied_by_role==='admin'?'\u0627\u0644\u0645\u062f\u064a\u0631':'\u0645\u0634\u0631\u0641'}:</b> <span style="white-space:pre-wrap">${esc(m.reply)}</span></div>`:''}
-${isStaff?`<div class="bar">${m.status==='pending'?`<button class="p" data-mok="${m.id}">\u0645\u0648\u0627\u0641\u0642\u0629 \u0648\u0646\u0634\u0631</button>`:''}<button data-rep="${m.id}">${m.reply?'\u062a\u0639\u062f\u064a\u0644 \u0627\u0644\u0631\u062f':'\u0631\u062f'}</button>${isAdmin?`<button class="d" data-mdel="${m.id}">\u062d\u0630\u0641</button>`:''}</div>`:''}</div>`).join(''):'<div class="card mut">\u0644\u0627 \u062a\u0648\u062c\u062f \u0631\u0633\u0627\u0626\u0644 \u0628\u0639\u062f.</div>')}
-function applySite(){const n=site.name||'\u0627\u0633\u0645 \u0627\u0644\u0639\u0634\u064a\u0631\u0629';$('#sn').textContent=n;document.title=n;
-$('#lg').innerHTML=site.logo?`<img src="${esc(site.logo)}" alt="" style="height:46px;width:46px;object-fit:cover;border-radius:12px">`:esc(site.emoji||'\ud83c\udf33');
-const b=$('#bn');b.style.display=site.banner?'':'none';b.textContent=site.banner||'';$('#edsite').style.display=isAdmin?'':'none'}
-function render(){applySite();
-$('#who').textContent=`${people.length} \u0627\u0633\u0645${isAdmin?' \u00b7 \u0623\u0646\u062a: \u0627\u0644\u0645\u062f\u064a\u0631':role==='moderator'?' \u00b7 \u0623\u0646\u062a: \u0645\u0634\u0631\u0641 (\u0627\u0644\u0625\u0636\u0627\u0641\u0627\u062a \u062a\u064f\u0646\u0634\u0631 \u0628\u0639\u062f \u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0645\u062f\u064a\u0631)':''}`;
-$('#revb').style.display=isAdmin?'':'none';$('#pc').textContent=pend.length;$('#add').style.display=isStaff?'':'none';
-const pm=isStaff?msgs.filter(m=>m.status==='pending').length:0;$('#qc').textContent=pm;$('#qc').style.display=pm?'':'none';
-$('#login').style.display=session?'none':'';$('#out').style.display=session?'':'none';
-document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===tab));
-if(tab==='qa'){$('#app').innerHTML=qaView();return}
-if(tab==='rev'&&isAdmin){$('#app').innerHTML=pend.length?pend.map(r=>`<div class="card pend" style="margin-bottom:8px"><b>${esc(r.name)}</b> <span class="mut">\u0627\u0628\u0646/\u0627\u0628\u0646\u0629 ${esc(r.parentId&&byId[r.parentId]?full(r.parentId,4):'\u2014')}</span><div class="mut">${r.birth?'\u0645\u0648\u0627\u0644\u064a\u062f '+esc(r.birth)+' \u00b7 ':''}${esc(r.phone||'')} ${esc(r.email||'')} ${esc(r.notes||'')}</div><div class="bar"><button class="p" data-ok="${r.id}">\u0645\u0648\u0627\u0641\u0642\u0629 \u0648\u0646\u0634\u0631</button><button class="d" data-no="${r.id}">\u0631\u0641\u0636</button></div></div>`).join(''):'<div class="card mut">\u0644\u0627 \u062a\u0648\u062c\u062f \u0637\u0644\u0628\u0627\u062a \u0628\u0627\u0646\u062a\u0638\u0627\u0631 \u0627\u0644\u0645\u0631\u0627\u062c\u0639\u0629 \u2705</div>';return}
-const roots=kids['']||[];
-$('#app').innerHTML=`<div class="g"><div class="card tree">${roots.length?roots.map(r=>node(r,0)).join(''):'<div class="mut">\u0627\u0644\u0634\u062c\u0631\u0629 \u0641\u0627\u0631\u063a\u0629. '+(isAdmin?'\u0627\u0628\u062f\u0623 \u0628\u0625\u0636\u0627\u0641\u0629 \u0627\u0644\u062c\u062f \u0627\u0644\u0623\u0643\u0628\u0631 (\u0628\u062f\u0648\u0646 \u0623\u0628).':'')+'</div>'}</div><div>${detail()}</div></div>`}
-function overlay(html){const ov=document.createElement('div');ov.className='ov';ov.innerHTML=`<div class="md">${html}</div>`;document.body.appendChild(ov);ov.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>ov.remove());return ov}
-function form(o){o=o||{};const par=o.parentId||'';
-const ov=overlay(`<h3 style="margin:0">${o.id?'\u062a\u0639\u062f\u064a\u0644':'\u0625\u0636\u0627\u0641\u0629'} \u0627\u0633\u0645${isAdmin?'':' <span class="mut">(\u064a\u064f\u0646\u0634\u0631 \u0628\u0639\u062f \u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0645\u062f\u064a\u0631)</span>'}</h3>
-<label>\u0627\u0644\u0627\u0633\u0645</label><input id="f_n" value="${esc(o.name)}">
-<label>\u0627\u0644\u0623\u0628 / \u0627\u0644\u0623\u0645 (\u0627\u0628\u062d\u062b \u062b\u0645 \u0627\u062e\u062a\u0631)</label><input id="f_ps" placeholder="\u0627\u0643\u062a\u0628 \u062c\u0632\u0621\u0627\u064b \u0645\u0646 \u0627\u0644\u0627\u0633\u0645" value="${esc(par&&byId[par]?full(par,3):'')}"><div id="f_pr"></div>
-<label>\u0627\u0644\u062c\u0646\u0633</label><select id="f_g"><option value="m">\u0630\u0643\u0631</option><option value="f" ${o.gender==='f'?'selected':''}>\u0623\u0646\u062b\u0649</option></select>
-<label>\u0633\u0646\u0629 \u0627\u0644\u0645\u064a\u0644\u0627\u062f (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)</label><input id="f_b" type="number" value="${esc(o.birth||'')}">
-<label>\u0627\u0644\u0647\u0627\u062a\u0641 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a\u060c \u064a\u0638\u0647\u0631 \u0644\u0644\u062c\u0645\u064a\u0639)</label><input id="f_p" type="tel" value="${esc(o.phone)}">
-<label>\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a (\u0627\u062e\u062a\u064a\u0627\u0631\u064a\u060c \u064a\u0638\u0647\u0631 \u0644\u0644\u062c\u0645\u064a\u0639)</label><input id="f_e" type="email" value="${esc(o.email)}">
-<label>\u0645\u0644\u0627\u062d\u0638\u0627\u062a</label><textarea id="f_t" rows="2">${esc(o.notes)}</textarea>
-<div class="bar"><button class="p" id="f_ok">\u062d\u0641\u0638</button><button data-x>\u0625\u0644\u063a\u0627\u0621</button></div>`);let np=par;
-ov.querySelector('#f_ps').oninput=e=>{np='';const v=norm(e.target.value);ov.querySelector('#f_pr').innerHTML=v.length<2?'':people.filter(p=>norm(full(p.id,4)).includes(v)).slice(0,6).map(p=>`<div class="res" data-p="${p.id}">${esc(full(p.id,4))}</div>`).join('')};
-ov.querySelector('#f_pr').onclick=e=>{const t=e.target.closest('[data-p]');if(!t)return;np=t.dataset.p;ov.querySelector('#f_ps').value=full(np,3);ov.querySelector('#f_pr').innerHTML=''};
-ov.querySelector('#f_ok').onclick=async()=>{const v=s=>ov.querySelector(s).value.trim(),name=v('#f_n');if(!name)return toast('\u0627\u0644\u0627\u0633\u0645 \u0645\u0637\u0644\u0648\u0628');
-if(!np&&!isAdmin)return toast('\u0627\u062e\u062a\u0631 \u0627\u0644\u0623\u0628 \u0623\u0648 \u0627\u0644\u0623\u0645 \u0645\u0646 \u0627\u0644\u0642\u0627\u0626\u0645\u0629');
-if(o.id&&np&&chain(np).some(x=>x.id===o.id))return toast('\u0644\u0627 \u064a\u0645\u0643\u0646 \u062c\u0639\u0644 \u0627\u0644\u0634\u062e\u0635 \u062a\u0627\u0628\u0639\u0627\u064b \u0644\u0623\u062d\u062f \u0623\u062d\u0641\u0627\u062f\u0647');
-const d={name,parent_id:np||null,gender:v('#f_g'),birth:+v('#f_b')||null,phone:v('#f_p')||null,email:v('#f_e')||null,notes:v('#f_t')||null};
-const r=o.id?await sb.from('people').update(d).eq('id',o.id):await sb.from('people').insert({...d,status:isAdmin?'approved':'pending'});
-if(r.error)return toast('\u062a\u0639\u0630\u0631 \u0627\u0644\u062d\u0641\u0638: '+r.error.message);
-if(!o.id&&!isAdmin)toast('\u0623\u064f\u0631\u0633\u0644 \u0644\u0644\u0645\u062f\u064a\u0631 \u0644\u0644\u0645\u0631\u0627\u062c\u0639\u0629 \u2705');ov.remove();load()}}
-function siteForm(){const ov=overlay(`<h3 style="margin:0">\u0625\u0639\u062f\u0627\u062f\u0627\u062a \u0627\u0644\u0645\u0646\u0635\u0629</h3><label>\u0627\u0633\u0645 \u0627\u0644\u0639\u0634\u064a\u0631\u0629</label><input id="s_n" value="${esc(site.name)}"><label>\u0627\u0644\u0634\u0639\u0627\u0631 (\u0625\u064a\u0645\u0648\u062c\u064a)</label><input id="s_e" value="${esc(site.emoji||'\ud83c\udf33')}"><label>\u0623\u0648 \u0631\u0627\u0628\u0637 \u0635\u0648\u0631\u0629 \u0627\u0644\u0634\u0639\u0627\u0631 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)</label><input id="s_l" dir="ltr" placeholder="https://..." value="${esc(site.logo)}"><label>\u0646\u0635 \u0627\u0644\u0634\u0631\u064a\u0637 \u0627\u0644\u0639\u0644\u0648\u064a: \u0646\u0628\u0630\u0629 \u0623\u0648 \u062a\u0648\u062c\u064a\u0647 (\u0641\u0627\u0631\u063a = \u0625\u062e\u0641\u0627\u0621)</label><textarea id="s_b" rows="4">${esc(site.banner)}</textarea><div class="bar"><button class="p" id="s_ok">\u062d\u0641\u0638</button><button data-x>\u0625\u0644\u063a\u0627\u0621</button></div>`);
-ov.querySelector('#s_ok').onclick=async()=>{const v=s=>ov.querySelector(s).value.trim();
-const r=await sb.from('site').upsert({id:1,name:v('#s_n'),emoji:v('#s_e')||'\ud83c\udf33',logo:v('#s_l'),banner:v('#s_b')});
-if(r.error)return toast('\u062a\u0639\u0630\u0631 \u0627\u0644\u062d\u0641\u0638');ov.remove();load()}}
-function msgForm(){const ov=overlay(`<h3 style="margin:0">\u0623\u0631\u0633\u0644 \u0633\u0624\u0627\u0644\u0627\u064b \u0623\u0648 \u0645\u0639\u0644\u0648\u0645\u0629</h3><div class="mut">\u062a\u0638\u0647\u0631 \u0627\u0644\u0631\u0633\u0627\u0644\u0629 \u0644\u0644\u062c\u0645\u064a\u0639 \u0628\u0639\u062f \u0645\u0631\u0627\u062c\u0639\u062a\u0647\u0627\u060c \u0648\u064a\u064f\u0631\u062f \u0639\u0644\u064a\u0647\u0627 \u0641\u064a \u0646\u0641\u0633 \u0627\u0644\u0645\u0643\u0627\u0646.</div>
-<label>\u0627\u0644\u0627\u0633\u0645 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)</label><input id="m_n" maxlength="60"><label>\u0627\u0644\u0631\u0633\u0627\u0644\u0629</label><textarea id="m_b" rows="5" maxlength="1000"></textarea>
-<input id="m_h" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px">
-<div class="bar"><button class="p" id="m_ok">\u0625\u0631\u0633\u0627\u0644</button><button data-x>\u0625\u0644\u063a\u0627\u0621</button></div>`);
-ov.querySelector('#m_ok').onclick=async()=>{const body=ov.querySelector('#m_b').value.trim(),name=ov.querySelector('#m_n').value.trim();
-if(body.length<3)return toast('\u0627\u0643\u062a\u0628 \u0631\u0633\u0627\u0644\u0629 \u0623\u0637\u0648\u0644');
-if(ov.querySelector('#m_h').value){ov.remove();return toast('\u062a\u0645 \u0627\u0644\u0625\u0631\u0633\u0627\u0644 \u2705')}
-try{if(Date.now()-(+localStorage.getItem('clan_last')||0)<60000)return toast('\u0627\u0646\u062a\u0638\u0631 \u062f\u0642\u064a\u0642\u0629 \u0642\u0628\u0644 \u0625\u0631\u0633\u0627\u0644 \u0631\u0633\u0627\u0644\u0629 \u0623\u062e\u0631\u0649')}catch(e){}
-const r=await sb.from('messages').insert({name:name||null,body});
-if(r.error)return toast('\u062a\u0639\u0630\u0631 \u0627\u0644\u0625\u0631\u0633\u0627\u0644\u060c \u062d\u0627\u0648\u0644 \u0644\u0627\u062d\u0642\u0627\u064b');
-try{localStorage.setItem('clan_last',Date.now())}catch(e){}ov.remove();toast('\u0648\u0635\u0644\u062a \u0631\u0633\u0627\u0644\u062a\u0643 \u0648\u0633\u062a\u0638\u0647\u0631 \u0628\u0639\u062f \u0627\u0644\u0645\u0631\u0627\u062c\u0639\u0629 \u2705')}}
-function repForm(m){const ov=overlay(`<h3 style="margin:0">\u0627\u0644\u0631\u062f \u0639\u0644\u0649 \u0627\u0644\u0631\u0633\u0627\u0644\u0629</h3><div class="mut" style="white-space:pre-wrap">${esc(m.body)}</div><label>\u0631\u062f\u0651\u0643</label><textarea id="r_t" rows="5">${esc(m.reply)}</textarea><div class="bar"><button class="p" id="r_ok">\u062d\u0641\u0638 \u0627\u0644\u0631\u062f</button><button data-x>\u0625\u0644\u063a\u0627\u0621</button></div>`);
-ov.querySelector('#r_ok').onclick=async()=>{const t=ov.querySelector('#r_t').value.trim();
-const r=await sb.from('messages').update({reply:t||null,status:'approved'}).eq('id',m.id);
-if(r.error)return toast('\u062a\u0639\u0630\u0631 \u0627\u0644\u062d\u0641\u0638');ov.remove();load()}}
-function loginForm(){const ov=overlay(`<h3 style="margin:0">\u062f\u062e\u0648\u0644 \u0627\u0644\u0645\u062f\u064a\u0631 \u0648\u0627\u0644\u0645\u0634\u0631\u0641\u064a\u0646</h3><label>\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a</label><input id="l_e" type="email" dir="ltr"><label>\u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631</label><input id="l_p" type="password" dir="ltr"><div class="bar"><button class="p" id="l_in">\u062f\u062e\u0648\u0644</button><button id="l_up">\u062d\u0633\u0627\u0628 \u062c\u062f\u064a\u062f</button><button data-x>\u0625\u0644\u063a\u0627\u0621</button></div><div class="mut">\u0627\u0644\u062d\u0633\u0627\u0628 \u0627\u0644\u062c\u062f\u064a\u062f \u064a\u0628\u0642\u0649 \u0644\u0644\u062a\u0635\u0641\u062d \u0641\u0642\u0637 \u062d\u062a\u0649 \u064a\u0631\u0642\u0651\u064a\u0647 \u0627\u0644\u0645\u062f\u064a\u0631 \u0625\u0644\u0649 \u0645\u0634\u0631\u0641.</div>`);
-const cred=()=>({email:ov.querySelector('#l_e').value.trim(),password:ov.querySelector('#l_p').value});
-ov.querySelector('#l_in').onclick=async()=>{const r=await sb.auth.signInWithPassword(cred());if(r.error)toast('\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u062f\u062e\u0648\u0644 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d\u0629');else{ov.remove();boot()}};
-ov.querySelector('#l_up').onclick=async()=>{const r=await sb.auth.signUp(cred());if(r.error)return toast(r.error.message);toast('\u062a\u0645 \u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u062d\u0633\u0627\u0628. \u0625\u0646 \u0637\u064f\u0644\u0628 \u062a\u0623\u0643\u064a\u062f \u0627\u0644\u0628\u0631\u064a\u062f \u0641\u0627\u0641\u062a\u062d \u0627\u0644\u0631\u0633\u0627\u0644\u0629 \u062b\u0645 \u0627\u062f\u062e\u0644.');if(r.data.session){ov.remove();boot()}}}
-document.addEventListener('click',async e=>{const t=e.target.closest('[data-t],[data-s],[data-add],[data-edit],[data-del],[data-ok],[data-no],[data-tab],[data-mok],[data-rep],[data-mdel],#add,#edsite,#out,#login,#msg');if(!t)return;const D=t.dataset;
-if(D.t){open.has(D.t)?open.delete(D.t):open.add(D.t);render()}
-else if(D.s)pick(D.s);
-else if(t.id==='add')form({});
-else if(t.id==='edsite')siteForm();
-else if(t.id==='login')loginForm();
-else if(t.id==='msg')msgForm();
-else if(t.id==='out'){await sb.auth.signOut();session=null;role='viewer';isAdmin=isStaff=false;tab='tree';await load()}
-else if(D.add)form({parentId:D.add});
-else if(D.edit)form(byId[D.edit]);
-else if(D.tab){tab=D.tab;render()}
-else if(D.del){if(confirm('\u062d\u0630\u0641 \u0647\u0630\u0627 \u0627\u0644\u0627\u0633\u0645 \u0646\u0647\u0627\u0626\u064a\u0627\u064b\u061f')){const r=await sb.from('people').delete().eq('id',D.del);if(r.error)toast('\u0644\u0627 \u064a\u0645\u0643\u0646 \u062d\u0630\u0641 \u0627\u0633\u0645 \u0644\u0647 \u0623\u0628\u0646\u0627\u0621');else{sel=null;load()}}}
-else if(D.ok){await sb.from('people').update({status:'approved'}).eq('id',D.ok);toast('\u062a\u0645 \u0627\u0644\u0646\u0634\u0631 \u2705');load()}
-else if(D.no){if(confirm('\u0631\u0641\u0636 \u0647\u0630\u0627 \u0627\u0644\u0637\u0644\u0628\u061f')){await sb.from('people').delete().eq('id',D.no);load()}}
-else if(D.mok){await sb.from('messages').update({status:'approved'}).eq('id',D.mok);toast('\u062a\u0645 \u0646\u0634\u0631 \u0627\u0644\u0631\u0633\u0627\u0644\u0629 \u2705');load()}
-else if(D.rep)repForm(msgs.find(m=>m.id===D.rep));
-else if(D.mdel){if(confirm('\u062d\u0630\u0641 \u0647\u0630\u0647 \u0627\u0644\u0631\u0633\u0627\u0644\u0629 \u0646\u0647\u0627\u0626\u064a\u0627\u064b\u061f')){await sb.from('messages').delete().eq('id',D.mdel);load()}}});
-$('#q').oninput=e=>{const q=norm(e.target.value);if(q.length<2){$('#res').innerHTML='';return}
-const r=people.filter(p=>norm(full(p.id,10)).includes(q)).slice(0,15);
-$('#res').innerHTML=`<div class="card" style="margin-bottom:10px">${r.length?r.map(p=>`<div class="res" data-s="${p.id}"><b>${esc(p.name)}</b><div class="mut">${esc(full(p.id,10))}</div></div>`).join(''):'<span class="mut">\u0644\u0627 \u0646\u062a\u0627\u0626\u062c</span>'}</div>`};
-async function load(){let all,st,ms;
-try{const[a,b,c]=await Promise.all([sb.from('people').select('*'),sb.from('site').select('*').eq('id',1).maybeSingle(),sb.from('messages').select('*').order('created_at',{ascending:false})]);
-if(a.error)throw a.error;all=a.data;st=b.data||{};ms=c.data||[];
-try{localStorage.setItem('clan_cache',JSON.stringify({all,st,ms,pub:!isStaff}))}catch(e){}}
-catch(e){try{const c=JSON.parse(localStorage.getItem('clan_cache'));all=c.all;st=c.st;ms=c.ms;toast('\u0644\u0627 \u064a\u0648\u062c\u062f \u0627\u062a\u0635\u0627\u0644: \u062a\u064f\u0639\u0631\u0636 \u0622\u062e\u0631 \u0628\u064a\u0627\u0646\u0627\u062a \u0645\u062d\u0641\u0648\u0638\u0629')}catch(_){return toast('\u062a\u0639\u0630\u0631 \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a')}}
-all=all.map(r=>({...r,parentId:r.parent_id||''}));
-people=all.filter(r=>r.status==='approved');pend=isAdmin?all.filter(r=>r.status==='pending').sort((x,y)=>x.created_at>y.created_at?1:-1):[];
-msgs=ms;site=st;index();render();
-if(isStaff&&!notified){const n=pend.length+msgs.filter(m=>m.status==='pending').length;if(n){notified=true;toast(`\u0644\u062f\u064a\u0643 ${n} \u0639\u0646\u0635\u0631 \u0628\u0627\u0646\u062a\u0638\u0627\u0631 \u0627\u0644\u0645\u0631\u0627\u062c\u0639\u0629`)}}}
-async function boot(){const{data:{session:s}}=await sb.auth.getSession();session=s;role='viewer';
-if(s){uid=s.user.id;const pr=await sb.from('profiles').select('role').eq('id',uid).maybeSingle();role=pr.data?.role||'viewer'}
-isAdmin=role==='admin';isStaff=isAdmin||role==='moderator';await load();
-if(!sub){sub=true;sb.channel('people-ch').on('postgres_changes',{event:'*',schema:'public',table:'people'},()=>load()).subscribe()}}
-// \u062a\u062b\u0628\u064a\u062a \u0627\u0644\u062a\u0637\u0628\u064a\u0642
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();dip=e;$('#inst').style.display=''});
-$('#inst').onclick=async()=>{if(dip){dip.prompt();dip=null;$('#inst').style.display='none'}};
-if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!navigator.standalone)$('#iosh').style.display='';
-boot();
-</script></body></html>
+// ============================================================
+// 1. 丕賱廿毓丿丕丿丕鬲
+// ============================================================
+const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+const SUPABASE_KEY = 'YOUR-ANON-PUBLIC-KEY';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true }
+});
+
+const DEFAULT_COLOR = '#2f6b4f';
+const BRANCH_COLORS = ['#7a5c00', '#2e7d32', '#1565c0', '#8e24aa', '#c62828', '#00838f', '#ef6c00'];
+const MAX_PHOTO_BYTES = 2 * 1024 * 1024;
+
+// ============================================================
+// 2. 丕賱丨丕賱丞
+// ============================================================
+const state = {
+  role: 'viewer', isStaff: false, isAdmin: false, user: null,
+  siteData: {}, allPeople: [], byId: {}, kids: {},
+  selectedId: null, editingPersonId: null,
+  treeScale: 1, map: null, mapMarkers: [], chatChannel: null,
+  themeSynced: false, loadingData: false, reloadTimer: null
+};
+
+// ============================================================
+// 3. 賲爻丕毓丿丕鬲 毓丕賲丞
+// ============================================================
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const show = (el, on) => { const e = typeof el === 'string' ? $(el) : el; if (e) e.hidden = !on; };
+const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+const isHex = v => /^#[0-9a-f]{6}$/i.test(v);
+const isValidEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+function toast(msg, ms = 2800) {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), ms);
+}
+
+function openModal(id) { show(id, true); $('#' + id).classList.add('show'); }
+function closeModal(id) { $('#' + id).classList.remove('show'); }
+document.addEventListener('click', (e) => {
+  const c = e.target.closest('[data-close]');
+  if (c) closeModal(c.dataset.close);
+  if (e.target.classList?.contains('overlay')) closeModal(e.target.id);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.querySelectorAll('.overlay.show').forEach(o => o.classList.remove('show'));
+});
+
+function csvEscape(v) { return `"${String(v ?? '').replace(/"/g, '""')}"`; }
+
+function downloadFile(content, fileName, mimeType) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fileName;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function requireStaff() { if (!state.isStaff) { toast('賴匕丕 丕賱廿噩乇丕亍 賱賱廿丿丕乇丞 賮賯胤'); return false; } return true; }
+function requireAdmin() { if (!state.isAdmin) { toast('賴匕丕 丕賱廿噩乇丕亍 賱賱賲丿賷乇 賮賯胤'); return false; } return true; }
+
+// ============================================================
+// 4. 鬲孬亘賷鬲 丕賱鬲胤亘賷賯 (PWA)
+// ============================================================
+let deferredPrompt = null;
+const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+
+function refreshInstallUI() {
+  const installed = isStandalone();
+  const canInstall = !installed && (deferredPrompt || isIOS());
+  show('#btnInstall', canInstall);
+  show('#installCard', canInstall);
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  refreshInstallUI();
+});
+window.addEventListener('appinstalled', () => {
+  deferredPrompt = null;
+  toast('鉁� 鬲賲 鬲孬亘賷鬲 丕賱鬲胤亘賷賯 亘賳噩丕丨');
+  refreshInstallUI();
+});
+
+async function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') toast('噩丕乇賺 丕賱鬲孬亘賷鬲...');
+    deferredPrompt = null;
+    refreshInstallUI();
+  } else {
+    openModal('installModal');
+  }
+}
+$('#btnInstall').onclick = installApp;
+$('#btnInstallCard').onclick = installApp;
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW failed', err));
+  });
+}
+
+// ============================================================
+// 5. 丕賱鬲賳賯賱
+// ============================================================
+document.querySelectorAll('.tabs button').forEach(btn => {
+  btn.onclick = () => showTab(btn.dataset.tab);
+});
+
+function showTab(name) {
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === name));
+  document.querySelectorAll('.layout > section').forEach(s => s.hidden = true);
+  $('#tab-' + name).hidden = false;
+  if (name === 'tree') renderTree();
+  if (name === 'map') setTimeout(initMap, 100);
+}
+
+// ============================================================
+// 6. 丕賱賲氐丕丿賯丞 賵丕賱氐賱丕丨賷丕鬲
+// ============================================================
+$('#btnLogin').onclick = () => openLogin();
+$('#btnSettings').onclick = () => openSettings();
+$('#btnAdminPanel').onclick = () => loadAdminPanel();
+$('#btnAddPerson').onclick = () => openPersonForm();
+$('#btnExportCSV').onclick = () => exportCSV();
+$('#btnExportJSON').onclick = () => exportJSON();
+$('#btnImport').onclick = () => { if (requireAdmin()) $('#importFile').click(); };
+$('#importFile').onchange = (e) => importJSON(e);
+$('#btnZoomIn').onclick = () => treeZoom(1.2);
+$('#btnZoomOut').onclick = () => treeZoom(0.8);
+$('#btnZoomReset').onclick = () => treeReset();
+$('#btnExportPNG').onclick = () => exportTreePNG();
+$('#btnPrint').onclick = () => window.print();
+$('#btnSendChat').onclick = () => sendChat();
+$('#chatInput').onkeydown = (e) => { if (e.key === 'Enter') sendChat(); };
+$('#btnSendMsg').onclick = () => sendMessage();
+$('#savePerson').onclick = () => savePerson();
+$('#saveSettings').onclick = () => saveSettings();
+$('#saveTheme').onclick = () => saveTheme();
+$('#resetTheme').onclick = () => resetTheme();
+
+function openLogin() {
+  const loggedIn = !!state.user;
+  show('#loginFoot', !loggedIn);
+  show('#logoutFoot', loggedIn);
+  show('#authUser', loggedIn);
+  $('#loginTitle').textContent = loggedIn ? '馃懁 丨爻丕亘賷' : '馃攼 鬲爻噩賷賱 丕賱丿禺賵賱';
+  if (loggedIn) {
+    $('#authUserText').textContent = `賲爻噩賾賱 丕賱丿禺賵賱: ${state.user.email} 鈥� 丕賱氐賱丕丨賷丞: ${roleLabel(state.role)}`;
+  }
+  openModal('loginModal');
+}
+
+function roleLabel(r) {
+  return { admin: '賲丿賷乇', moderator: '賲卮乇賮', viewer: '夭丕卅乇' }[r] || '夭丕卅乇';
+}
+
+$('#btnSignIn').onclick = async () => {
+  const email = $('#loginEmail').value.trim();
+  const password = $('#loginPass').value;
+  if (!isValidEmail(email)) return toast('兀丿禺賱 亘乇賷丿丕賸 氐丨賷丨丕賸');
+  if (!password) return toast('兀丿禺賱 賰賱賲丞 丕賱賲乇賵乇');
+  const btn = $('#btnSignIn');
+  btn.disabled = true;
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  btn.disabled = false;
+  if (error) return toast('禺胤兀 賮賷 丕賱丿禺賵賱: ' + error.message);
+  $('#loginPass').value = '';
+  closeModal('loginModal');
+  toast('鉁� 鬲賲 鬲爻噩賷賱 丕賱丿禺賵賱');
+};
+
+$('#btnSignUp').onclick = async () => {
+  const email = $('#loginEmail').value.trim();
+  const password = $('#loginPass').value;
+  if (!isValidEmail(email)) return toast('兀丿禺賱 亘乇賷丿丕賸 氐丨賷丨丕賸');
+  if (password.length < 6) return toast('賰賱賲丞 丕賱賲乇賵乇 6 兀丨乇賮 毓賱賶 丕賱兀賯賱');
+  const { error } = await sb.auth.signUp({ email, password });
+  if (error) return toast('禺胤兀: ' + error.message);
+  toast('鬲賲 廿賳卮丕亍 丕賱丨爻丕亘. 鬲賵丕氐賱 賲毓 丕賱賲丿賷乇 賱鬲賮毓賷賱 氐賱丕丨賷丕鬲賰.', 5000);
+};
+
+$('#btnSignOut').onclick = async () => {
+  await sb.auth.signOut();
+  closeModal('loginModal');
+  toast('鬲賲 鬲爻噩賷賱 丕賱禺乇賵噩');
+};
+
+async function applySession(session) {
+  state.user = session?.user || null;
+  state.role = 'viewer';
+  if (state.user) {
+    const { data: profile } = await sb.from('profiles').select('role').eq('id', state.user.id).maybeSingle();
+    state.role = profile?.role || 'viewer';
+  }
+  state.isStaff = state.role === 'admin' || state.role === 'moderator';
+  state.isAdmin = state.role === 'admin';
+
+  show('#btnSettings', state.isAdmin);
+  show('#btnAdminPanel', state.isStaff);
+  show('#btnAddPerson', state.isStaff);
+  show('#adminMessageCard', state.isAdmin);
+  show('#themeCard', state.isAdmin);
+  show('#exportCard', state.isStaff);
+  $('#btnLogin').textContent = state.isStaff ? '馃憫' : (state.user ? '馃檪' : '馃懁');
+  if (!state.isStaff) show('#btnAdminPanel', false);
+  if (!state.isAdmin) state.themeSynced = false;
+}
+
+// ============================================================
+// 7. 鬲丨賲賷賱 丕賱亘賷丕賳丕鬲 (賲毓 鬲兀禺賷乇 賲鬲噩賲賾毓 賱賱鬲丨丿賷孬丕鬲 丕賱賮賵乇賷丞)
+// ============================================================
+function scheduleReload() {
+  clearTimeout(state.reloadTimer);
+  state.reloadTimer = setTimeout(loadData, 400);
+}
+
+async function loadData() {
+  if (state.loadingData) return scheduleReload();
+  state.loadingData = true;
+  try {
+    const [siteRes, peopleRes, msgsRes] = await Promise.all([
+      sb.from('site').select('*').eq('id', 1).maybeSingle(),
+      sb.from('people').select('*').eq('status', 'approved'),
+      sb.from('messages').select('*').eq('status', 'approved').order('created_at', { ascending: false })
+    ]);
+
+    if (siteRes.error || peopleRes.error) throw (siteRes.error || peopleRes.error);
+
+    if (siteRes.data) {
+      state.siteData = siteRes.data;
+      setText('siteName', siteRes.data.name || '卮噩乇丞 丕賱毓卮賷乇丞');
+      setText('siteBanner', siteRes.data.banner || '賲乇丨亘丕賸 亘賰賲.');
+      setText('siteLongMessage', siteRes.data.long_message || '');
+      const logo = siteRes.data.logo || '馃尦';
+      if (/^https?:\/\//.test(logo)) $('#siteLogo').innerHTML = `<img src="${esc(logo)}" alt="">`;
+      else $('#siteLogo').textContent = logo;
+      document.title = siteRes.data.name || '卮噩乇丞 丕賱毓卮賷乇丞';
+      applyTheme(siteRes.data.primary_color || DEFAULT_COLOR);
+      if (state.isAdmin && !state.themeSynced) {
+        syncThemeSliders(siteRes.data.primary_color || DEFAULT_COLOR);
+        state.themeSynced = true;
+      }
+    }
+
+    // 丕賱賲毓鬲賲丿賵賳 賮賯胤 賱賱夭賵丕乇. 丕賱廿丿丕乇丞 鬲乇賶 丕賱賲毓賱賾賯 毓亘乇 賱賵丨丞 丕賱廿丿丕乇丞.
+    state.allPeople = peopleRes.data || [];
+    buildIndex();
+    renderAll();
+
+    $('#publicMsgsList').innerHTML = msgsRes.data?.length ? msgsRes.data.map(m => `
+      <div style="border-bottom:1px solid var(--bd); padding:10px 0;">
+        <b>${esc(m.name || '夭丕卅乇')}</b> <span class="muted">${new Date(m.created_at).toLocaleDateString('ar')}</span>
+        <p style="margin-top:5px; font-size:0.9rem;">${esc(m.body)}</p>
+        ${m.reply ? `<div style="background:var(--hl); padding:8px; border-radius:8px; margin-top:5px; font-size:0.85rem;"><b>丕賱廿丿丕乇丞:</b> ${esc(m.reply)}</div>` : ''}
+      </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 乇爻丕卅賱 賲毓鬲賲丿丞.</p>';
+
+    if (state.isStaff) await refreshPendingBadge();
+    if (state.selectedId) renderDetail();
+  } catch (err) {
+    console.error(err);
+    toast('鬲毓匕賾乇 鬲丨賲賷賱 丕賱亘賷丕賳丕鬲. 鬲丨賯賯 賲賳 丕賱丕鬲氐丕賱.');
+  } finally {
+    state.loadingData = false;
+  }
+}
+
+async function refreshPendingBadge() {
+  const [{ count: pc }, { count: mc }] = await Promise.all([
+    sb.from('people').select('*', { count: 'exact', head: true }).eq('status', 'pending'),
+    sb.from('messages').select('*', { count: 'exact', head: true }).eq('status', 'pending')
+  ]);
+  const total = (pc || 0) + (mc || 0);
+  const badge = $('#pendBadge');
+  badge.textContent = total;
+  show(badge, total > 0);
+}
+
+function renderAll() {
+  renderPeopleList();
+  renderCityStats();
+  renderOldestList();
+  renderAdvancedStats();
+  renderCityList();
+  renderMapMarkers();
+}
+
+// ============================================================
+// 8. 丕賱賮賴乇爻丞 賵丕賱丨爻丕亘丕鬲 (賲丨賲賷丞 賲賳 丕賱丨賱賯丕鬲 丕賱丿丕卅乇賷丞)
+// ============================================================
+function buildIndex() {
+  state.byId = {}; state.kids = {};
+  state.allPeople.forEach(p => state.byId[p.id] = p);
+  state.allPeople.forEach(p => {
+    const k = (p.parent_id && state.byId[p.parent_id]) ? p.parent_id : '';
+    (state.kids[k] = state.kids[k] || []).push(p);
+  });
+  Object.values(state.kids).forEach(arr =>
+    arr.sort((a, b) => (a.birth || 9999) - (b.birth || 9999) || a.name.localeCompare(b.name, 'ar'))
+  );
+}
+
+function getChain(id) {
+  const chain = [], seen = new Set();
+  let cur = state.byId[id];
+  while (cur && !seen.has(cur.id)) {
+    chain.push(cur); seen.add(cur.id);
+    cur = state.byId[cur.parent_id];
+  }
+  return chain;
+}
+
+function countDescendants(id, seen = new Set()) {
+  if (seen.has(id)) return 0;
+  seen.add(id);
+  let n = 0;
+  (state.kids[id] || []).forEach(c => n += 1 + countDescendants(c.id, seen));
+  return n;
+}
+
+function fullName(id, maxLevels = 5) {
+  const c = getChain(id).slice(0, maxLevels);
+  return c.map((p, i) => i === 0 ? p.name : (c[i-1].gender === 'f' ? ' 亘賳鬲 ' : ' 亘賳 ') + p.name).join('');
+}
+
+function calcGenerations() {
+  const cache = {};
+  const depth = (id, seen = new Set()) => {
+    if (cache[id] != null) return cache[id];
+    if (seen.has(id)) return 0;
+    seen.add(id);
+    const p = state.byId[id];
+    if (!p) return 0;
+    return cache[id] = 1 + (p.parent_id && state.byId[p.parent_id] ? depth(p.parent_id, seen) : 0);
+  };
+  return state.allPeople.reduce((m, p) => Math.max(m, depth(p.id)), 0);
+}
+
+// ============================================================
+// 9. 丕賱賯賵丕卅賲 賵丕賱廿丨氐丕卅賷丕鬲
+// ============================================================
+function renderPeopleList() {
+  const list = state.allPeople.slice().sort((a, b) => a.name.localeCompare(b.name, 'ar'));
+  $('#peopleList').innerHTML = list.length ? list.map(p => `
+    <div class="person-row" data-id="${esc(p.id)}" tabindex="0">
+      <div class="avatar">${p.photo_url ? `<img src="${esc(p.photo_url)}" alt="">` : esc(p.name.charAt(0))}</div>
+      <div class="info">
+        <b>${esc(p.name)}</b>
+        <span>馃搷 ${esc(p.city || '睾賷乇 賲丨丿丿')} ${p.birth ? '路 ' + p.birth : ''}</span>
+      </div>
+      <div style="font-size:0.75rem; color:${p.gender === 'f' ? '#a0506e' : 'var(--ac)'};">${p.gender === 'f' ? '鈾�' : '鈾�'}</div>
+    </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 兀爻賲丕亍 亘毓丿.</p>';
+}
+
+function renderCityStats() {
+  const cities = {};
+  state.allPeople.forEach(p => { if (p.city) cities[p.city] = (cities[p.city] || 0) + 1; });
+  const sorted = Object.entries(cities).sort((a, b) => b[1] - a[1]);
+  $('#cityStats').innerHTML = sorted.length ? sorted.map(([city, count]) => `
+    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--bd);">
+      <span>馃彊锔� ${esc(city)}</span><b style="color:var(--ac)">${count} 賮乇丿</b>
+    </div>`).join('') : '<p class="empty">賱賲 賷鬲賲 廿丿禺丕賱 賲丿賳 亘毓丿.</p>';
+}
+
+function renderOldestList() {
+  const withBirth = state.allPeople.filter(p => p.birth).sort((a, b) => a.birth - b.birth).slice(0, 5);
+  $('#oldestList').innerHTML = withBirth.length ? withBirth.map(p => `
+    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--bd);">
+      <span>馃懁 ${esc(p.name)}</span><b style="color:var(--ac)">${p.birth}</b>
+    </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 爻賳賵丕鬲 賲賷賱丕丿 賲爻噩賱丞.</p>';
+}
+
+function renderAdvancedStats() {
+  const total = state.allPeople.length;
+  const males = state.allPeople.filter(p => p.gender !== 'f').length;
+  const females = total - males;
+  const citiesCount = new Set(state.allPeople.map(p => p.city).filter(Boolean)).size;
+  const withPhone = state.allPeople.filter(p => p.phone).length;
+  const withPhoto = state.allPeople.filter(p => p.photo_url).length;
+  const yrs = state.allPeople.filter(p => p.birth).map(p => new Date().getFullYear() - p.birth);
+  const avgAge = yrs.length ? Math.round(yrs.reduce((a, b) => a + b, 0) / yrs.length) : 0;
+
+  const box = (n, l) => `<div class="stat-box"><div class="n">${n}</div><div class="l">${l}</div></div>`;
+  $('#advancedStats').innerHTML = `<div class="stat-grid">
+    ${box(total, '廿噩賲丕賱賷')}${box(calcGenerations(), '丕賱兀噩賷丕賱')}
+    ${box(males, '匕賰賵乇')}${box(females, '廿賳丕孬')}
+    ${box(citiesCount, '賲丿賳 賵賲丨丕賮馗丕鬲')}${box(withPhone, '賱丿賷賴賲 賴丕鬲賮')}
+    ${box(avgAge || '鈥�', '賲鬲賵爻胤 丕賱毓賲乇')}${box(withPhoto, '賱丿賷賴賲 氐賵乇丞')}
+  </div>`;
+}
+
+// ============================================================
+// 10. 丕賱亘丨孬
+// ============================================================
+let searchTimer = null;
+$('#searchInput').oninput = (e) => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => runSearch(e.target.value), 150);
+};
+
+function runSearch(raw) {
+  const q = raw.trim().toLowerCase();
+  const box = $('#searchResults');
+  if (q.length < 2) { box.hidden = true; return; }
+  const results = state.allPeople.filter(p =>
+    (p.name && p.name.toLowerCase().includes(q)) ||
+    (p.city && p.city.toLowerCase().includes(q)) ||
+    (p.phone && p.phone.includes(q))
+  ).slice(0, 15);
+  box.innerHTML = results.length ? results.map(p => `
+    <div class="search-item" data-id="${esc(p.id)}">
+      馃懁 <b>${esc(p.name)}</b> <span class="muted">(${esc(p.city || '睾賷乇 賲丨丿丿')})</span>
+    </div>`).join('') : '<div class="search-item muted">賱丕 鬲賵噩丿 賳鬲丕卅噩</div>';
+  box.hidden = false;
+}
+
+$('#searchResults').addEventListener('click', (e) => {
+  const item = e.target.closest('.search-item[data-id]');
+  if (!item) return;
+  $('#searchResults').hidden = true;
+  $('#searchInput').value = '';
+  selectPerson(item.dataset.id);
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.search-box')) $('#searchResults').hidden = true;
+});
+
+// ============================================================
+// 11. 丕賱鬲賮丕氐賷賱 賵卮噩乇丞 丕賱賮乇毓
+// ============================================================
+function selectPerson(id) {
+  if (!state.byId[id]) return;
+  state.selectedId = id;
+  showTab('tree');
+  renderTree();
+  renderDetail();
+  $('#detailPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderDetail() {
+  const p = state.byId[state.selectedId];
+  if (!p) { $('#detailPanel').innerHTML = ''; return; }
+  const id = p.id;
+  const chain = getChain(id).reverse();
+  const children = state.kids[id] || [];
+  const descendants = countDescendants(id);
+
+  $('#detailPanel').innerHTML = `
+    <div class="detail-panel">
+      <div class="detail-head">
+        <div class="detail-avatar">${p.photo_url ? `<img src="${esc(p.photo_url)}" alt="">` : esc(p.name.charAt(0))}</div>
+        <div class="detail-name">${esc(p.name)}</div>
+        <div class="detail-sub">${p.birth ? '賲賵賱賵丿 ' + p.birth + ' 路 ' : ''}${p.gender === 'f' ? '兀賳孬賶' : '匕賰乇'}</div>
+      </div>
+      <div class="detail-body">
+        <div class="detail-field">
+          <b>馃搷 丕賱賲爻丕乇 賲賳 丕賱噩匕乇</b>
+          <div class="chips">${chain.map((x, i) => `<button class="chip" data-id="${esc(x.id)}">${esc(x.name)}</button>${i < chain.length - 1 ? '鈫�' : ''}`).join('')}</div>
+        </div>
+        ${p.city ? `<div class="detail-field"><b>馃彊锔� 丕賱賲丿賷賳丞 / 丕賱賲丨丕賮馗丞</b>${esc(p.city)}</div>` : ''}
+        ${p.phone ? `<div class="detail-field"><b>馃摓 丕賱賴丕鬲賮</b><a href="tel:${esc(p.phone)}" style="color:var(--ac)">${esc(p.phone)}</a></div>` : ''}
+        ${p.email ? `<div class="detail-field"><b>鉁夛笍 丕賱亘乇賷丿</b><a href="mailto:${esc(p.email)}" style="color:var(--ac)">${esc(p.email)}</a></div>` : ''}
+        ${p.notes ? `<div class="detail-field"><b>馃摑 賲賱丕丨馗丕鬲</b>${esc(p.notes)}</div>` : ''}
+        <div class="detail-field"><b>馃懃 丕賱兀亘賳丕亍 賵丕賱兀丨賮丕丿</b>${descendants} 卮禺氐</div>
+        ${children.length ? `
+          <div class="detail-field">
+            <b>馃懚 丕賱兀亘賳丕亍 丕賱賲亘丕卮乇賵賳 (${children.length})</b>
+            <div class="chips">${children.map(c => `<button class="chip" data-id="${esc(c.id)}">${esc(c.name)}</button>`).join('')}</div>
+          </div>` : ''}
+        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+          ${state.isStaff ? `<button class="btn primary small" data-act="addChild" data-id="${esc(id)}">+ 廿囟丕賮丞 丕亘賳</button>` : ''}
+          ${state.isStaff ? `<button class="btn small" data-act="edit" data-id="${esc(id)}">鉁忥笍 鬲毓丿賷賱</button>` : ''}
+          ${state.isAdmin ? `<button class="btn danger small" data-act="delete" data-id="${esc(id)}">馃棏锔� 丨匕賮</button>` : ''}
+          <button class="btn small" data-act="pdf" data-id="${esc(id)}">馃搫 PDF</button>
+          <button class="btn small" data-act="branch" data-id="${esc(id)}">馃摛 鬲氐丿賷乇 賮乇毓</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>馃尶 卮噩乇丞 賮乇毓 ${esc(p.name.split(' ')[0])}</h3>
+      <p class="muted" style="margin-bottom:10px;">丕賱廿胤丕乇 丕賱兀爻賲賰 賱賱卮禺氐 丕賱賲亘丨賵孬 毓賳賴. 丕囟睾胤 毓賱賶 兀賷 丕爻賲 賱毓乇囟 賮乇毓賴.</p>
+      <div class="tree-container" style="max-height:460px;"><svg id="lineageSvg" role="img" aria-label="卮噩乇丞 丕賱賮乇毓"></svg></div>
+    </div>`;
+  renderLineageTree(id);
+}
+
+$('#detailPanel').addEventListener('click', (e) => {
+  const chip = e.target.closest('.chip[data-id]');
+  if (chip) return selectPerson(chip.dataset.id);
+  const node = e.target.closest('.lin-node[data-id]');
+  if (node) return selectPerson(node.dataset.id);
+  const btn = e.target.closest('button[data-act]');
+  if (!btn) return;
+  const id = btn.dataset.id;
+  switch (btn.dataset.act) {
+    case 'addChild': return openPersonForm(null, id);
+    case 'edit': return openPersonForm(id);
+    case 'delete': return deletePerson(id);
+    case 'pdf': return exportPersonPDF(id);
+    case 'branch': return exportPersonBranch(id);
+  }
+});
+
+function renderLineageTree(personId) {
+  const svg = document.getElementById('lineageSvg');
+  if (!svg || !state.byId[personId]) return;
+
+  // 賳氐毓丿 廿賱賶 兀毓賱賶 噩丿 賲鬲丕丨
+  let rootId = personId; const seen = new Set();
+  while (state.byId[rootId]?.parent_id && !seen.has(rootId)) {
+    seen.add(rootId); rootId = state.byId[rootId].parent_id;
+  }
+
+  const BW = 96, BH = 34, HG = 14, VG = 72, MAX_DEPTH = 8;
+  const pos = {}, colorOf = {};
+  let x = 0;
+
+  function layout(id, depth, color, path) {
+    if (path.has(id)) return;
+    path.add(id);
+    colorOf[id] = color;
+    const ch = depth < MAX_DEPTH ? (state.kids[id] || []) : [];
+    if (!ch.length) {
+      pos[id] = { x, y: depth * VG };
+      x += BW + HG;
+    } else {
+      ch.forEach((c, i) => layout(c.id, depth + 1, depth === 0 ? BRANCH_COLORS[i % BRANCH_COLORS.length] : color, path));
+      const first = pos[ch[0].id], last = pos[ch[ch.length - 1].id];
+      if (first && last) pos[id] = { x: (first.x + last.x) / 2, y: depth * VG };
+      else { pos[id] = { x, y: depth * VG }; x += BW + HG; }
+    }
+    path.delete(id);
+  }
+  layout(rootId, 0, '#2f6b4f', new Set());
+
+  const ids = Object.keys(pos);
+  const W = Math.max(...ids.map(i => pos[i].x)) + BW + 20;
+  const H = Math.max(...ids.map(i => pos[i].y)) + BH + 20;
+
+  let s = '';
+  ids.forEach(id => {
+    (state.kids[id] || []).forEach(c => {
+      if (!pos[c.id]) return;
+      const a = pos[id], b = pos[c.id];
+      const x1 = a.x + BW / 2, y1 = a.y + BH, x2 = b.x + BW / 2, y2 = b.y, my = (y1 + y2) / 2;
+      s += `<path d="M${x1},${y1} V${my} H${x2} V${y2}" fill="none" stroke="${colorOf[c.id]}" stroke-width="1.8"/>`;
+    });
+  });
+  ids.forEach(id => {
+    const p = state.byId[id], q = pos[id], col = colorOf[id];
+    const sel = id === personId;
+    const fill = p.gender === 'f' ? '#fce8f0' : '#ffffff';
+    s += `<g class="lin-node" data-id="${esc(id)}">
+      <rect x="${q.x}" y="${q.y}" width="${BW}" height="${BH}" rx="8" fill="${fill}" stroke="${col}" stroke-width="${sel ? 4 : 2}"/>
+      <text x="${q.x + BW / 2}" y="${q.y + BH / 2 + 4}">${esc(p.name.split(' ')[0].slice(0, 9))}</text>
+    </g>`;
+  });
+
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = s;
+}
+
+// ============================================================
+// 12. 丕賱卮噩乇丞 丕賱賰丕賲賱丞
+// ============================================================
+function renderTree() {
+  const svg = $('#treeSvg');
+  const roots = state.kids[''] || [];
+  if (!roots.length) {
+    svg.setAttribute('width', 800); svg.setAttribute('height', 200);
+    svg.setAttribute('viewBox', '0 0 800 200');
+    svg.innerHTML = '<text x="400" y="100" text-anchor="middle" style="fill:var(--mut)">賱丕 鬲賵噩丿 亘賷丕賳丕鬲 亘毓丿</text>';
+    return;
+  }
+  const NODE_W = 80, NODE_H = 60, H_GAP = 20, V_GAP = 100;
+  const positions = {};
+  let xCounter = 0;
+
+  function layout(node, depth, path) {
+    if (path.has(node.id)) return;
+    path.add(node.id);
+    const children = (state.kids[node.id] || []).filter(c => !path.has(c.id));
+    if (!children.length) {
+      positions[node.id] = { x: xCounter * (NODE_W + H_GAP), y: depth * V_GAP, node };
+      xCounter++;
+    } else {
+      children.forEach(c => layout(c, depth + 1, path));
+      const first = positions[children[0].id], last = positions[children[children.length - 1].id];
+      positions[node.id] = { x: ((first?.x ?? 0) + (last?.x ?? 0)) / 2, y: depth * V_GAP, node };
+    }
+    path.delete(node.id);
+  }
+  roots.forEach(r => layout(r, 0, new Set()));
+
+  const width = Math.max(xCounter * (NODE_W + H_GAP), 800);
+  const maxY = Math.max(...Object.values(positions).map(p => p.y));
+  const height = Math.max(maxY + NODE_H + 100, 600);
+
+  let html = `<g transform="translate(40, 50)">`;
+  Object.values(positions).forEach(pos => {
+    (state.kids[pos.node.id] || []).forEach(c => {
+      const cp = positions[c.id];
+      if (cp) html += `<path class="tree-edge" d="M${pos.x + NODE_W/2},${pos.y + NODE_H} L${cp.x + NODE_W/2},${cp.y}"/>`;
+    });
+  });
+  Object.values(positions).forEach(pos => {
+    const p = pos.node;
+    const cls = `tree-node ${p.gender === 'f' ? 'female' : 'male'} ${state.selectedId === p.id ? 'sel' : ''}`;
+    const cx = pos.x + NODE_W/2, cy = pos.y + NODE_H/2;
+    html += `<g class="${cls}" data-id="${esc(p.id)}">
+      <circle cx="${cx}" cy="${cy}" r="${Math.min(NODE_W, NODE_H)/2 - 5}"/>
+      <text x="${cx}" y="${cy + 4}">${esc(p.name.split(' ')[0].substring(0, 8))}</text>
+    </g>`;
+  });
+  html += `</g>`;
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.innerHTML = html;
+}
+
+$('#treeSvg').addEventListener('click', (e) => {
+  const g = e.target.closest('.tree-node[data-id]');
+  if (g) selectPerson(g.dataset.id);
+});
+
+function treeZoom(factor) {
+  state.treeScale = Math.max(0.3, Math.min(3, state.treeScale * factor));
+  $('#treeSvg').style.transform = `scale(${state.treeScale})`;
+}
+function treeReset() {
+  state.treeScale = 1;
+  $('#treeSvg').style.transform = 'scale(1)';
+}
+
+// ============================================================
+// 13. 廿囟丕賮丞 賵鬲毓丿賷賱 卮禺氐 (賲毓 丕賱鬲丨賯賯 賲賳 丕賱賲丿禺賱丕鬲)
+// ============================================================
+function openPersonForm(editId = null, parentId = null) {
+  if (!requireStaff()) return;
+  state.editingPersonId = editId;
+  const p = editId ? state.byId[editId] : null;
+
+  $('#personModalTitle').textContent = p ? '鉁忥笍 鬲毓丿賷賱 亘賷丕賳丕鬲' : '+ 廿囟丕賮丞 丕爻賲';
+  $('#pName').value = p?.name || '';
+  $('#pCity').value = p?.city || '';
+  $('#pBirth').value = p?.birth || '';
+  $('#pPhone').value = p?.phone || '';
+  $('#pEmail').value = p?.email || '';
+  $('#pNotes').value = p?.notes || '';
+  $('#pGender').value = p?.gender || 'm';
+  $('#pPhoto').value = '';
+  $('#pNameErr').textContent = ''; $('#pBirthErr').textContent = '';
+
+  const selectedParent = p?.parent_id || parentId || '';
+  $('#pParent').innerHTML = '<option value="">鈥� 亘丿賵賳 (噩匕乇) 鈥�</option>' +
+    state.allPeople
+      .filter(x => x.id !== editId && !getChain(x.id).some(c => c.id === editId))
+      .sort((a, b) => fullName(a.id, 3).localeCompare(fullName(b.id, 3), 'ar'))
+      .map(x => `<option value="${esc(x.id)}" ${selectedParent === x.id ? 'selected' : ''}>${esc(fullName(x.id, 3))}</option>`)
+      .join('');
+
+  openModal('personModal');
+}
+
+async function savePerson() {
+  if (!requireStaff()) return;
+  const btn = $('#savePerson');
+  const name = $('#pName').value.trim();
+  const birthRaw = $('#pBirth').value.trim();
+  const birth = birthRaw ? parseInt(birthRaw, 10) : null;
+  const email = $('#pEmail').value.trim();
+
+  $('#pNameErr').textContent = name ? '' : '丕賱丕爻賲 賲胤賱賵亘';
+  $('#pBirthErr').textContent = (birth && (birth < 1800 || birth > 2100)) ? '爻賳丞 睾賷乇 氐丨賷丨丞' : '';
+  if (!name) return $('#pName').focus();
+  if ($('#pBirthErr').textContent) return $('#pBirth').focus();
+  if (email && !isValidEmail(email)) return toast('丕賱亘乇賷丿 睾賷乇 氐丨賷丨');
+
+  btn.disabled = true;
+  try {
+    let photoUrl = state.editingPersonId ? state.byId[state.editingPersonId]?.photo_url : null;
+    const photoFile = $('#pPhoto').files[0];
+    if (photoFile) {
+      if (photoFile.size > MAX_PHOTO_BYTES) throw new Error('丨噩賲 丕賱氐賵乇丞 賷鬲噩丕賵夭 2 賲賷睾丕亘丕賷鬲');
+      const ext = (photoFile.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const fileName = `person_${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const { error: upErr } = await sb.storage.from('avatars').upload(fileName, photoFile, { contentType: photoFile.type });
+      if (upErr) throw upErr;
+      photoUrl = sb.storage.from('avatars').getPublicUrl(fileName).data.publicUrl;
+    }
+
+    const data = {
+      name,
+      parent_id: $('#pParent').value || null,
+      city: $('#pCity').value.trim() || null,
+      birth,
+      phone: $('#pPhone').value.trim() || null,
+      email: email || null,
+      notes: $('#pNotes').value.trim() || null,
+      gender: $('#pGender').value,
+      photo_url: photoUrl
+    };
+
+    let error;
+    if (state.editingPersonId) {
+      ({ error } = await sb.from('people').update(data).eq('id', state.editingPersonId));
+    } else {
+      ({ error } = await sb.from('people').insert({
+        ...data,
+        status: state.isAdmin ? 'approved' : 'pending',
+        created_by: state.user?.id || null
+      }));
+    }
+    if (error) throw error;
+
+    toast(state.editingPersonId ? '鉁� 鬲賲 丕賱鬲毓丿賷賱' : (state.isAdmin ? '鉁� 鬲賲鬲 丕賱廿囟丕賮丞' : '鈴� 亘丕賳鬲馗丕乇 賲賵丕賮賯丞 丕賱賲丿賷乇'));
+    closeModal('personModal');
+    loadData();
+  } catch (err) {
+    toast('禺胤兀: ' + (err.message || err));
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function deletePerson(id) {
+  if (!requireAdmin()) return;
+  if (!confirm('丨匕賮 賴匕丕 丕賱卮禺氐 賳賴丕卅賷丕賸責')) return;
+  const { error } = await sb.from('people').delete().eq('id', id);
+  if (error) return toast('賱丕 賷賲賰賳 丕賱丨匕賮 (賱賴 兀亘賳丕亍 兀賵 賲乇鬲亘胤 亘爻噩賱 丌禺乇)');
+  state.selectedId = null;
+  $('#detailPanel').innerHTML = '';
+  toast('鬲賲 丕賱丨匕賮');
+  loadData();
+}
+
+// ============================================================
+// 14. 丕賱廿毓丿丕丿丕鬲
+// ============================================================
+function openSettings() {
+  if (!requireAdmin()) return;
+  $('#cfgName').value = state.siteData.name || '';
+  $('#cfgBanner').value = state.siteData.banner || '';
+  $('#cfgLongMessage').value = state.siteData.long_message || '';
+  $('#cfgLogo').value = state.siteData.logo || '馃尦';
+  openModal('settingsModal');
+}
+
+async function saveSettings() {
+  if (!requireAdmin()) return;
+  const { error } = await sb.from('site').update({
+    name: $('#cfgName').value.trim(),
+    banner: $('#cfgBanner').value.trim(),
+    long_message: $('#cfgLongMessage').value.trim(),
+    logo: $('#cfgLogo').value.trim()
+  }).eq('id', 1);
+  if (error) return toast('禺胤兀: ' + error.message);
+  closeModal('settingsModal');
+  toast('鉁� 鬲賲 丨賮馗 丕賱廿毓丿丕丿丕鬲');
+  loadData();
+}
+
+// ============================================================
+// 15. 丕賱乇爻丕卅賱 賵丕賱丿乇丿卮丞
+// ============================================================
+async function sendMessage() {
+  const name = $('#msgName').value.trim();
+  const body = $('#msgBody').value.trim();
+  if (body.length < 3) return toast('丕賱乇爻丕賱丞 賯氐賷乇丞 噩丿丕賸');
+  const last = parseInt(localStorage.getItem('last_msg') || '0', 10);
+  if (Date.now() - last < 60000) return toast('丕賳鬲馗乇 丿賯賷賯丞 賯亘賱 丕賱廿乇爻丕賱 賲噩丿丿丕賸');
+  const { error } = await sb.from('messages').insert({ name: name || null, body });
+  if (error) return toast('禺胤兀: ' + error.message);
+  localStorage.setItem('last_msg', String(Date.now()));
+  toast('鉁� 賵氐賱鬲 乇爻丕賱鬲賰');
+  $('#msgName').value = ''; $('#msgBody').value = '';
+}
+
+async function sendChat() {
+  const txt = $('#chatInput').value.trim();
+  if (!txt) return;
+  const senderName = state.user?.email?.split('@')[0] || '夭丕卅乇';
+  if (state.chatChannel) {
+    state.chatChannel.send({ type: 'broadcast', event: 'chat', payload: { text: txt.slice(0, 500), sender: senderName } });
+  }
+  addChatMessage(txt, 'me', senderName);
+  $('#chatInput').value = '';
+}
+
+function initChat() {
+  $('#chatBox').innerHTML = '<div class="chat-msg other">馃憢 兀賴賱丕賸 亘賰 賮賷 睾乇賮丞 丕賱毓卮賷乇丞</div>';
+  state.chatChannel = sb.channel('chat-room', { config: { broadcast: { self: false } } });
+  state.chatChannel.on('broadcast', { event: 'chat' }, (msg) => {
+    const { text, sender } = msg.payload || {};
+    if (text) addChatMessage(text, 'other', sender || '夭丕卅乇');
+  }).subscribe();
+}
+
+function addChatMessage(text, type, sender) {
+  const chatBox = $('#chatBox');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + type;
+  div.innerHTML = `<div style="font-size:0.65rem; opacity:0.7; margin-bottom:2px;">${esc(sender)}</div><div>${esc(text)}</div>`;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// ============================================================
+// 16. 賱賵丨丞 丕賱廿丿丕乇丞
+// ============================================================
+async function loadAdminPanel() {
+  if (!requireStaff()) return;
+  openModal('adminModal');
+  const [{ data: pp }, { data: pm }] = await Promise.all([
+    sb.from('people').select('*').eq('status', 'pending').order('created_at'),
+    sb.from('messages').select('*').eq('status', 'pending').order('created_at')
+  ]);
+
+  $('#pendingPeople').innerHTML = pp?.length ? pp.map(p => `
+    <div class="pending-item">
+      <b>${esc(p.name)}</b> - 馃搷 ${esc(p.city || '睾賷乇 賲丨丿丿')}
+      <div style="display:flex; gap:6px; margin-top:8px;">
+        <button class="btn primary small" data-admin="approvePerson" data-id="${esc(p.id)}" style="flex:1;">鉁� 賲賵丕賮賯丞</button>
+        <button class="btn danger small" data-admin="rejectPerson" data-id="${esc(p.id)}" style="flex:1;">鉁� 乇賮囟</button>
+      </div>
+    </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 胤賱亘丕鬲.</p>';
+
+  $('#pendingMsgs').innerHTML = pm?.length ? pm.map(m => `
+    <div class="pending-item">
+      <b>${esc(m.name || '夭丕卅乇')}</b>
+      <p style="font-size:0.85rem; margin:5px 0;">${esc(m.body)}</p>
+      <textarea id="reply_${esc(m.id)}" placeholder="乇丿 丕賱廿丿丕乇丞 (丕禺鬲賷丕乇賷)..." rows="2"></textarea>
+      <div style="display:flex; gap:6px;">
+        <button class="btn primary small" data-admin="approveMsg" data-id="${esc(m.id)}" style="flex:1;">鉁� 賳卮乇</button>
+        <button class="btn danger small" data-admin="rejectMsg" data-id="${esc(m.id)}" style="flex:1;">馃棏锔� 丨匕賮</button>
+      </div>
+    </div>`).join('') : '<p class="empty">賱丕 鬲賵噩丿 乇爻丕卅賱.</p>';
+}
+
+$('#adminModal').addEventListener('click', async (e) => {
+  const btn = e.target.closest('button[data-admin]');
+  if (!btn || !requireStaff()) return;
+  const id = btn.dataset.id;
+  const actions = {
+    approvePerson: () => sb.from('people').update({ status: 'approved' }).eq('id', id),
+    rejectPerson: () => confirm('丨匕賮 賳賴丕卅賷責') ? sb.from('people').delete().eq('id', id) : null,
+    approveMsg: async () => {
+      const reply = document.getElementById('reply_' + id)?.value.trim() || null;
+      return sb.from('messages').update({
+        status: 'approved', reply,
+        replied_by_role: state.role,
+        replied_at: new Date().toISOString()
+      }).eq('id', id);
+    },
+    rejectMsg: () => confirm('丨匕賮 丕賱乇爻丕賱丞責') ? sb.from('messages').delete().eq('id', id) : null
+  };
+  const run = actions[btn.dataset.admin];
+  if (!run) return;
+  const res = await run();
+  if (res?.error) return toast('禺胤兀: ' + res.error.message);
+  if (res) toast('鉁� 鬲賲');
+  loadAdminPanel();
+  loadData();
+});
+
+// ============================================================
+// 17. 丕賱鬲氐丿賷乇 賵丕賱丕爻鬲賷乇丕丿
+// ============================================================
+function exportCSV() {
+  if (!state.isStaff) return toast('丕賱鬲氐丿賷乇 賱賱廿丿丕乇丞 賮賯胤');
+  if (!state.allPeople.length) return toast('賱丕 鬲賵噩丿 亘賷丕賳丕鬲');
+  const headers = ['丕賱丕爻賲', '丕賱兀亘', '丕賱噩賳爻', '丕賱賲丿賷賳丞', '爻賳丞 丕賱賲賷賱丕丿', '丕賱賴丕鬲賮', '丕賱亘乇賷丿', '賲賱丕丨馗丕鬲'];
+  const rows = state.allPeople.map(p => [
+    p.name, p.parent_id ? state.byId[p.parent_id]?.name || '' : '',
+    p.gender === 'f' ? '兀賳孬賶' : '匕賰乇', p.city || '', p.birth || '',
+    p.phone || '', p.email || '', (p.notes || '').replace(/\n/g, ' ')
+  ]);
+  const csv = '\uFEFF' + [headers, ...rows].map(r => r.map(csvEscape).join(',')).join('\n');
+  downloadFile(csv, `毓卮賷乇丞_${new Date().toISOString().slice(0,10)}.csv`, 'text/csv;charset=utf-8');
+}
+
+function exportJSON() {
+  if (!state.isStaff) return toast('丕賱賳爻禺 丕賱丕丨鬲賷丕胤賷 賱賱廿丿丕乇丞 賮賯胤');
+  const backup = { exported_at: new Date().toISOString(), site: state.siteData, people: state.allPeople };
+  downloadFile(JSON.stringify(backup, null, 2), `backup_${Date.now()}.json`, 'application/json');
+}
+
+async function importJSON(event) {
+  const file = event.target.files[0];
+  event.target.value = '';
+  if (!file || !requireAdmin()) return;
+  if (!confirm('爻賷鬲賲 廿囟丕賮丞 丕賱兀爻賲丕亍 賲賳 丕賱賲賱賮 賰噩匕賵乇 賲爻鬲賯賱丞. 賲鬲丕亘毓丞責')) return;
+  try {
+    const data = JSON.parse(await file.text());
+    if (!Array.isArray(data.people)) throw new Error('賲賱賮 睾賷乇 氐丕賱丨');
+    const rows = data.people
+      .filter(p => p && p.name)
+      .map(p => ({
+        name: String(p.name).slice(0, 120), parent_id: null, gender: p.gender === 'f' ? 'f' : 'm',
+        city: p.city || null, birth: p.birth || null, phone: p.phone || null,
+        email: p.email || null, notes: p.notes || null, status: 'approved'
+      }));
+    const { error } = await sb.from('people').insert(rows);
+    if (error) throw error;
+    toast(`鉁� 鬲賲 丕爻鬲賷乇丕丿 ${rows.length} 丕爻賲`);
+    loadData();
+  } catch (e) { toast('禺胤兀: ' + e.message); }
+}
+
+// ============================================================
+// 18. PDF 賵鬲氐丿賷乇 丕賱賮乇毓
+// ============================================================
+function exportPersonPDF(id) {
+  const p = state.byId[id];
+  if (!p) return;
+  const chain = getChain(id).reverse();
+  const children = state.kids[id] || [];
+  const row = (label, value) => `<tr><td style="padding:10px; border:1px solid #ddd; background:#f8f6f0; width:30%;"><b>${label}</b></td><td style="padding:10px; border:1px solid #ddd;">${value}</td></tr>`;
+  const content = `
+    <div style="font-family:Tahoma; direction:rtl; padding:40px; max-width:800px; margin:auto;">
+      <div style="text-align:center; border-bottom:3px solid #2f6b4f; padding-bottom:20px; margin-bottom:20px;">
+        <h1 style="color:#2f6b4f; margin:0;">${esc(state.siteData.name || '卮噩乇丞 丕賱毓卮賷乇丞')}</h1>
+        <p style="color:#888; margin:5px 0;">亘胤丕賯丞 鬲毓乇賷賮</p>
+      </div>
+      <h2 style="color:#2f6b4f;">${esc(p.name)}</h2>
+      <table style="width:100%; border-collapse:collapse; margin-top:20px;">
+        ${p.birth ? row('爻賳丞 丕賱賲賷賱丕丿', p.birth) : ''}
+        ${row('丕賱噩賳爻', p.gender === 'f' ? '兀賳孬賶' : '匕賰乇')}
+        ${p.city ? row('丕賱賲丿賷賳丞', esc(p.city)) : ''}
+        ${p.phone ? row('丕賱賴丕鬲賮', esc(p.phone)) : ''}
+        ${p.email ? row('丕賱亘乇賷丿', esc(p.email)) : ''}
+        ${row('丕賱賲爻丕乇 賲賳 丕賱噩匕乇', chain.map(x => esc(x.name)).join(' 鈫� '))}
+        ${row('丕賱兀亘賳丕亍 賵丕賱兀丨賮丕丿', countDescendants(id) + ' 卮禺氐')}
+      </table>
+      ${children.length ? `<h3 style="margin-top:20px;">丕賱兀亘賳丕亍 丕賱賲亘丕卮乇賵賳:</h3><ul>${children.map(c => `<li>${esc(c.name)}</li>`).join('')}</ul>` : ''}
+      ${p.notes ? `<h3>賲賱丕丨馗丕鬲:</h3><p>${esc(p.notes)}</p>` : ''}
+      <p style="text-align:center; color:#888; margin-top:40px; font-size:12px;">鬲賲 丕賱廿賳卮丕亍 賮賷 ${new Date().toLocaleString('ar')}</p>
+    </div>`;
+  const win = window.open('', '_blank');
+  if (!win) return toast('丕爻賲丨 亘丕賱賳賵丕賮匕 丕賱賲賳亘孬賯丞 賱賱胤亘丕毓丞');
+  win.document.write(`<html dir="rtl"><head><meta charset="utf-8"><title>${esc(p.name)}</title></head><body>${content}</body></html>`);
+  win.document.close();
+  win.onload = () => win.print();
+}
+
+function exportPersonBranch(id) {
+  const branch = [], seen = new Set();
+  (function collect(nodeId) {
+    const p = state.byId[nodeId];
+    if (!p || seen.has(nodeId)) return;
+    seen.add(nodeId); branch.push(p);
+    (state.kids[nodeId] || []).forEach(c => collect(c.id));
+  })(id);
+  const headers = ['丕賱丕爻賲', '丕賱兀亘', '丕賱噩賳爻', '丕賱賲丿賷賳丞', '爻賳丞 丕賱賲賷賱丕丿', '丕賱賴丕鬲賮'];
+  const rows = branch.map(p => [
+    p.name, p.parent_id ? state.byId[p.parent_id]?.name || '' : '',
+    p.gender === 'f' ? '兀賳孬賶' : '匕賰乇', p.city || '', p.birth || '', p.phone || ''
+  ]);
+  const csv = '\uFEFF' + [headers, ...rows].map(r => r.map(csvEscape).join(',')).join('\n');
+  downloadFile(csv, `賮乇毓_${state.byId[id].name.replace(/\s+/g, '_')}.csv`, 'text/csv;charset=utf-8');
+}
+
+// ============================================================
+// 19. 鬲氐丿賷乇 丕賱卮噩乇丞 PNG
+// ============================================================
+function exportTreePNG() {
+  const svg = document.getElementById('treeSvg');
+  if (!svg || !svg.childNodes.length) return toast('丕賱卮噩乇丞 睾賷乇 噩丕賴夭丞');
+  const bg = getComputedStyle(document.body).backgroundColor || '#ffffff';
+  const clone = svg.cloneNode(true);
+  clone.removeAttribute('style');
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('width', '100%'); rect.setAttribute('height', '100%'); rect.setAttribute('fill', bg);
+  clone.insertBefore(rect, clone.firstChild);
+  const svgData = new XMLSerializer().serializeToString(clone);
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  canvas.width = parseInt(svg.getAttribute('width')) || 800;
+  canvas.height = parseInt(svg.getAttribute('height')) || 600;
+  img.onload = () => {
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob(blob => {
+      if (!blob) return toast('鬲毓匕賾乇 廿賳卮丕亍 丕賱氐賵乇丞');
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = `卮噩乇丞_${new Date().toISOString().slice(0,10)}.png`;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+  };
+  img.onerror = () => toast('鬲毓匕賾乇 廿賳卮丕亍 丕賱氐賵乇丞');
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData);
+}
+
+// ============================================================
+// 20. 丕賱禺乇賷胤丞 (賲丨丕賮馗丕鬲 爻賵乇賷丕 賵丕賱毓乇丕賯 賵丕賱賷賲賳 賵丕賱爻毓賵丿賷丞)
+// ============================================================
+const CITY_COORDS = {
+  // 爻賵乇賷丕
+  '丿賲卮賯': [33.5138, 36.2765], '乇賷賮 丿賲卮賯': [33.5000, 36.4000],
+  '丨賱亘': [36.2021, 37.1343], '丨賲氐': [34.7324, 36.7137],
+  '丨賲丕丞': [35.1318, 36.7578], '丕賱賱丕匕賯賷丞': [35.5138, 35.7906],
+  '廿丿賱亘': [35.9306, 36.6339], '丿賷乇 丕賱夭賵乇': [35.3333, 40.1500],
+  '丕賱乇賯丞': [35.9500, 39.0000], '丕賱丨爻賰丞': [36.5000, 40.7500],
+  '丿乇毓丕': [32.6189, 36.1021], '丕賱爻賵賷丿丕亍': [32.7090, 36.5695],
+  '丕賱賯賳賷胤乇丞': [33.1258, 35.8242], '胤乇胤賵爻': [34.8890, 35.8866],
+  // 丕賱毓乇丕賯
+  '亘睾丿丕丿': [33.3152, 44.3661], '丕賱亘氐乇丞': [30.5081, 47.7835],
+  '賳賷賳賵賶': [36.3350, 43.1189], '丕賱賲賵氐賱': [36.3350, 43.1189],
+  '兀乇亘賷賱': [36.1901, 44.0091], '丕賱爻賱賷賲丕賳賷丞': [35.5613, 45.4305],
+  '丿賴賵賰': [36.8679, 42.9504], '賰乇賰賵賰': [35.4681, 44.3922],
+  '丕賱兀賳亘丕乇': [33.4258, 43.2999], '丿賷丕賱賶': [33.7500, 44.6333],
+  '氐賱丕丨 丕賱丿賷賳': [34.6100, 43.6780], '賵丕爻胤': [32.5000, 45.8333],
+  '賲賷爻丕賳': [31.8397, 47.1442], '匕賷 賯丕乇': [31.0433, 46.2572],
+  '丕賱賲孬賳賶': [31.3135, 45.2818], '丕賱賯丕丿爻賷丞': [31.9892, 44.9250],
+  '亘丕亘賱': [32.4722, 44.4208], '賰乇亘賱丕亍': [32.6167, 44.0333],
+  '丕賱賳噩賮': [32.0000, 44.3333], '丨賱亘噩丞': [35.1778, 45.9861],
+  // 丕賱賷賲賳
+  '氐賳毓丕亍': [15.3694, 44.1910], '兀賲丕賳丞 丕賱毓丕氐賲丞': [15.3694, 44.1910],
+  '毓丿賳': [12.7855, 45.0187], '鬲毓夭': [13.5795, 44.0209],
+  '丕賱丨丿賷丿丞': [14.7978, 42.9545], '廿亘': [13.9667, 44.1833],
+  '匕賲丕乇': [14.5428, 44.4050], '丨噩丞': [15.6917, 43.6033],
+  '氐毓丿丞': [16.9402, 43.7610], '毓賲乇丕賳': [15.6594, 43.9441],
+  '丕賱亘賷囟丕亍': [13.9850, 45.5730], '賲兀乇亘': [15.4589, 45.3220],
+  '丕賱噩賵賮': [16.1000, 45.0000], '丨囟乇賲賵鬲': [15.9000, 49.1000],
+  '丕賱賲賴乇丞': [16.4000, 52.0000], '卮亘賵丞': [14.5000, 47.0000],
+  '兀亘賷賳': [13.5000, 45.9000], '賱丨噩': [13.0587, 44.8817],
+  '丕賱囟丕賱毓': [13.6950, 44.7310], '乇賷賲丞': [14.2000, 43.6000],
+  '丕賱賲丨賵賷鬲': [15.4700, 43.5400], '爻賯胤乇賶': [12.5000, 54.0000],
+  // 丕賱爻毓賵丿賷丞
+  '丕賱乇賷丕囟': [24.7136, 46.6753], '賲賰丞 丕賱賲賰乇賲丞': [21.3891, 39.8579],
+  '丕賱賲丿賷賳丞 丕賱賲賳賵乇丞': [24.5247, 39.5692], '丕賱賯氐賷賲': [26.3260, 43.9750],
+  '丕賱卮乇賯賷丞': [26.4207, 50.0888], '毓爻賷乇': [18.2164, 42.5053],
+  '鬲亘賵賰': [28.3838, 36.5550], '丨丕卅賱': [27.5114, 41.7208],
+  '丕賱丨丿賵丿 丕賱卮賲丕賱賷丞': [30.9753, 41.0381], '噩丕夭丕賳': [16.8894, 42.5706],
+  '賳噩乇丕賳': [17.4917, 44.1322], '丕賱亘丕丨丞': [20.0129, 41.4677],
+  '噩丿丞': [21.4858, 39.1925], '丕賱胤丕卅賮': [21.2703, 40.4158],
+  '丕賱丿賲丕賲': [26.3927, 49.9777], '丕賱禺亘乇': [26.2794, 50.2081],
+  // 丿賵賱 兀禺乇賶
+  '丕賱賯丕賴乇丞': [30.0444, 31.2357], '丿亘賷': [25.2048, 55.2708],
+  '丕賱賰賵賷鬲': [29.3759, 47.9774], '丕賱丿賵丨丞': [25.2854, 51.5310],
+  '毓賲賾丕賳': [31.9454, 35.9284], '亘賷乇賵鬲': [33.8938, 35.5018]
+};
+// 丕賱兀胤賵賱 兀賵賱丕賸 丨鬲賶 鬲購胤丕亘賯 "乇賷賮 丿賲卮賯" 賯亘賱 "丿賲卮賯"
+const CITY_KEYS = Object.keys(CITY_COORDS).sort((a, b) => b.length - a.length);
+
+function findCityCoords(city) {
+  if (!city) return null;
+  const clean = city.trim();
+  if (CITY_COORDS[clean]) return CITY_COORDS[clean];
+  for (const key of CITY_KEYS) if (clean.includes(key)) return CITY_COORDS[key];
+  return null;
+}
+
+function initMap() {
+  if (state.map) { state.map.invalidateSize(); return; }
+  if (!document.getElementById('familyMap') || typeof L === 'undefined') return;
+  state.map = L.map('familyMap').setView([30, 40], 4);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '漏 OpenStreetMap', maxZoom: 18
+  }).addTo(state.map);
+  renderMapMarkers();
+}
+
+function renderMapMarkers() {
+  if (!state.map || typeof L === 'undefined') return;
+  state.mapMarkers.forEach(m => state.map.removeLayer(m));
+  state.mapMarkers = [];
+  const groups = {};
+  state.allPeople.forEach(p => {
+    const coords = findCityCoords(p.city);
+    if (!coords) return;
+    const key = coords.join(',');
+    (groups[key] = groups[key] || { coords, city: p.city, people: [] }).people.push(p);
+  });
+  Object.values(groups).forEach(g => {
+    const marker = L.marker(g.coords).addTo(state.map);
+    const list = g.people.slice(0, 10).map(p => `鈥� ${esc(p.name)}`).join('<br>');
+    const more = g.people.length > 10 ? `<br><i>賵${g.people.length - 10} 丌禺乇賵賳...</i>` : '';
+    marker.bindPopup(`<div style="direction:rtl; font-family:Tahoma; min-width:180px;">
+      <b style="color:#2f6b4f;">馃彊锔� ${esc(g.city)}</b><br>
+      <small>${g.people.length} 賮乇丿</small><hr style="margin:6px 0;">
+      <div style="font-size:12px;">${list}${more}</div></div>`);
+    state.mapMarkers.push(marker);
+  });
+  if (state.mapMarkers.length) {
+    const bounds = L.latLngBounds(state.mapMarkers.map(m => m.getLatLng()));
+    state.map.fitBounds(bounds, { padding: [30, 30], maxZoom: 8 });
+  }
+}
+
+function renderCityList() {
+  const groups = {};
+  state.allPeople.forEach(p => { if (p.city) (groups[p.city] = groups[p.city] || []).push(p); });
+  const sorted = Object.entries(groups).sort((a, b) => b[1].length - a[1].length);
+  $('#cityList').innerHTML = sorted.length ? sorted.map(([city, people]) => `
+    <div class="city-row" data-city="${esc(city)}" tabindex="0">
+      <div><b>馃彊锔� ${esc(city)}</b>
+        <div class="muted" style="font-size:0.75rem;">${people.slice(0, 3).map(p => esc(p.name)).join('貙 ')}${people.length > 3 ? '...' : ''}</div>
+      </div>
+      <span class="count">${people.length}</span>
+    </div>`).join('') : '<p class="empty">賱賲 賷鬲賲 廿丿禺丕賱 賲丿賳 亘毓丿.</p>';
+}
+
+$('#cityList').addEventListener('click', (e) => {
+  const row = e.target.closest('.city-row[data-city]');
+  if (row) showCityOnMap(row.dataset.city);
+});
+
+function showCityOnMap(cityName) {
+  const coords = findCityCoords(cityName);
+  if (!coords || !state.map) return toast('廿丨丿丕孬賷丕鬲 賴匕賴 丕賱賲丿賷賳丞 睾賷乇 賲鬲賵賮乇丞');
+  state.map.setView(coords, 8);
+  const marker = state.mapMarkers.find(m => {
+    const ll = m.getLatLng();
+    return Math.abs(ll.lat - coords[0]) < 0.01 && Math.abs(ll.lng - coords[1]) < 0.01;
+  });
+  if (marker) marker.openPopup();
+  document.getElementById('familyMap').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ============================================================
+// 21. 賱賵賳 賵丕噩賴丞 丕賱賲賳氐丞 (賱賱賲丿賷乇 賮賯胤)
+// ============================================================
+const tHue = $('#tHue'), tSat = $('#tSat'), tLit = $('#tLit'), tWheel = $('#tWheel');
+
+function hslToHex(h, s, l) {
+  s /= 100; l /= 100;
+  const a = s * Math.min(l, 1 - l);
+  const f = n => { const k = (n + h / 30) % 12; return l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)); };
+  return '#' + [f(0), f(8), f(4)].map(x => Math.round(x * 255).toString(16).padStart(2, '0')).join('');
+}
+
+function hexToHsl(hex) {
+  if (!isHex(hex)) hex = DEFAULT_COLOR;
+  const r = parseInt(hex.slice(1, 3), 16) / 255, g = parseInt(hex.slice(3, 5), 16) / 255, b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  let h = 0, s = 0;
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+    else if (max === g) h = (b - r) / d + 2;
+    else h = (r - g) / d + 4;
+    h *= 60;
+  }
+  return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
+}
+
+function applyTheme(hex) {
+  if (!isHex(hex)) hex = DEFAULT_COLOR;
+  const root = document.documentElement.style;
+  root.setProperty('--ac', hex);
+  const [h, s, l] = hexToHsl(hex);
+  root.setProperty('--ac3', hslToHex(h, s, Math.max(l - 18, 8)));
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', hex);
+}
+
+function syncThemeSliders(hex) {
+  const [h, s, l] = hexToHsl(hex);
+  tHue.value = h; tSat.value = s; tLit.value = l;
+  updateThemeFromSliders(false);
+}
+
+const currentThemeHex = () => hslToHex(+tHue.value, +tSat.value, +tLit.value);
+
+function updateThemeFromSliders(livePreview = true) {
+  $('#tHueVal').textContent = tHue.value;
+  $('#tSatVal').textContent = tSat.value;
+  $('#tLitVal').textContent = tLit.value;
+  const hex = currentThemeHex();
+  tWheel.value = hex;
+  $('#tPreview').style.background = `linear-gradient(135deg, ${hslToHex(+tHue.value, +tSat.value, Math.max(+tLit.value - 18, 8))}, ${hex})`;
+  if (livePreview) applyTheme(hex);
+}
+
+tHue.oninput = tSat.oninput = tLit.oninput = () => updateThemeFromSliders(true);
+tWheel.oninput = () => {
+  const [h, s, l] = hexToHsl(tWheel.value);
+  tHue.value = h; tSat.value = s; tLit.value = l;
+  updateThemeFromSliders(true);
+};
+
+async function saveTheme() {
+  if (!requireAdmin()) return;
+  const hex = currentThemeHex();
+  const { error } = await sb.from('site').update({ primary_color: hex }).eq('id', 1);
+  if (error) return toast('禺胤兀: ' + error.message);
+  state.siteData.primary_color = hex;
+  toast('鉁� 鬲賲 丨賮馗 賱賵賳 丕賱賵丕噩賴丞 賱賱噩賲賷毓');
+}
+
+async function resetTheme() {
+  if (!requireAdmin()) return;
+  if (!confirm('廿毓丕丿丞 丕賱賱賵賳 丕賱丕賮鬲乇丕囟賷 賱賱噩賲賷毓責')) return;
+  const { error } = await sb.from('site').update({ primary_color: DEFAULT_COLOR }).eq('id', 1);
+  if (error) return toast('禺胤兀: ' + error.message);
+  state.siteData.primary_color = DEFAULT_COLOR;
+  syncThemeSliders(DEFAULT_COLOR);
+  applyTheme(DEFAULT_COLOR);
+  toast('鉁� 鬲賲鬲 廿毓丕丿丞 丕賱賱賵賳 丕賱丕賮鬲乇丕囟賷');
+}
+
+// ============================================================
+// 22. 丕賱鬲賴賷卅丞
+// ============================================================
+let realtimeReady = false;
+function setupRealtime() {
+  if (realtimeReady) return;
+  realtimeReady = true;
+  sb.channel('realtime-people')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'people' }, scheduleReload)
+    .subscribe();
+  sb.channel('realtime-site')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'site' }, scheduleReload)
+    .subscribe();
+}
+
+async function init() {
+  if (typeof supabase === 'undefined') return setTimeout(init, 200);
+  initChat();
+  sb.auth.onAuthStateChange(async (_event, session) => {
+    await applySession(session);
+    refreshInstallUI();
+    loadData();
+  });
+  const { data: { session } } = await sb.auth.getSession();
+  await applySession(session);
+  refreshInstallUI();
+  await loadData();
+  setupRealtime();
+}
+
+window.matchMedia('(display-mode: standalone)').addEventListener?.('change', refreshInstallUI);
+init();
+</script>
+</body>
+</html>
